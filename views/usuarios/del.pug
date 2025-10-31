@@ -1,0 +1,29 @@
+extends ../layouts/main
+
+block contenido
+    h2 Dar de baja un usuario
+
+    form(method="POST")    
+        label.form-label(for="username") Username
+        input.form-control(type="text", name="username", id="username", disabled, value = datos.username)
+        <br>
+        label.form-label(for="password") Password
+        input.form-control(type="text", name="password", id="password", disabled, value = datos.password)
+        <br>
+        label.form-label(for="email") Email
+        input.form-control(type="text", name="email", id="email", disabled, value = datos.email)
+        <br>
+        label.form-label(for="tlfn") Tlfn
+        input.form-control(type="number", name="tlfn", id="tlfn", disabled, value = datos.tlfn)
+        <br>
+        label.form-label(for="direccion") Direccion
+        input.form-control(type="text", name="direccion", id="direccion", disabled, value=datos.direccion)
+        <br> 
+        label.form-check-label(for="activo") Activo
+        input.form-check-input(type="checkbox", name="activo", id="activo", disabled, , checked= datos.activo==1)
+        <br>
+        label.form-label(for="tipo") Tipo
+        input.form-control(type="text", name="tipo", id="tipo", disabled, value=datos.tipo)
+        <br> 
+        button.btn.btn-primary(type="submit") Borrar 
+        button.btn.btn-danger(type="reset") Cancelar

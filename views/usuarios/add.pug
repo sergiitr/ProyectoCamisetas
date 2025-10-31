@@ -1,0 +1,31 @@
+extends ../layouts/main
+
+block contenido
+
+        h2 Añadir Usuario             
+
+        form(method="POST")    
+            label.form-label(for="username") Usermane
+            input.form-control(type="text",  name="username", id="username", step="any", required)
+            <br>
+            label.form-label(for="password") Password
+            input.form-control(type="text",  name="password", id="password", step="any", required)
+            <br>
+            label.form-label(for="email") Email
+            input.form-control(type="text",  name="email", id="email", step="any", required)
+            <br>
+            label.form-label(for="tlfn") Tlfn
+            input.form-control(type="number",  name="tlfn", id="tlfn", step="any", required)
+            <br>
+            label.form-label(for="direccion") Direccion
+            input.form-control(type="text", name="direccion", id="direccion", setp="any", required)
+            <br>
+            label.form-check-label(for="activo") Activo
+            input.form-check-input(type="checkbox", name="activo", id="activo")
+            <br>
+            
+            label.form-check-label(for="tipo") Tipo
+            input.form-check-input(type="enum", name="tipo", id="activo")
+            <br>
+            button.btn.btn-primary(type="submit") Enviar 
+            button.btn.btn-danger(type="reset") Cancelar
