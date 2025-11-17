@@ -1,4 +1,3 @@
-
 CREATE DATABASE `camisetas`;
 
 USE `camisetas`;
@@ -44,6 +43,7 @@ CREATE TABLE `linea_pedido` (
   `pedido` INT UNSIGNED NOT NULL,
   `producto` INT UNSIGNED NOT NULL,
   `precio_venta` DECIMAL(8,2) NOT NULL,
+  `cantidad` INT UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`pedido`) REFERENCES `pedido`(`id`) ,
   FOREIGN KEY (`producto`) REFERENCES `camiseta`(`id`) 
@@ -51,4 +51,16 @@ CREATE TABLE `linea_pedido` (
 
 -- juan Secreto_123
 
-INSERT INTO `usuario` (`username`, `password`, `email`, `telefono`, `direccion`, `activo`, `tipo`) VALUES ('juan', '$2a$10$lI.aqorQqeC8Z7faW7npY.j8RKyK48df4c9Beo60FHZltPdaGnO3y', 'juansinmiedo@sincorreo.com', '555123456', 'Paseo de la Estación 44, 23008, JAEN', '1', 'OPERADOR');
+
+INSERT INTO `usuario` (`id`, `username`, `password`, `email`, `telefono`, `direccion`, `activo`, `tipo`) VALUES
+(1,	'pepe',	'$2a$10$czRAAeghw4UntjfS4etcgOfCwXypg/PRC.MmfadS8qN1PRWlEJiI2',	'juansinmiedo@sincorreo.com',	'555123456',	'Paseo de la Estación 44, 23008, JAEN',	1,	'OPERADOR'),
+(13,	'pepito',	'$2b$10$.zbmFav.W7ZYXvuNerc4J.Saygg9JRE2mEudBrB1Cy71DwbBkJxcG',	'pepe@sinninguncorreo.com',	'123-456-789',	'Paseo de la Estación 44, 23008, JAEN',	1,	'CLIENTE');
+
+INSERT INTO `camiseta` (`id`, `talla`, `sexo`, `color`, `marca`, `stock`, `precio`, `activo`) VALUES
+(1,	'xs',	'chico',	'#e01b24',	'Adidas',	3,	20.00,	1),
+(2,	'xs',	'chico',	'#a0aba4',	'Puma',	10,	15.00,	0),
+(3,	's',	'unisex',	'#000000',	'Puma',	3,	1.20,	1),
+(4,	'xxs',	'niña',	'#ed333b',	'Puma',	12,	12.00,	1),
+(5,	'xxl',	'niño',	'#f9f06b',	'Adidas',	12,	34.00,	1),
+(14,	'xs',	'unisex',	'#e66100',	'Adidas',	3,	6.00,	1);
+
