@@ -63,5 +63,17 @@ router.get('/logout', (req, res) => {
     });
 });
 
+router.get('/logout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err);
+            // Si hay un error, redirigimos pero mostramos un error genérico
+            return res.render('error', { mensaje: 'Error al cerrar sesión' });
+        }
+        // Redirige a la URL que renderizará la vista logout.pug (usaremos una nueva ruta en app.js)
+        res.redirect('/logout-success'); 
+    });
+});
+
 
 module.exports = router;

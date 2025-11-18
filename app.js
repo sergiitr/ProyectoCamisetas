@@ -88,6 +88,10 @@ app.get("/indexRegistrado", (req, res) => {
     res.render("indexRegistrado");
 });
 
+app.get("/logout-success", (req, res) => {
+    res.render("auth/logout");
+});
+
 // Poner el servidor a escuchar
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);
