@@ -28,8 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Middleware de log
 app.use((req, res, next) =>{
-  console.log("Petición recibida en: " + req.url);
-  next();
+    console.log("Petición recibida en: " + req.url);
+    next();
 });
 
 // --- MIDDLEWARE GLOBAL DE SESIÓN ---
@@ -73,6 +73,11 @@ app.get('/admin/usuarios/list', (req, res) => {
         }
     });
 });
+
+
+// RUTAS CSS
+app.use(express.static('styles'));
+
 // --------------------------------------------------------------------------
 
 // Ruta principal
