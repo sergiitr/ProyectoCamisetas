@@ -1,0 +1,31 @@
+extends ../layouts/main
+
+block contenido
+    h2 Editar Usuario
+    form(method="POST")    
+        label.form-label(for="username") Username
+        input.form-control(type="text",  name="username", id="username", required, value=datos.username)
+        <br>
+        label.form-label(for="password") Password (Dejar en blanco para no cambiar)
+        input.form-control(type="password",  name="password", id="password")
+        <br>
+        label.form-label(for="email") Email
+        input.form-control(type="email",  name="email", id="email", required, value=datos.email)
+        <br>
+        label.form-label(for="tlfn") Tlfn
+        input.form-control(type="tel",  name="tlfn", id="tlfn", required, value=datos.tlfn)
+        <br>
+        label.form-label(for="direccion") Direccion
+        input.form-control(type="text", name="direccion", id="direccion", required, value=datos.direccion)
+        <br>
+        label.form-check-label(for="activo") Activo
+        input.form-check-input(type="checkbox", name="activo", id="activo", checked= datos.activo==1)
+        <br>
+        
+        label.form-label(for="tipo") Tipo
+        select(name="tipo", id="tipo", required)
+            option(value="cliente", selected=(datos.tipo=="cliente")) Cliente
+            option(value="admin", selected=(datos.tipo=="admin")) Admin
+        <br>
+        button.btn.btn-info(type="submit") Enviar 
+        button.btn.btn-danger(type="reset") Cancelar

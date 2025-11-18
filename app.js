@@ -2,9 +2,10 @@
 const express = require('express');
 const session = require('express-session'); // Necesario para el login
 const bodyParser = require('body-parser');
-const path = require('path'); // Necesario solo si usas path en env, si no, se puede quitar
+const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
+const db = require('./db'); // Necesitas acceder a la base de datos
 
 const app = express();
 
@@ -17,20 +18,13 @@ app.set('view engine', 'pug');
 
 // Configuración de la Sesión (Básico para que funcione el login)
 app.use(session({
-    secret: 'clave_secreta_proyecto', // Pon lo que quieras aquí
+    secret: 'clave_secreta_proyecto', 
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
 }));
 
-// Middleware para BodyParser
+// Middleware para BodyParser (para manejar datos de formularios)
 app.use(bodyParser.urlencoded({ extended: true }));
-
-// --- TRUCO PARA EL PIE DE PÁGINA ---
-// Este middleware pasa la variable 'user' a TODOS los archivos .pug automáticamente
-app.use((req, res, next) => {
-    res.locals.user = req.session.usuario;
-    next();
-});
 
 // Middleware de log
 app.use((req, res, next) =>{
@@ -38,22 +32,59 @@ app.use((req, res, next) =>{
   next();
 });
 
+// --- MIDDLEWARE GLOBAL DE SESIÓN ---
+// Pasa la información de la sesión a TODAS las vistas (archivos .pug)
+app.use((req, res, next) => {
+    if (req.session.usuario) {
+        // Pasa el nombre de usuario
+        res.locals.user = req.session.usuario.username; 
+        // Pasa un flag si es administrador
+        res.locals.isAdmin = req.session.usuario.tipo === 'ADMIN'; 
+    } else {
+        res.locals.user = null;
+        res.locals.isAdmin = false;
+    }
+    next();
+});
+
 // --- RUTAS ---
 
-app.use('/admin/camiseta', camisetaRouter);
+// Rutas de administración para Camisetas
+app.use('/admin/camiseta', camisetaRouter); 
+
+// Rutas de autenticación
 app.use('/auth', authRouter);
 
+// ⚠️ RUTA DE USUARIOS AÑADIDA DIRECTAMENTE AQUÍ PARA EVITAR CREAR usuarioRouter.js
+app.get('/admin/usuarios/list', (req, res) => {
+
+    // Consulta para obtener todos los usuarios (omitiendo la contraseña)
+    let query = 'SELECT id, username, email, telefono, direccion, activo, tipo FROM usuario';
+
+    db.query(query, (error, resultado) => {
+        if (error) {
+            console.log(error);
+            res.render('error', {
+                mensaje: 'Imposible acceder a la lista de usuarios: ' + error.message
+            });
+        } else {
+            // Se asume que la vista se encuentra en 'usuario/list.pug'
+            res.render('usuarios/list', { usuarios: resultado });
+        }
+    });
+});
+// --------------------------------------------------------------------------
+
+// Ruta principal
 app.get("/", (req, res) => {
   res.render("index");
 });
 
-// ESTA ES LA RUTA QUE TE FALTABA
+// Ruta a la que se redirige tras el login exitoso
 app.get("/indexRegistrado", (req, res) => {
-    // Si no hay usuario logueado, lo mandamos al login
     if (!req.session.usuario) {
         return res.redirect('/auth/login');
     }
-    // Renderizamos la vista. No hace falta pasar variables, el middleware de arriba ya lo hizo.
     res.render("indexRegistrado");
 });
 

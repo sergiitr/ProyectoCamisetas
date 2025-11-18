@@ -26,6 +26,7 @@ router.post('/login', (req, res) => {
 
         // Si no encuentra el usuario
         if (resultados.length == 0) {
+            // Se usa return para detener la ejecución
             return res.render('auth/login', { error: 'El usuario no existe' });
         }
 
@@ -34,16 +35,33 @@ router.post('/login', (req, res) => {
         const contrasenaCorrecta = bcrypt.compareSync(password, usuario.password);
 
         if (contrasenaCorrecta) {
-            // IMPORTANTE: Guardamos el nombre en la sesión
-            req.session.usuario = usuario.username;
-            console.log("Login correcto. Usuario: " + req.session.usuario);
+            // IMPORTANTE: Guardamos el nombre y el TIPO en la sesión
+            req.session.usuario = {
+                username: usuario.username,
+                tipo: usuario.tipo // Clave para control de acceso (ADMIN/CLIENTE)
+            };
+            console.log("Login correcto. Usuario: " + req.session.usuario.username);
             
-            // Redirigimos a la página de bienvenida (con 'r')
-            res.redirect('/indexRegistrado');
+            // Redirigimos
+            return res.redirect('/indexRegistrado');
         } else {
-            res.render('auth/login', { error: 'Contraseña incorrecta' });
+            return res.render('auth/login', { error: 'Contraseña incorrecta' });
         }
     });
 });
+
+// NUEVA RUTA: Logout
+router.get('/logout', (req, res) => {
+    // Destruye la sesión
+    req.session.destroy(err => {
+        if (err) {
+            console.log(err);
+            return res.render('error', { mensaje: 'Error al cerrar sesión' });
+        }
+        // Redirige al inicio
+        res.redirect('/');
+    });
+});
+
 
 module.exports = router;
