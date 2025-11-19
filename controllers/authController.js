@@ -2,6 +2,9 @@ const { urlencoded } = require('body-parser')
 const bcrypt = require('bcrypt')
 const db = require('../db')
 
+
+
+
 exports.loginForm = (req, res) => {
     res.render('auth/login')
 }
@@ -25,7 +28,7 @@ exports.register = (req, res) => {
                 let mensaje = 'Imposible dar de alta: '+error.sqlMessage
                 res.render('error', {mensaje})
             } else {
-                res.redirect('/')
+                res.redirect('../')
             }
     })
 }
