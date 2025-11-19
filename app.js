@@ -86,6 +86,17 @@ app.get("/", (req, res) => {
 });
 
 // Ruta a la que se redirige tras el login exitoso
+app.post("/login", (req, res) => {
+  res.render("")
+})
+
+app.get("/auth/index", (req, res) => {
+  res.render("index")
+})
+
+
+
+// ESTA ES LA RUTA QUE TE FALTABA
 app.get("/indexRegistrado", (req, res) => {
     if (!req.session.usuario) {
         return res.redirect('/auth/login');
