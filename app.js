@@ -47,6 +47,16 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/login", (req, res) => {
+  res.render("")
+})
+
+app.get("/auth/index", (req, res) => {
+  res.render("index")
+})
+
+
+
 // ESTA ES LA RUTA QUE TE FALTABA
 app.get("/indexRegistrado", (req, res) => {
     // Si no hay usuario logueado, lo mandamos al login

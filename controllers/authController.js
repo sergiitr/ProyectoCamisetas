@@ -25,7 +25,7 @@ exports.register = (req, res) => {
                 let mensaje = 'Imposible dar de alta: '+error.sqlMessage
                 res.render('error', {mensaje})
             } else {
-                res.redirect('index')
+                res.redirect('/')
             }
     })
 }
