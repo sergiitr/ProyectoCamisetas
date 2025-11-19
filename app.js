@@ -39,7 +39,7 @@ app.use((req, res, next) => {
         // Pasa el nombre de usuario
         res.locals.user = req.session.usuario.username; 
         // Pasa un flag si es administrador
-        res.locals.isAdmin = req.session.usuario.tipo === 'ADMIN'; 
+        res.locals.isAdmin = req.session.usuario.tipo === 'OPERADOR'; 
     } else {
         res.locals.user = null;
         res.locals.isAdmin = false;
@@ -47,16 +47,25 @@ app.use((req, res, next) => {
     next();
 });
 
+// Middleware para verificar si el usuario es ADMIN
+function isAdmin(req, res, next) {
+    if (!req.session.usuario || req.session.usuario.tipo !== 'OPERADOR') {
+        return res.status(403).render("error", { mensaje: "Acceso denegado (solo para administradores)" });
+    }
+    next();
+}
+
+
 // --- RUTAS ---
 
 // Rutas de administración para Camisetas
-app.use('/admin/camiseta', camisetaRouter); 
+app.use('/admin/camiseta', isAdmin, camisetaRouter);
 
 // Rutas de autenticación
 app.use('/auth', authRouter);
 
 // ⚠️ RUTA DE USUARIOS AÑADIDA DIRECTAMENTE AQUÍ PARA EVITAR CREAR usuarioRouter.js
-app.get('/admin/usuarios/list', (req, res) => {
+app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 
     // Consulta para obtener todos los usuarios (omitiendo la contraseña)
     let query = 'SELECT id, username, email, telefono, direccion, activo, tipo FROM usuario';
@@ -86,17 +95,6 @@ app.get("/", (req, res) => {
 });
 
 // Ruta a la que se redirige tras el login exitoso
-app.post("/login", (req, res) => {
-  res.render("")
-})
-
-app.get("/auth/index", (req, res) => {
-  res.render("index")
-})
-
-
-
-// ESTA ES LA RUTA QUE TE FALTABA
 app.get("/indexRegistrado", (req, res) => {
     if (!req.session.usuario) {
         return res.redirect('/auth/login');
