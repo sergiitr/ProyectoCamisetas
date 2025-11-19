@@ -17,21 +17,15 @@ exports.registerForm = (req, res) => {
 // --------------------------------------
 exports.register = (req, res) => {
     const { username, password, telefono, direccion, email } = req.body;
-
     const hashedPass = bcrypt.hashSync(password, 10);
-
-    const sql = `INSERT INTO usuario 
-                 (username, password, email, telefono, direccion, activo, tipo)
-                 VALUES (?, ?, ?, ?, ?, 0, "CLIENTE")`;
+    const sql = `INSERT INTO usuario (username, password, email, telefono, direccion, activo, tipo)VALUES (?, ?, ?, ?, ?, 0, "CLIENTE")`;
 
     db.query(sql, [username, hashedPass, email, telefono, direccion], (error) => {
         if (error) {
             console.log(error);
             res.render('error', { mensaje: 'Imposible dar de alta: ' + error.sqlMessage });
-        } else {
-            // Correcto → volver al login
-            res.redirect('/auth/login');
-        }
+        } else 
+            res.redirect('/auth/login'); // Correcto → volver al login
     });
 };
 
@@ -40,26 +34,21 @@ exports.register = (req, res) => {
 // --------------------------------------
 exports.login = (req, res) => {
     const { username, password } = req.body;
-
     const sql = `SELECT * FROM usuario WHERE username = ? AND activo = 1`;
-
     db.query(sql, [username], (error, resultados) => {
         if (error) {
             console.log(error);
             return res.render('error', { mensaje: 'Error en la base de datos' });
         }
-
-        if (resultados.length === 0) {
+        if (resultados.length === 0) 
             return res.render('auth/login', { mensaje: 'Usuario o contraseña incorrectos' });
-        }
-
+        
         const user = resultados[0];
 
         // Comprobar contraseña
-        if (!bcrypt.compareSync(password, user.password)) {
+        if (!bcrypt.compareSync(password, user.password))
             return res.render('auth/login', { mensaje: 'Usuario o contraseña incorrectos' });
-        }
-
+        
         // Guardar usuario en sesión
         req.session.usuario = {
             id: user.id,

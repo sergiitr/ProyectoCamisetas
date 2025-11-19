@@ -49,9 +49,9 @@ app.use((req, res, next) => {
 
 // Middleware para verificar si el usuario es ADMIN
 function isAdmin(req, res, next) {
-    if (!req.session.usuario || req.session.usuario.tipo !== 'OPERADOR') {
+    if (!req.session.usuario || req.session.usuario.tipo !== 'OPERADOR')
         return res.status(403).render("error", { mensaje: "Acceso denegado (solo para administradores)" });
-    }
+    
     next();
 }
 
@@ -64,7 +64,7 @@ app.use('/admin/camiseta', isAdmin, camisetaRouter);
 // Rutas de autenticación
 app.use('/auth', authRouter);
 
-// ⚠️ RUTA DE USUARIOS AÑADIDA DIRECTAMENTE AQUÍ PARA EVITAR CREAR usuarioRouter.js
+// RUTA DE USUARIOS AÑADIDA DIRECTAMENTE AQUÍ PARA EVITAR CREAR usuarioRouter.js
 app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 
     // Consulta para obtener todos los usuarios (omitiendo la contraseña)
@@ -76,10 +76,9 @@ app.get('/admin/usuarios/list', isAdmin, (req, res) => {
             res.render('error', {
                 mensaje: 'Imposible acceder a la lista de usuarios: ' + error.message
             });
-        } else {
-            // Se asume que la vista se encuentra en 'usuario/list.pug'
-            res.render('usuarios/list', { usuarios: resultado });
-        }
+        } else     
+            res.render('usuarios/list', { usuarios: resultado }); // Se asume que la vista se encuentra en 'usuario/list.pug'
+        
     });
 });
 

@@ -25,10 +25,8 @@ router.post('/login', (req, res) => {
         }
 
         // Si no encuentra el usuario
-        if (resultados.length == 0) {
-            // Se usa return para detener la ejecución
-            return res.render('auth/login', { error: 'El usuario no existe' });
-        }
+        if (resultados.length == 0) 
+            return res.render('auth/login', { error: 'El usuario no existe' }); // Se usa return para detener la ejecución
 
         const usuario = resultados[0];
         // Comparamos contraseña
@@ -44,9 +42,8 @@ router.post('/login', (req, res) => {
             
             // Redirigimos
             return res.redirect('/indexRegistrado');
-        } else {
+        } else
             return res.render('auth/login', { error: 'Contraseña incorrecta' });
-        }
     });
 });
 
