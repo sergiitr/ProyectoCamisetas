@@ -1,17 +1,18 @@
 extends ../layouts/main
 
 block contenido
+    link(rel="stylesheet", href="/css/auth/login.css")
 
-        div 
-            form(method="post") 
-                label.form-label(for="username") Usuario:
-                input.form-control(id="username", type="text", name="username")
-                br
-                label.form-label(for="password") Contraseña:
-                input.form-control(id="password", type="password", name="password")
-                br
-                button.btn.btn-primary(type="submit") ¡Enviar!
-        div 
-            p ¿No está registrado aún?
-            p 
-                a.btn.btn-primary(href="register") Registrarse
+    div 
+        form(method="post") 
+            label.form-label(for="username") Usuario:
+            input.form-control(id="username", type="text", name="username")
+            br
+            label.form-label(for="password") Contraseña:
+            input.form-control(id="password", type="password", name="password")
+            br
+            button.btn.btn-primary(type="submit") ¡Enviar!
+    div 
+        p ¿No está registrado aún?
+        p 
+            a.btn.btn-primary(href="register") Registrarse

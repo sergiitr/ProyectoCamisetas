@@ -1,0 +1,42 @@
+/* ==================================== */
+/* PIE DE PÁGINA (FOOTER) - BLOQUE PESADO */
+/* ==================================== */
+
+footer {
+    /* El Bloque Brutalista */
+    margin-top: 50px; 
+    padding: 30px 20px; /* Relleno generoso */
+    width: 100%;
+    
+    background-color: #2F4F4F; /* Gris Pizarra Oscuro */
+    color: #F7E733; /* Texto en Amarillo Brillante (Alto Contraste) */
+    font-family: 'Arial Black', sans-serif;
+    text-align: center;
+    
+    /* Bordes y Sombra Proyectada */
+    border-top: 5px solid #000000; 
+    border-bottom: 5px solid #000000; 
+    box-shadow: 0px -10px 0px #FF5757; /* Sombra proyectada hacia arriba (Rojo Intenso) */
+}
+
+/* Estilos para el texto de identificación */
+footer p {
+    font-size: 1.1em;
+    font-weight: 900;
+    margin: 5px 0;
+}
+
+/* Estilo específico para el nombre de usuario (usando un selector más específico si es posible) */
+/* Si el nombre de usuario se envuelve en un <span> o <strong>: */
+footer strong { 
+    color: #33FFC7; /* Verde Menta Brillante para el dato clave */
+    text-transform: uppercase;
+    padding: 2px 5px;
+    border: 2px solid #33FFC7;
+}
+
+/* Estilo para el texto de 'Usuario anónimo.' */
+/* Si el texto 'Usuario anónimo' se muestra: */
+footer p:last-of-type {
+    color: #FFC733; /* Naranja Brillante para señalar que no está logueado */
+}
