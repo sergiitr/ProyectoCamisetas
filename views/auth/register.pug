@@ -1,0 +1,27 @@
+extends ../layouts/main
+
+block contenido
+
+    link(rel="stylesheet", href="/css/auth/register.css")
+
+    div.container
+        form(method="post") 
+
+            label.form-label(for="username") Usuario:
+            input.form-control(id="username", type="text", name="username")
+            
+            label.form-label(for="password") Contraseña:
+            input.form-control(id="password", type="password", name="password")
+            
+            label.form-label(for="email") Email:
+            input.form-control(id="email", type="email", name="email", placeholder="usuario@correo.com")
+            
+            label.form-label(for="direccion") Dirección:
+            input.form-control(id="direccion", type="text", name="direccion", placeholder="Paseo de la Estación 44, JAEN")
+            
+            label.form-label(for="telefono") Teléfono:
+            input.form-control(id="telefono", type="tel", name="telefono", pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}", placeholder="555-123-456")
+            
+
+            button.btn.btn-primary(type="submit") ¡Registrarse!
+    

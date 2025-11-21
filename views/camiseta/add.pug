@@ -1,0 +1,43 @@
+extends ../layouts/main
+
+block contenido
+    h2 Añadir camiseta             
+
+    form(method="POST")    
+        label.form-label(for="talla") 
+        select(name="talla", id="talla", required) 
+            option(value="xxs") XXS 
+            option(value="xs") XS
+            option(value="s") S
+            option(value="m") M
+            option(value="l") L
+            option(value="xl") XL
+            option(value="xxl") XXL
+        <br>
+        label.form-label(for="sexo") 
+        select(name="sexo", id="sexo", required) 
+            option(value="chica") chica 
+            option(value="chico") chico
+            option(value="unisex") unisex
+            option(value="niño") niño
+            option(value="niña") niña
+            option(value="unisex_infantil") unisex_infantil
+        <br>
+        label.form-label(for="color") Color
+        input.form-control(type="color", name="color", id="color", required)
+        <br>
+        label.form-label(for="marca") Marca
+        input.form-control(type="marca", name="marca", id="marca", required)
+        <br>
+        label.form-label(for="stock") Stock
+        input.form-control(type="number", name="stock", id="stock" min="0" max="1000", required)
+        <br>    
+        label.form-label(for="precio") Precio 
+        input.form-control(type="number",  name="precio", id="precio", step="any", required)
+        <br>
+        
+        label.form-check-label(for="activo") Activo
+        input.form-check-input(type="checkbox", name="activo", id="activo")
+        <br>
+        button.btn.btn-primary(type="submit") Enviar 
+        button.btn.btn-danger(type="reset") Cancelar

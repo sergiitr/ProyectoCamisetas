@@ -1,0 +1,45 @@
+extends ../layouts/main
+
+block contenido
+    h2 Listado de camisetas
+    if mensaje!=null
+        p= mensaje
+    table.table
+        thead 
+            tr 
+                th id
+                th talla 
+                th sexo 
+                th color 
+                th marca 
+                th stock 
+                th precio 
+                is isAdmin
+                    th activo
+                    th editar
+                    th borrar
+        tbody 
+            each camiseta in camisetas
+                tr 
+                    td=camiseta.id
+                    td=camiseta.talla 
+                    td=camiseta.sexo 
+                    td
+                        span(style=`color:${camiseta.color}`)=camiseta.color 
+                    td=camiseta.marca 
+                    td=camiseta.stock 
+                    td=camiseta.precio 
+
+                    //Si eres admin sehace las siguientes lineas
+                    is isAdmin
+
+                        td=camiseta.activo==1
+                    
+                        td
+                            a.btn.btn-success(href=`/admin/camiseta/edit/${camiseta.id}`) editar
+                        td
+                            a.btn.btn-danger(href=`/admin/camiseta/del/${camiseta.id}`) borrar
+                    //Si no eres admin se hacen estas otras lineas
+                    Is !isAdmin
+                        td
+                            a.btn.btn-danger(href=`/camiseta/del/${camiseta.id}`) comprar

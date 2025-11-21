@@ -1,0 +1,85 @@
+/* ==================================== */
+/* 1. CONTENEDOR DEL FORMULARIO         */
+/* ==================================== */
+/* El estilo se aplica al form directamente para que actúe como un bloque */
+form {
+    padding: 30px;
+    margin: 50px auto; /* Centrar el formulario y darle espacio */
+    max-width: 600px;
+    
+    /* El Bloque de Contraste Principal */
+    background-color: #FFFFFF; /* Fondo Blanco */
+    border: 5px solid #000000; /* Borde muy grueso */
+    
+    /* Sombra Proyectada para Registro: Usaremos un color verde brillante */
+    box-shadow: 10px 10px 0px #33FFC7; /* Verde Menta Brillante */
+}
+
+/* ==================================== */
+/* 2. ETIQUETAS Y TEXTO (form-label)    */
+/* ==================================== */
+.form-label {
+    display: block;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.3em; /* Letra grande */
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #000000;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+/* ==================================== */
+/* 3. CAMPOS DE ENTRADA (form-control)  */
+/* ==================================== */
+.form-control {
+    /* Cuadrado y Borde Grueso Brutalista */
+    border-radius: 0 !important; 
+    border: 3px solid #000000 !important;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.1em;
+    padding: 10px;
+    color: #000000;
+    background-color: #F7F7F7; /* Fondo Gris Claro */
+    transition: all 0.1s ease-in-out;
+}
+
+/* Foco: Feedback táctil y brillante */
+.form-control:focus {
+    border-color: #57B6FF !important; /* Borde Azul Eléctrico */
+    box-shadow: 4px 4px 0px #57B6FF !important; /* Sombra Brillante */
+    outline: none;
+}
+
+/* ==================================== */
+/* 4. BOTÓN DE REGISTRO (.btn-primary)  */
+/* ==================================== */
+
+/* Estilo Base: Bloque de Color de Acción (Verde Menta) */
+button.btn-primary {
+    border-radius: 0 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-size: 1.5em; /* Aún más grande */
+    font-weight: 900;
+    text-transform: uppercase;
+    
+    color: #000000 !important; 
+    background-color: #33FFC7 !important; /* Verde Menta Brillante */
+    border: 4px solid #000000 !important; /* Borde extra grueso para el botón */
+    box-shadow: 6px 6px 0px #000000 !important; 
+    padding: 10px 30px;
+    margin-top: 30px;
+}
+
+/* Hover: El "Salto" */
+button.btn-primary:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #000000 !important;
+}
+
+/* Active: La "Presión" */
+button.btn-primary:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px #000000 !important;
+}

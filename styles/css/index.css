@@ -1,0 +1,65 @@
+/* ==================================== */
+/* ESTILOS GLOBALES - BODY Y TIPOGRAFÍA */
+/* ==================================== */
+body {
+    background-color: #F0F0F0; 
+    color: #000000; 
+    font-family: 'Arial Black', sans-serif; /* Base Brutalista */
+    padding: 20px;
+}
+
+/* ==================================== */
+/* ENCABEZADO (H1) - LETRAS GRANDES     */
+/* ==================================== */
+h1 {
+    font-size: 3em; /* Letra muy grande y audaz */
+    font-weight: 900;
+    text-transform: uppercase;
+    color: #2F4F4F; /* Gris Pizarra para contraste */
+    margin-bottom: 40px;
+    padding: 10px;
+    
+    /* Borde grueso y sombra para destacar el bloque */
+    border: 5px solid #000000;
+    background-color: #FFC733; /* Amarillo/Naranja brillante */
+    box-shadow: 12px 12px 0px #000000; 
+    display: inline-block; /* Para que el borde envuelva el texto */
+}
+
+/* ==================================== */
+/* ENLACES DE ACCIÓN (LOGIN/REGISTER)   */
+/* ==================================== */
+
+/* Estilo para los contenedores (div) de los enlaces */
+body > div {
+    margin-bottom: 15px;
+}
+
+/* El enlace (A) como un bloque táctil */
+body > div > a {
+    display: inline-block;
+    padding: 20px 30px;
+    font-size: 1.5em; 
+    text-decoration: none;
+    font-weight: 900;
+    
+    /* Colores y Bloque */
+    color: #000000; 
+    border: 3px solid #000000;
+    background-color: #57B6FF; /* Azul Eléctrico para la acción */
+    box-shadow: 6px 6px 0px #000000; 
+    transition: all 0.1s ease-in-out; 
+}
+
+/* Efecto Hover: Salto y cambio de color */
+body > div > a:hover {
+    background-color: #FF5757; /* Rojo Brillante */
+    transform: translate(-3px, -3px); 
+    box-shadow: 8px 8px 0px #000000; 
+}
+
+/* Efecto Active: Presión del bloque */
+body > div > a:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0px 0px 0px #000000; 
+}

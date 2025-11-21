@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mysql2": "^3.15.2",
+    "pug": "^3.0.3"
+  },
+  "name": "adt02-nepm-camisetas",
+  "description": "Breve descripción (tecnologías y cómo hemos calentado el plato).",
+  "version": "1.0.0",
+  "main": "app.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.iesvirgendelcarmen.com/juangu/adt02-nepm-camisetas"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,32 @@
+extends ../layouts/main
+
+block contenido
+    h2 Listado de Usuarios
+    if mensaje!=null
+        p= mensaje
+    table.table
+        thead 
+            tr 
+                th id
+                th username 
+                th email 
+                th tlfn 
+                th direccion 
+                th activo
+                th tipo
+                th editar
+                th borrar
+        tbody 
+            each usuario in usuarios
+                tr 
+                    td=usuario.id
+                    td=usuario.username 
+                    td=usuario.email 
+                    td=usuario.tlfn 
+                    td=usuario.direccion
+                    td=usuario.activo==1
+                    td=usuario.tipo
+                    td
+                        a.btn.btn-success(href=`/admin/usuario/edit/${usuario.id}`) editar
+                    td
+                        a.btn.btn-danger(href=`/admin/usuario/del/${usuario.id}`) borrar

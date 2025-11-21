@@ -1,0 +1,46 @@
+
+/* REVISAR, PORQUE NUNCA TENEMOS UN LOGOUT XD*/
+
+/* ==================================== */
+/* BLOQUE DE MENSAJE (SESIÓN CERRADA)   */
+/* ==================================== */
+
+.logout-message {
+    max-width: 600px; /* Limitar el ancho para que parezca una tarjeta/bloque */
+    margin: 50px auto; /* Centrar y darle espacio */
+    padding: 40px;
+    
+    /* BLOQUE BRUTALISTA */
+    background-color: #FFFFFF; /* Fondo Blanco */
+    border: 5px solid #000000;
+    
+    /* Sombra de contraste única (ej. Azul eléctrico) */
+    box-shadow: 10px 10px 0px #57B6FF; 
+    text-align: center;
+}
+
+/* Título del mensaje (H2) */
+.logout-message h2 {
+    font-size: 2.5em;
+    color: #2F4F4F;
+    border-bottom: 4px solid #000000;
+    margin-bottom: 25px;
+}
+
+/* Párrafos del mensaje */
+.logout-message p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Botón de Inicio (darle un color diferente para esta acción) */
+.logout-message .btn-primary {
+    /* Sobrescribir el color principal del botón para darle un aspecto de "acción de cierre" */
+    background-color: #FF5757 !important; /* Rojo Brillante */
+}
+
+/* Hover del Botón de Inicio */
+.logout-message .btn-primary:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+}
+

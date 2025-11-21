@@ -1,0 +1,78 @@
+/* ==================================== */
+/* 1. CONTENEDOR PRINCIPAL: HEADER      */
+/* ==================================== */
+header {
+    /* Estilo de Fuente y Color base (heredable a hijos) */
+    font-family: 'Arial Black', sans-serif; 
+    color: #000000;
+    
+    /* BLOQUE BRUTALISTA principal */
+    background-color: #F7E733; /* Amarillo Fuerte */
+    border: 4px solid #000000; 
+    box-shadow: 8px 8px 0px #000000; /* Sombra Proyectada */
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+/* ==================================== */
+/* 2. LAYOUT: NAVEGACIÓN Y LISTA        */
+/* ==================================== */
+/* El elemento de navegación (Opcional, para centrar) */
+header nav {
+    max-width: 1200px;
+    margin: 0 auto; /* Centrar la barra de navegación */
+}
+
+/* La lista (UL) - Fila de bloques */
+header nav ul {
+    display: flex; /* Poner los LI en línea */
+    flex-wrap: wrap; 
+    list-style: none; /* Quitar viñetas */
+    padding: 0;
+    margin: 0;
+    gap: 15px; /* Espacio entre los bloques */
+}
+
+/* Estilo del elemento de lista (LI) */
+header nav ul li {
+    flex-grow: 1; /* Permite que los bloques se expandan */
+    min-width: 150px; /* Asegura un tamaño mínimo legible */
+}
+
+/* ==================================== */
+/* 3. ENLACE: EL BLOQUE LLAMATIVO (A)   */
+/* ==================================== */
+header nav ul li a {
+    /* Propiedades del Bloque */
+    display: block; 
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 10px;
+    
+    /* Tipografía */
+    font-size: 1.2em; 
+    font-weight: 900;
+    
+    /* Aspecto Neobrutalista */
+    color: #000000; 
+    border: 3px solid #000000;
+    background-color: #FF5757; /* Rojo Brillante */
+    box-shadow: 4px 4px 0px #000000; /* Sombra proyectada del bloque */
+    transition: all 0.1s ease-in-out; 
+}
+
+/* ==================================== */
+/* 4. INTERACCIONES                     */
+/* ==================================== */
+/* Hover - El bloque "salta" */
+header nav ul li a:hover {
+    background-color: #33FFC7; /* Cambia a un color diferente (Verde Menta) */
+    transform: translate(-2px, -2px); 
+    box-shadow: 6px 6px 0px #000000; 
+}
+
+/* Active - El bloque se "presiona" */
+header nav ul li a:active {
+    transform: translate(4px, 4px);
+    box-shadow: 0px 0px 0px #000000; /* La sombra desaparece */
+}
