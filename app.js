@@ -65,6 +65,9 @@ app.use('/camiseta', isAdmin, camisetaRouter);
 // Rutas de autenticación
 app.use('/auth', authRouter);
 
+
+
+
 // RUTA DE USUARIOS AÑADIDA DIRECTAMENTE AQUÍ PARA EVITAR CREAR usuarioRouter.js
 app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 
