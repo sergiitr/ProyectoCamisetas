@@ -12,6 +12,7 @@ router.get('/add/:id', (req, res) => {
         }
 
         const camiseta = resultado[0];
+//quitar luego
 
         // Buscar si ya existe en el carrito
         let item = req.session.carrito.find(p => p.id == id);
