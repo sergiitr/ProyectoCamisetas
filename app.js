@@ -40,9 +40,11 @@ app.use((req, res, next) => {
         res.locals.user = req.session.usuario.username; 
         // Pasa un flag si es administrador
         res.locals.isAdmin = req.session.usuario.tipo === 'OPERADOR'; 
+        console.log("Usuario en sesión: " + res.locals.user + " | isAdmin: " + res.locals.isAdmin);         
     } else {
         res.locals.user = null;
         res.locals.isAdmin = false;
+        console.log("No hay usuario en sesión");
     }
     next();
 });
@@ -51,7 +53,6 @@ app.use((req, res, next) => {
 function isAdmin(req, res, next) {
     if (!req.session.usuario || req.session.usuario.tipo !== 'OPERADOR')
         return res.status(403).render("error", { mensaje: "Acceso denegado (solo para administradores)" });
-    
     next();
 }
 
@@ -59,7 +60,7 @@ function isAdmin(req, res, next) {
 // --- RUTAS ---
 
 // Rutas de administración para Camisetas
-app.use('/admin/camiseta', isAdmin, camisetaRouter);
+app.use('/camiseta', isAdmin, camisetaRouter);
 
 // Rutas de autenticación
 app.use('/auth', authRouter);
