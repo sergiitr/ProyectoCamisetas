@@ -46,13 +46,13 @@ router.get('/list', isClient, async (req, res) => {
     const lineasCompletas = await Promise.all(carrito.lineasPedido.map(async (linea) => {
         const query = 'SELECT talla, color, marca FROM camiseta WHERE id = ?';
         return new Promise((resolve) => {
-             db.query(query, [linea.id_producto], (error, resultado) => {
+            db.query(query, [linea.id_producto], (error, resultado) => {
                 const camisetaDetalles = resultado && resultado.length > 0 ? resultado[0] : { talla: 'N/A', color: 'N/A', marca: 'Producto Eliminado' };
                 resolve({ 
                     ...linea, 
                     camiseta: { ...camisetaDetalles, id: linea.id_producto } 
                 });
-             });
+            });
         });
     }));
 
@@ -166,7 +166,7 @@ router.get('/del/camiseta/:id', isClient, (req, res) => {
     db.query(query, [camisetaId], (error, resultado) => {
         if (error || resultado.length === 0) {
             // Usamos datos de la línea de pedido si no encontramos en la DB
-             return res.render('carrito/del', {
+            return res.render('carrito/del', {
                 camiseta: { id: camisetaId, marca: 'Desconocida', color: 'N/A', talla: 'N/A' },
                 cantidadActual: linea.cantidad,
                 precioVenta: linea.precio_venta

@@ -1,0 +1,106 @@
+/*
+    ESTILOS ESPECÍFICOS PARA LA VISTA DE LISTADO DE CAMISETAS (CARDS)
+
+    PALETA DE COLORES:
+    - Fondo Gris Claro: #e0e0e0
+    - Azul Oscuro (Botones BASE/Sombra): #1a4d90
+    - Rosa Fosforito (Acento/Hover): #ff00ff
+    - Rojo Peligro: #ff5757
+    - Verde Menta: #33FFC7
+    - Negro (Bordes): #000
+*/
+
+/* ==================================== */
+/* 1. ESTILOS DE LA TARJETA PRINCIPAL   */
+/* ==================================== */
+
+.neobrutalista-card {
+    background-color: #e0e0e0; /* Fondo Gris Claro */
+    
+    /* Bordes y Sombra Proyectada */
+    border: 4px solid #000;
+    box-shadow: 6px 6px 0px 0px #1a4d90; /* Sombra Azul Oscuro */
+    
+    /* Neobrutalista: sin bordes redondeados */
+    border-radius: 0 !important; 
+    transition: transform 0.1s ease-in-out;
+}
+
+/* Estilo Específico para el Botón EDITAR (Azul Oscuro) */
+.neobrutalista-card .neobrutalista-btn {
+    /* Forzamos el color base Azul Oscuro y texto blanco */
+    background-color: #1a4d90 !important; 
+    color: #fff !important;
+    box-shadow: 2px 2px 0px #000 !important; /* Añadimos sombra para la estética */
+}
+
+.neobrutalista-card .neobrutalista-btn:hover {
+    /* Forzamos el hover Rosa Fosforito */
+    background-color: #ff00ff !important; 
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
+}
+
+.neobrutalista-card:hover {
+    /* Desplazamiento y sombra de acento al pasar el ratón */
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px 0px #ff00ff; /* Sombra que cambia a Rosa Fosforito */
+}
+
+/* Imagen del producto */
+.neobrutalista-card img {
+    /* Borde separador */
+    border-bottom: 4px solid #000;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
+}
+
+/* ==================================== */
+/* 2. TIPOGRAFÍA Y PRECIO               */
+/* ==================================== */
+
+.neobrutalista-title {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: #000;
+}
+.neobrutalista-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.neobrutalista-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: #ff00ff; /* Precio en Rosa Fosforito */
+    font-weight: bold;
+}
+
+/* ==================================== */
+/* 4. INDICADOR DE STOCK (BADGE)        */
+/* ==================================== */
+
+.neobrutalista-stock {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    color: #000 !important; /* Texto negro */
+    padding: 5px 10px;
+    border: 2px solid #000;
+    border-radius: 0;
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* Sobrescribir el color de fondo de las clases de stock de Bootstrap */
+.neobrutalista-stock.bg-success {
+    background-color: #33FFC7 !important; /* Verde Menta Neobrutalista */
+}
+
+.neobrutalista-stock.bg-danger {
+    background-color: #ff5757 !important; /* Rojo vivo */
+}
+

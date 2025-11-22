@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
-const carritoRouter = require('./routes/carroRouter'); // <--- NUEVO
+const carritoRouter = require('./routes/carritoRouter'); // <--- NUEVO
 const db = require('./db'); // Necesitas acceder a la base de datos
 
 const app = express();
@@ -123,5 +123,29 @@ app.get('/pedido/checkout', (req, res) => {
 
 // Poner el servidor a escuchar
 app.listen(port, () => {
-  console.log(`Servidor escuchando en el puerto ${port}`);
+    console.log(`Servidor escuchando en el puerto ${port}`);
 });
+
+
+// --------------------------------------------------------------------- Nono imagenes (probandolo aun)
+
+// const path = require('path');
+const CamisetaUtils = require('../utils/CamisetasImagenes'); // Ajusta la ruta si es necesario
+
+// ... (tu código de Express) ...
+
+// Ruta que renderiza el listado de camisetas
+router.get('/camisetas/listado', (req, res) => {
+    // Simulamos la obtención de las camisetas desde la base de datos
+    const camisetas = [ /* ... array de objetos camiseta ... */ ]; 
+    
+    res.render('listado', {
+        title: 'Listado Neobrutalista',
+        camisetas: camisetas,
+        // PASO CLAVE: Pasamos el módulo de JS al template de Pug
+        CamisetaUtils: CamisetaUtils 
+        // Ahora, en Pug, puedes acceder a la variable CamisetaUtils
+    });
+});
+
+// ---------------------------------------------------------------------

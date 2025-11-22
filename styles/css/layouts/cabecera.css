@@ -1,78 +1,215 @@
-/* ==================================== */
-/* 1. CONTENEDOR PRINCIPAL: HEADER      */
-/* ==================================== */
-header {
-    /* Estilo de Fuente y Color base (heredable a hijos) */
-    font-family: 'Arial Black', sans-serif; 
-    color: #000000;
+/*
+    PALETA DE COLORES:
+    - Fondo Gris Claro: #e0e0e0
+    - Azul Oscuro (Botones): #1a4d90
+    - Rosa Fosforito (Acento/Hover): #ff00ff
+    - Negro (Bordes): #000
     
-    /* BLOQUE BRUTALISTA principal */
-    background-color: #F7E733; /* Amarillo Fuerte */
-    border: 4px solid #000000; 
-    box-shadow: 8px 8px 0px #000000; /* Sombra Proyectada */
-    padding: 10px 0;
-    margin-bottom: 20px;
+    FUENTES RECOMENDADAS (Deben ser cargadas, ej: Google Fonts):
+    - Títulos/Grandes: Bebas Neue, Anton (Sans-Serif gruesa)
+    - Texto/Navegación: JetBrains Mono, IBM Plex Mono (Monoespaciada)
+*/
+
+/* --- ESTILOS GENERALES DE LA CABECERA --- */
+
+.neobrutalista-header .navbar {
+    /* Fondo de recuadro Gris Claro */
+    background-color: #e0e0e0 !important; 
+    
+    /* Borde y Sombra Proyectada */
+    border: 4px solid #000; 
+    box-shadow: 8px 8px 0px 0px #ff69b4; /* Sombra Rosa */
+    padding: 15px !important;
+    border-radius: 0;
+}
+
+.neobrutalista-brand {
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 1.8rem;
+    color: #000 !important;
+}
+
+.navbar-nav .nav-link {
+    color: #000 !important; 
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* --- ESTILOS DE BOTÓN (Login/Logout) --- */
+.neobrutalista-button {
+    display: inline-block; 
+    border: 3px solid #000;
+    
+    /* Color de botón: Azul Oscuro */
+    background-color: #1a4d90; 
+    color: #fff !important; 
+    
+    padding: 5px 15px;
+    margin-left: 10px;
+    border-radius: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.neobrutalista-button:hover {
+    /* Color de hover: Rosa Fosforito */
+    background-color: #ff00ff; 
+    color: #000 !important; 
+    
+    /* Efecto de 'presionado' brutalista */
+    transform: translate(3px, 3px); 
+    box-shadow: none;
 }
 
 /* ==================================== */
-/* 2. LAYOUT: NAVEGACIÓN Y LISTA        */
+/* 3. BOTONES DE ACCIÓN EN LA TARJETA   */
 /* ==================================== */
-/* El elemento de navegación (Opcional, para centrar) */
-header nav {
-    max-width: 1200px;
-    margin: 0 auto; /* Centrar la barra de navegación */
+
+/* --- ESTILOS PARA LAS TARJETAS DE PRODUCTO --- */
+
+.neobrutalista-card {
+    background-color: #e0e0e0; /* Fondo Gris Claro */
+    
+    /* Bordes y Sombra Proyectada */
+    border: 4px solid #000;
+    box-shadow: 6px 6px 0px 0px #1a4d90; /* Sombra Azul Oscuro */
+    
+    border-radius: 0 !important; 
+    transition: transform 0.1s ease-in-out;
 }
 
-/* La lista (UL) - Fila de bloques */
-header nav ul {
-    display: flex; /* Poner los LI en línea */
-    flex-wrap: wrap; 
-    list-style: none; /* Quitar viñetas */
-    padding: 0;
-    margin: 0;
-    gap: 15px; /* Espacio entre los bloques */
+.neobrutalista-card:hover {
+    /* Desplazamiento y sombra de acento al pasar el ratón */
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0px 0px #ff00ff; /* Sombra que cambia a Rosa Fosforito */
 }
 
-/* Estilo del elemento de lista (LI) */
-header nav ul li {
-    flex-grow: 1; /* Permite que los bloques se expandan */
-    min-width: 150px; /* Asegura un tamaño mínimo legible */
+.neobrutalista-card img {
+    /* Borde separador */
+    border-bottom: 4px solid #000;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 0;
 }
 
+/* Tipografía de Títulos y Precio */
+.neobrutalista-title {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: #000;
+}
+.neobrutalista-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.neobrutalista-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: #ff00ff; /* Precio en Rosa Fosforito */
+    font-weight: bold;
+}
+
+/* Botón de Añadir al Carrito (Botón de Acento) */
+.neobrutalista-button-acento {
+    display: inline-block;
+    border: 3px solid #000;
+    background-color: #1a4d90; /* Azul Oscuro para el botón */
+    color: #fff !important;
+    font-weight: bold;                  
+    text-transform: uppercase;
+    border-radius: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.neobrutalista-button-acento:hover {
+    background-color: #ff00ff; /* Rosa Fosforito en hover */
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none;
+}
 /* ==================================== */
-/* 3. ENLACE: EL BLOQUE LLAMATIVO (A)   */
+/* 3. BOTONES DE ACCIÓN EN LA TARJETA (INDEPENDIENTES) */
 /* ==================================== */
-header nav ul li a {
-    /* Propiedades del Bloque */
-    display: block; 
+
+/* --- BOTÓN EDITAR (Azul Base / Hover Rosa Fosforito) --- */
+.neobrutalismo-editar {
+    /* Propiedades de Esqueleto (Recreando .neobrutalista-btn) */
+    display: inline-block; 
     text-decoration: none;
     text-align: center;
-    padding: 15px 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 0 !important;
+    transition: all 0.1s ease-in-out;
+    padding: 5px 10px; /* Aseguramos padding consistente */
     
-    /* Tipografía */
-    font-size: 1.2em; 
-    font-weight: 900;
-    
-    /* Aspecto Neobrutalista */
-    color: #000000; 
-    border: 3px solid #000000;
-    background-color: #FF5757; /* Rojo Brillante */
-    box-shadow: 4px 4px 0px #000000; /* Sombra proyectada del bloque */
-    transition: all 0.1s ease-in-out; 
+    /* Color BASE: Azul Oscuro */
+    background-color: #1a4d90 !important; 
+    color: #fff !important;
+    box-shadow: 4px 4px 0px #000 !important; /* Sombra inicial marcada */
 }
 
-/* ==================================== */
-/* 4. INTERACCIONES                     */
-/* ==================================== */
-/* Hover - El bloque "salta" */
-header nav ul li a:hover {
-    background-color: #33FFC7; /* Cambia a un color diferente (Verde Menta) */
-    transform: translate(-2px, -2px); 
-    box-shadow: 6px 6px 0px #000000; 
+.neobrutalismo-editar:hover {
+    background-color: #ff00ff !important; /* HOVER: Rosa Fosforito */
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
 }
 
-/* Active - El bloque se "presiona" */
-header nav ul li a:active {
-    transform: translate(4px, 4px);
-    box-shadow: 0px 0px 0px #000000; /* La sombra desaparece */
+/* --- BOTÓN EDITAR (Azul Base / Hover Rosa Fosforito) --- */
+.neobrutalismo-editar {
+    /* Propiedades de Esqueleto */
+    display: inline-block; 
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 0 !important;
+    transition: all 0.1s ease-in-out;
+    padding: 5px 10px; 
+    
+    /* Color BASE: Azul Oscuro */
+    background-color: #1a4d90 !important; 
+    color: #fff !important;
+    box-shadow: 4px 4px 0px #000 !important;
+}
+
+.neobrutalismo-editar:hover {
+    background-color: #ff00ff !important; /* HOVER: Rosa Fosforito */
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
+}
+
+/* --- CLASE PARA EL BOTÓN BORRAR (Rojo Base / Hover Rojo Vivo) --- */
+.neobrutalista-borrar {
+    /* Propiedades de Esqueleto (DEBEN SER DEFINIDAS DE NUEVO) */
+    display: inline-block; 
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 0 !important;
+    transition: all 0.1s ease-in-out;
+    padding: 5px 10px; 
+
+    /* Color BASE: Rojo Vivo */
+    background-color: #ff5757 !important; 
+    color: #000 !important; /* Texto negro para contraste */
+    box-shadow: 4px 4px 0px #000 !important;
+}
+
+.neobrutalista-borrar:hover {
+    /* HOVER: Rojo Vivo (Confirmando el requisito de usar el rojo en hover) */
+    background-color: #ff5757 !important; 
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
 }
