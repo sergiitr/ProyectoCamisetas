@@ -3,29 +3,17 @@ const db = require('../db')
 
 exports.camisetas = (req, res) => {
     let query = 'SELECT * FROM camiseta'
-<<<<<<< HEAD
     db.query(query, (error, resultado)=>{
         if (error)
             res.render('error', { mensaje: 'Imposible acceder a las camisetas' })
         else
             res.render('camiseta/list', {camisetas: resultado})
-=======
-
-    db.query(query, (error, resultado)=>{
-        if (error) {
-            res.render('error', {
-                mensaje: 'Imposible acceder a las camisetas'})
-        } else {
-            res.render('camiseta/list', {camisetas: resultado})
-        }
->>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
     })
 }
 
 exports.camiseta = (req, res) => {
     const { id } = req.params;
     if (isNaN(id))
-<<<<<<< HEAD
         return res.render( 'error', {mensaje:'CAMISETA GETONE PARAMETROS INCORRECTOS'})
     
     let query = 'SELECT * FROM camiseta where id=?'
@@ -36,17 +24,6 @@ exports.camiseta = (req, res) => {
             res.render('camiseta/list', {camisetas: resultado})
         else
             res.redirect(`camiseta/list`, {camisetas: resultado})
-=======
-        res.render( 'error', {mensaje:'CAMISETA GETONE PARAMETROS INCORRECTOS'})
-    
-    let query = 'SELECT * FROM camiseta where id=?'
-
-    db.query(query, id, (error, resultado)=> {
-        if (error) {
-            res.render('error', { mensaje: 'Imposible acceder a la camiseta' })
-        } else
-            res.render('camiseta/list', {camisetas: resultado})
->>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
     })
 }
 
@@ -78,10 +55,6 @@ exports.camisetaUpdateForm = (req, res) => {
         res.render( 'error', {mensaje:'CAMISETA GETONE PARAMETROS INCORRECTOS'} )
     
     let query = 'SELECT * FROM camiseta where id=?'
-<<<<<<< HEAD
-=======
-
->>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
     db.query(query, id, (error, resultado)=>{
         if (error)
             res.render('error', { mensaje: 'Imposible acceder a la camiseta' })
@@ -116,13 +89,7 @@ exports.camisetaUpdate = (req, res) => {
     const { id } = req.params;
     // En el cuerpo del formulario vienen los datos
     const { talla, sexo, color, marca, stock, precio, activo} = req.body
-<<<<<<< HEAD
     let disponible = activo=='on'?1:0;
-=======
-    
-    let disponible = activo=='on'?1:0;
-
->>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
     let sql = "UPDATE `camiseta` SET \
         `talla`  = ?,\
         `sexo`   = ?,\
@@ -158,7 +125,3 @@ exports.camisetaDelete = (req, res) => {
             res.redirect('/admin/camiseta')
     })
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
