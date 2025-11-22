@@ -1,15 +1,22 @@
 header
     link(rel="stylesheet", href="/css/layouts/cabecera.css")
+<<<<<<< HEAD
     br
     nav 
         ul
             li: a(href="/indexRegistrado") Inicio
+=======
+    nav 
+        ul
+            li: a(href="/") Inicio
+>>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
             if !user
                 li: a(href="/auth/login") Login
             else
                 li: a(href="/auth/logout") Logout
 
             if isAdmin
+<<<<<<< HEAD
                 li: a(href="/admin/indexRegistrado") Listado de Camisetas
                 li: a(href="/admin/usuarios/list") Listado de Usuarios
                 li: a(href="/admin/camiseta/add") Añadir una Camiseta
@@ -17,3 +24,8 @@ header
                 li: a(href="/auth/carrito") Carrito
             if !isAdmin && user
                 li: a(href="/auth/carrito") Carrito
+=======
+                li: a(href="/admin/camiseta") Listado de Camisetas
+                li: a(href="/admin/usuarios/list") Listado de Usuarios
+                li: a(href="/admin/camiseta/add") Añadir una Camiseta
+>>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
