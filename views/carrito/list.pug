@@ -31,7 +31,7 @@ block contenido
                     td=camiseta.precio 
 
                     //Si eres admin sehace las siguientes lineas
-                    is isAdmin
+                    if isAdmin
 
                         td=camiseta.activo==1
                     
@@ -40,6 +40,6 @@ block contenido
                         td
                             a.btn.btn-danger(href=`/admin/camiseta/del/${camiseta.id}`) borrar
                     //Si no eres admin se hacen estas otras lineas
-                    Is !isAdmin
+                    if !isAdmin
                         td
                             a.btn.btn-danger(href=`/camiseta/del/${camiseta.id}`) comprar

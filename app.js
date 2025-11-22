@@ -60,8 +60,11 @@ function isAdmin(req, res, next) {
 // --- RUTAS ---
 
 // Rutas de administración para Camisetas
-app.use('/camiseta', isAdmin, camisetaRouter);
-
+app.use('/admin/indexRegistrado', isAdmin, camisetaRouter);
+//Esta ruta se usará para las peticiones
+app.use('/admin', isAdmin, camisetaRouter);
+//Esta es la que se usa para los usuarios normales
+app.use('/camisetas', camisetaRouter);
 // Rutas de autenticación
 app.use('/auth', authRouter);
 
@@ -101,8 +104,9 @@ app.get("/", (req, res) => {
 app.get("/indexRegistrado", (req, res) => {
     if (!req.session.usuario) {
         return res.redirect('/auth/login');
+    }else{
+        res.render(`indexRegistrado`)
     }
-    res.render("indexRegistrado");
 });
 
 app.get("/logout-success", (req, res) => {

@@ -17,15 +17,18 @@ exports.camisetas = (req, res) => {
 exports.camiseta = (req, res) => {
     const { id } = req.params;
     if (isNaN(id))
-        res.render( 'error', {mensaje:'CAMISETA GETONE PARAMETROS INCORRECTOS'})
+        return res.render( 'error', {mensaje:'CAMISETA GETONE PARAMETROS INCORRECTOS'})
     
     let query = 'SELECT * FROM camiseta where id=?'
 
     db.query(query, id, (error, resultado)=> {
         if (error) {
             res.render('error', { mensaje: 'Imposible acceder a la camiseta' })
-        } else
+        } else if(req.session.usuario.tipo !== 'OPERADOR')
             res.render('camiseta/list', {camisetas: resultado})
+        else{
+            res.redirect(`camiseta/list`, {camisetas: resultado})
+        }
     })
 }
 

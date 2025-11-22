@@ -4,5 +4,9 @@ html
     title Inicio
   body
     h1 Bienvenido a la tienda de camisetas #{user.username} !
-    div 
-        a(href="/camiseta") Ver camisetas
+    if !isAdmin 
+      div 
+        a(href="/camisetas") Ver camisetas
+    if isAdmin
+      div 
+        a(href="/admin/indexRegistrado") Ver camisetas

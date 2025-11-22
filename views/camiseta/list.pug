@@ -14,10 +14,12 @@ block contenido
                 th marca 
                 th stock 
                 th precio 
-                is isAdmin
+                if isAdmin
                     th activo
                     th editar
                     th borrar
+                if (isAdmin == false)
+                    th comprar
         tbody 
             each camiseta in camisetas
                 tr 
@@ -31,7 +33,7 @@ block contenido
                     td=camiseta.precio 
 
                     //Si eres admin sehace las siguientes lineas
-                    is isAdmin
+                    if isAdmin
 
                         td=camiseta.activo==1
                     
@@ -40,6 +42,6 @@ block contenido
                         td
                             a.btn.btn-danger(href=`/admin/camiseta/del/${camiseta.id}`) borrar
                     //Si no eres admin se hacen estas otras lineas
-                    Is !isAdmin
+                    if (isAdmin == false)
                         td
                             a.btn.btn-danger(href=`/camiseta/del/${camiseta.id}`) comprar
