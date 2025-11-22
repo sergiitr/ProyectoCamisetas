@@ -40,26 +40,6 @@ header.neobrutalista-header
                     else 
                         li.nav-item
                             a.nav-link.neobrutalista-button(href="/auth/logout") Logout
+br
+br
 
-
-// --- EJEMPLO DE TARJETA DE PRODUCTO (USAR DENTRO DE UN CONTENEDOR GRID) ---
-// Simulación de una camiseta para el ejemplo
-- var camiseta = { nombre: "T-Shirt Clásica Logo", tallas: "S, M, L", precio: "25.99", id: "123", imagenUrl: "https://via.placeholder.com/400x500/0000ff/FFFFFF?text=CAMISETA+BRUTAL" }
-    
-.container.mt-5
-    .row 
-        .col-md-4.mb-4 
-            // Clase 'card' de Bootstrap, sobrescrita por .neobrutalista-card
-            .card.neobrutalista-card
-                .image-container
-                    img.card-img-top.img-fluid(src=camiseta.imagenUrl, alt=`Camiseta: ${camiseta.nombre}`)
-                
-                .card-body.p-3
-                    h5.card-title.neobrutalista-title= camiseta.nombre
-                    
-                    p.card-text.neobrutalista-text Tallas disponibles: #{camiseta.tallas}
-                    
-                    .d-flex.justify-content-between.align-items-center.mt-3
-                        h4.neobrutalista-price #{camiseta.precio}€
-                        
-                        a.btn.btn-sm.neobrutalista-button-acento(href=`/auth/carrito/add/${camiseta.id}`) Añadir al Carrito
