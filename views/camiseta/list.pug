@@ -11,6 +11,13 @@ block contenido
         .row.g-4 
             
             // Iterar sobre cada camiseta y crear una tarjeta
+                if isAdmin
+                    th activo
+                    th editar
+                    th borrar
+                if (isAdmin == false)
+                    th comprar
+        tbody 
             each camiseta in camisetas
                 // Define el tamaño de columna: 12 en móviles, 6 en tablets, 3 en escritorio (4 tarjetas por fila)
                 .col-12.col-sm-6.col-lg-3.mb-4 
@@ -60,3 +67,15 @@ block contenido
                                         // BOTÓN COMPRAR
                                         a.btn.btn-sm.neobrutalista-btn.neobrutalista-button-acento(href=`/auth/carrito/add/${camiseta.id}`) 🛒 COMPRAR
                     // --- FIN DE LA TARJETA ---
+                    if isAdmin
+
+                        td=camiseta.activo==1
+                    
+                        td
+                            a.btn.btn-success(href=`/admin/camiseta/edit/${camiseta.id}`) editar
+                        td
+                            a.btn.btn-danger(href=`/admin/camiseta/del/${camiseta.id}`) borrar
+                    //Si no eres admin se hacen estas otras lineas
+                    if (isAdmin == false)
+                        td
+                            a.btn.btn-danger(href=`/camiseta/del/${camiseta.id}`) comprar
