@@ -1,32 +1,62 @@
 extends ../layouts/main
 
 block contenido
-    h2 Listado de Usuarios
+    h2.neobrutalista-title.text-center Listado de Camisetas
     if mensaje!=null
-        p= mensaje
-    table.table
-        thead 
-            tr 
-                th id
-                th username 
-                th email 
-                th tlfn 
-                th direccion 
-                th activo
-                th tipo
-                th editar
-                th borrar
-        tbody 
-            each usuario in usuarios
-                tr 
-                    td=usuario.id
-                    td=usuario.username 
-                    td=usuario.email 
-                    td=usuario.tlfn 
-                    td=usuario.direccion
-                    td=usuario.activo==1
-                    td=usuario.tipo
-                    td
-                        a.btn.btn-success(href=`/admin/usuario/edit/${usuario.id}`) editar
-                    td
-                        a.btn.btn-danger(href=`/admin/usuario/del/${usuario.id}`) borrar
+        p.neobrutalista-text= mensaje
+    
+    // Contenedor de la cuadrícula de Bootstrap
+    .container-fluid.mt-4
+        // g-4 añade un gap (espaciado) entre las columnas
+        .row.g-4 
+            
+            // Iterar sobre cada camiseta y crear una tarjeta
+            each camiseta in camisetas
+                // Define el tamaño de columna: 12 en móviles, 6 en tablets, 3 en escritorio (4 tarjetas por fila)
+                .col-12.col-sm-6.col-lg-3.mb-4 
+                    
+                    // --- INICIO DE LA TARJETA DE PRODUCTO ---
+                    .card.neobrutalista-card(style="height: 100%;")
+                        
+                        // Enlace a la vista de detalle de la camiseta (opcional)
+                        a(href=`/camiseta/${camiseta.id}`) 
+                            // Imagen (Usamos placeholder si no hay URL, ajusta esto a tu lógica real)
+                            // Nota: Deberías asegurarte que camiseta.imagenUrl es una propiedad existente
+                            - var imgSource = camiseta.imagenUrl ? camiseta.imagenUrl : 'https://via.placeholder.com/400x500/0000ff/FFFFFF?text=IMAGEN+NO+DISPONIBLE'
+                            
+                            .image-container
+                                img.card-img-top.img-fluid(src=imgSource, alt=`Camiseta: ${camiseta.marca} - ${camiseta.color}`)
+                        
+                        // Cuerpo de la Tarjeta
+                        .card-body.p-3.d-flex.flex-column
+                            
+                            // Título y Marca
+                            h5.card-title.neobrutalista-title.mb-1= camiseta.marca
+                            p.neobrutalista-text.mb-2 | Talla: #{camiseta.talla} <br/>| Color: 
+                                span(style=`font-weight: bold; color:${camiseta.color}`)= camiseta.color 
+                            
+                            // Espacio para empujar el precio y botón al final
+                            .mt-auto
+                                // Precio Destacado
+                                .d-flex.justify-content-between.align-items-center.mt-3
+                                    h4.neobrutalista-price #{camiseta.precio}€
+                                    
+                                    // INDICADOR DE STOCK (Estilo Neobrutalista)
+                                    span.badge.text-uppercase.neobrutalista-stock(class=camiseta.stock > 0 ? 'bg-success' : 'bg-danger')
+                                        | #{camiseta.stock > 0 ? 'En Stock' : 'Agotado'}
+                                
+                                // --- BOTONES DE ACCIÓN ---
+                                .d-grid.gap-2.mt-3
+
+                                    if isAdmin
+                                        // BOTÓN EDITAR
+                                        a.btn.btn-sm.neobrutalismo-editar(href=`/admin/camiseta/edit/${camiseta.id}`) 
+                                            | EDITAR (Activo: #{camiseta.activo==1 ? 'Sí' : 'No'})
+
+                                        // BOTÓN BORRAR
+                                        a.btn.btn-sm.neobrutalista-borrar(href=`/admin/camiseta/del/${camiseta.id}`) BORRAR
+                                    
+                                    else if camiseta.stock > 0  
+                                        // BOTÓN COMPRAR
+                                        a.btn.btn-sm.neobrutalista-btn.neobrutalista-button-acento(href=`/auth/carrito/add/${camiseta.id}`) 🛒 COMPRAR
+                    // --- FIN DE LA TARJETA ---
