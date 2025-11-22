@@ -57,13 +57,10 @@ exports.login = (req, res) => {
         };
 
         // Redirigir al panel de usuario
-        
-        if (red.session.usuario.tipo === "OPERARIO"){
+        if (red.session.usuario.tipo === "OPERARIO")
             res.redirect('/admin/indexRegistrado'); //usuario admin
-        }else{
+        else
             res.redirect('/indexRegistrado'); //usuario normal
-        }
-        
     });
 };
 
