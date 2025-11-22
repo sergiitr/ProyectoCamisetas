@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
-const carritoRouter = require('./routes/carroRouter'); // <--- NUEVO
+const carritoRouter = require('./routes/carritoRouter');
 const db = require('./db'); // Necesitas acceder a la base de datos
 
 const app = express();
