@@ -73,8 +73,4 @@ router.get('/logout', (req, res) => {
 });
 
 
-<<<<<<< HEAD
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
