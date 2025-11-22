@@ -51,14 +51,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// --- CARRITO EN SESIÓN ---
-app.use((req, res, next) => {
-    if (!req.session.carrito) {
-        req.session.carrito = [];
-    }
-    next();
-});
-
 
 // Middleware para verificar si el usuario es ADMIN
 function isAdmin(req, res, next) {
@@ -67,6 +59,13 @@ function isAdmin(req, res, next) {
     next();
 }
 
+// --- CARRITO EN SESIÓN ---
+app.use((req, res, next) => {
+    if (!req.session.carrito) {
+        req.session.carrito = [];
+    }
+    next();
+});
 
 // --- RUTAS ---
 
