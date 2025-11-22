@@ -63,6 +63,8 @@ function isAdmin(req, res, next) {
 app.use('/admin/indexRegistrado', isAdmin, camisetaRouter);
 //Esta ruta se usará para las peticiones
 app.use('/admin', isAdmin, camisetaRouter);
+//Est parte es para guias las solicitudes de esdicion de camisetas
+app.use("/admin/camiseta", camisetaRouter)
 //Esta es la que se usa para los usuarios normales
 app.use('/camisetas', camisetaRouter);
 // Rutas de autenticación
