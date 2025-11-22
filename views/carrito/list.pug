@@ -1,45 +1,77 @@
-extends ../layouts/main
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title Mi Carrito de Compras
+    // Cargar Bootstrap CSS para que la vista se vea bien de forma autónoma
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', crossorigin='anonymous')
 
-block contenido
-    h2 Listado de camisetas
-    if mensaje!=null
-        p= mensaje
-    table.table
-        thead 
-            tr 
-                th id
-                th talla 
-                th sexo 
-                th color 
-                th marca 
-                th stock 
-                th precio 
-                is isAdmin
-                    th activo
-                    th editar
-                    th borrar
-        tbody 
-            each camiseta in camisetas
-                tr 
-                    td=camiseta.id
-                    td=camiseta.talla 
-                    td=camiseta.sexo 
-                    td
-                        span(style=`color:${camiseta.color}`)=camiseta.color 
-                    td=camiseta.marca 
-                    td=camiseta.stock 
-                    td=camiseta.precio 
+  body
+    .container.py-5
+      
+      h1.text-center.mb-5.fw-light Carrito de Compras
 
-                    //Si eres admin sehace las siguientes lineas
-                    if isAdmin
+      if lineasPedido && lineasPedido.length
+        
+        .row.justify-content-center
+          .col-lg-12
+            .card.shadow-lg.mb-4.border-0
+              .card-header.bg-primary.text-white.py-3
+                h4.mb-0.fw-normal Artículos en tu Cesta
+              .card-body.p-0
+                .table-responsive
+                  table.table.table-striped.table-borderless.mb-0.align-middle
+                    thead.table-light
+                      tr
+                        th #
+                        th Producto
+                        th Color
+                        th Talla
+                        th Cantidad
+                        th Precio Unitario
+                        th Subtotal
+                        th Acciones
+                    tbody
+                      each linea, index in lineasPedido
+                        tr
+                          td #{index + 1}
+                          td.fw-medium #{linea.camiseta.marca}
+                          td 
+                            span.badge.border(style=`background-color: ${linea.camiseta.color}; color: ${linea.camiseta.color === '#000000' ? '#ffffff' : '#000000'};`) #{linea.camiseta.color}
+                          td.fw-bold #{linea.camiseta.talla.toUpperCase()}
+                          td 
+                            span.badge.bg-secondary.text-white #{linea.cantidad}
+                          td #{linea.precio_venta} €
+                          td 
+                            strong.text-primary #{(linea.precio_venta * linea.cantidad).toFixed(2)} €
+                          td
+                            a.btn.btn-sm.btn-outline-info.me-1(href=`/carrito/edit/camiseta/${linea.id_producto}`, title='Cambiar Cantidad') ✏️
+                            a.btn.btn-sm.btn-outline-danger(href=`/carrito/del/camiseta/${linea.id_producto}`, title='Eliminar') 🗑️
+                            
+          
+          .row.justify-content-end.mt-4
+            .col-md-6.col-lg-5
+              .card.bg-light.shadow.border-0
+                .card-body
+                  h5.card-title.fw-bold Resumen de la Compra
+                  ul.list-group.list-group-flush.mb-3
+                    li.list-group-item.d-flex.justify-content-between.align-items-center.bg-light.border-0
+                      span.fw-medium Total (IVA incluido):
+                      h4.mb-0.text-success.fw-bolder $#{pedido.total}
+                      
+                  .d-grid.gap-2.mt-4
+                    a.btn.btn-lg.btn-success.text-uppercase(href='/pedido/checkout') Finalizar Pedido
+                    a.btn.btn-outline-primary.btn-sm(href='/camisetas') Seguir Comprando
 
-                        td=camiseta.activo==1
-                    
-                        td
-                            a.btn.btn-success(href=`/admin/camiseta/edit/${camiseta.id}`) editar
-                        td
-                            a.btn.btn-danger(href=`/admin/camiseta/del/${camiseta.id}`) borrar
-                    //Si no eres admin se hacen estas otras lineas
-                    if !isAdmin
-                        td
-                            a.btn.btn-danger(href=`/camiseta/del/${camiseta.id}`) comprar
+      else
+        .row.justify-content-center
+          .col-md-8.text-center
+            .alert.alert-warning.p-4.shadow.border-0(role='alert')
+              h4.alert-heading ¡Tu carrito está vacío!
+              p Parece que aún no has añadido ninguna camiseta. Explora nuestro catálogo y encuentra tus favoritas.
+              hr
+              a.btn.btn-primary.btn-lg.mt-2(href='/camisetas') Ver Catálogo de Camisetas
+              
+    // Cargar Bootstrap JS
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', crossorigin='anonymous')
