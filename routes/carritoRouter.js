@@ -1,17 +1,13 @@
-// routes/carritoRouter.js
-
 const express = require('express');
 const router = express.Router();
 const db = require('../db'); 
 
-// --- Funciones Auxiliares para la Lógica del Carrito ---
 
-// Inicializa el carrito en la sesión si no existe
 function initcarrito(req) {
     if (!req.session.carrito) {
         req.session.carrito = {
             total: 0.00,
-            lineasPedido: [] // { id_producto: 1, cantidad: 2, precio_venta: 20.00 }
+            lineasPedido: []
         };
     }
     return req.session.carrito;
@@ -19,7 +15,6 @@ function initcarrito(req) {
 
 // Actualiza el total del carrito
 function updatecarritoTotal(carrito) {
-    // Aseguramos que el total es un número con 2 decimales
     carrito.total = parseFloat(carrito.lineasPedido.reduce((acc, linea) => {
         return acc + (linea.cantidad * linea.precio_venta);
     }, 0.00).toFixed(2));
@@ -27,9 +22,9 @@ function updatecarritoTotal(carrito) {
 
 // Middleware para asegurar que el usuario está logeado
 function isClient(req, res, next) {
-    if (!req.session.usuario) {
+    if (!req.session.usuario)
         return res.redirect('/auth/login');
-    }
+    
     next();
 }
 
@@ -42,18 +37,13 @@ function isClient(req, res, next) {
 // GET: /carrito/list
 router.get('/list', isClient, async (req, res) => {
     const carrito = initcarrito(req);
-    
-    // 1. Obtener todos los IDs de producto del carrito
     const productoIds = carrito.lineasPedido.map(lp => lp.id_producto);
     
-    if (productoIds.length === 0) {
+    if (productoIds.length === 0)
         return res.render('carrito/list', { pedido: carrito, lineasPedido: [] });
-    }
+    
 
-    // 2. Simular obtener detalles actualizados de las camisetas (marca, talla, color)
-    // En un entorno real, usarías una consulta SQL con "WHERE id IN (...)"
     const lineasCompletas = await Promise.all(carrito.lineasPedido.map(async (linea) => {
-        // Simulación: Llamar a la DB por cada producto (ineficiente, pero simula la DB)
         const query = 'SELECT talla, color, marca FROM camiseta WHERE id = ?';
         return new Promise((resolve) => {
              db.query(query, [linea.id_producto], (error, resultado) => {
@@ -80,10 +70,8 @@ router.get('/add/camiseta/:id', isClient, (req, res) => {
     const carrito = initcarrito(req);
     const lineaExistente = carrito.lineasPedido.find(lp => lp.id_producto === camisetaId);
 
-    if (lineaExistente) {
-        // Si la camiseta ya está en el carrito, redirigimos a la vista de edición.
-        return res.redirect(`/carrito/edit/camiseta/${camisetaId}`);
-    }
+    if (lineaExistente)
+        return res.redirect(`/carrito/edit/camiseta/${camisetaId}`); // Si la camiseta ya está en el carrito, volvemos a la vista de edición.
 
     const query = 'SELECT id, talla, sexo, color, marca, stock, precio FROM camiseta WHERE id = ? AND activo = 1';
     db.query(query, [camisetaId], (error, resultado) => {
@@ -104,9 +92,8 @@ router.get('/edit/camiseta/:id', isClient, (req, res) => {
     const carrito = initcarrito(req);
     const linea = carrito.lineasPedido.find(lp => lp.id_producto === camisetaId);
 
-    if (!linea) {
+    if (!linea)
         return res.redirect(`/carrito/add/camiseta/${camisetaId}`);
-    }
 
     const query = 'SELECT id, talla, sexo, color, marca, stock, precio FROM camiseta WHERE id = ? AND activo = 1';
     db.query(query, [camisetaId], (error, resultado) => {
@@ -130,36 +117,30 @@ router.post('/add/camiseta/:id', isClient, (req, res) => {
     const cantidad = parseInt(req.body.cantidad);
     const carrito = initcarrito(req);
 
-    if (!cantidad || cantidad < 1) {
+    if (!cantidad || cantidad < 1)
         return res.redirect('/carrito/list');
-    }
 
     const query = 'SELECT precio, stock, talla, color, marca FROM camiseta WHERE id = ? AND activo = 1';
     db.query(query, [camisetaId], (error, resultado) => {
-        if (error || resultado.length === 0) {
+        if (error || resultado.length === 0)
             return res.redirect('/carrito/list');
-        }
-
+        
         const { precio, stock, talla, color, marca } = resultado[0];
 
         if (cantidad > stock) {
             console.warn(`Intento de añadir ${cantidad} pero solo hay ${stock}`);
-            // Podrías añadir un mensaje flash aquí
             return res.redirect(`/carrito/edit/camiseta/${camisetaId}`);
         }
 
         const lineaIndex = carrito.lineasPedido.findIndex(lp => lp.id_producto === camisetaId);
 
-        if (lineaIndex !== -1) {
-            // EDITAR
+        if (lineaIndex !== -1)
             carrito.lineasPedido[lineaIndex].cantidad = cantidad;
-        } else {
-            // AÑADIR
+        else {
             carrito.lineasPedido.push({
                 id_producto: camisetaId,
                 cantidad: cantidad,
                 precio_venta: precio, 
-                // Guardamos los datos de la camiseta necesarios para el renderizado
                 camiseta: { id: camisetaId, precio: precio, talla, color, marca } 
             });
         }
@@ -177,9 +158,8 @@ router.get('/del/camiseta/:id', isClient, (req, res) => {
     const carrito = initcarrito(req);
     const linea = carrito.lineasPedido.find(lp => lp.id_producto === camisetaId);
 
-    if (!linea) {
+    if (!linea)
         return res.redirect('/carrito/list');
-    }
     
     // Necesitamos el resto de datos de la camiseta para la vista de confirmación
     const query = 'SELECT talla, color, marca FROM camiseta WHERE id = ?';
