@@ -3,55 +3,69 @@ html(lang="es")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Inicio
+    title Inicio Neobrutalista
     // Enlace a los archivos CSS de Bootstrap
-    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", rel="stylesheet", xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH", crossorigin="anonymous")
-    // Estilos personalizados
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", rel="stylesheet", crossorigin="anonymous")
+    // Enlace a estilos Neobrutalistas globales (NECESARIO)
+    // Asume que aquí están definidos .neobrutalista-button, .neobrutalista-title, etc.
+    link(rel="stylesheet", href="/css/layouts/cabecera.css") 
+    
+    // ESTILOS ESPECÍFICOS PARA LA PÁGINA DE BIENVENIDA (Sobreescribimos el body y el contenedor)
     style.
       body {
-        background-color: #dcebf9; /* Color de fondo claro */
+        /* Fondo Gris Claro Neobrutalista */
+        background-color: #e0e0e0; 
       }
       .center-container {
-        /* Centra el contenido en el medio de la pantalla */
+        /* Contenedor Centrado */
         min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 20px;
       }
-      .welcome-card {
-        /* Tarjeta principal para el contenido */
-        background-color: #ffffff;
-        border-radius: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-        text-align: center;
+      .neobrutalista-welcome-card {
+        /* Fondo de Tarjeta Gris Claro Neobrutalista */
+        background-color: #e0e0e0; 
+        
+        /* Borde y Sombra Proyectada */
+        border: 4px solid #000;
+        box-shadow: 10px 10px 0px 0px #1a4d90; /* Sombra Azul Oscuro */
+        
+        /* Neobrutalista: sin bordes redondeados */
+        border-radius: 0 !important; 
+        padding: 40px 30px; 
         max-width: 500px;
         width: 100%;
+        text-align: center;
       }
-      .welcome-card h1 {
-        color: #007bff; /* Color primario de Bootstrap para el encabezado */
-        margin-bottom: 20px;
-        font-weight: 700;
-      }
-      .action-link {
-        margin-top: 20px;
+      .neobrutalista-heading-welcome {
+        /* Estilo para el título de bienvenida */
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 2.5rem;
+        color: #ff00ff; /* Rosa Fosforito para el acento */
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        border-bottom: 4px solid #000;
+        padding-bottom: 15px;
       }
 
   body
-
-    div.center-container
-      div.welcome-card
-        h1 Bienvenido a la tienda de camisetas #{user.username} !
+    .center-container
+      div.neobrutalista-welcome-card
+        // Título Neobrutalista
+        h1.neobrutalista-heading-welcome Bienvenido a la tienda de camisetas #{user.username} !
         
         div.action-link
           if !isAdmin 
-            // Botón primario de Bootstrap
-            a(href="/camisetas", class="btn btn-primary btn-lg w-100") Ver camisetas
+            // Botón para USUARIO NORMAL (Ver Camisetas): Azul Oscuro / Hover Rosa
+            // Usamos la clase personalizada .neobrutalista-button
+            a(href="/camisetas", class="btn btn-lg w-100 neobrutalista-button") VER CAMISETAS
           
           if isAdmin
-            // Botón de éxito (verde) de Bootstrap para el administrador
-            a(href="/admin/indexRegistrado", class="btn btn-success btn-lg w-100") Gestionar Tienda
+            // Botón para ADMINISTRADOR (Gestionar Tienda): Rojo Peligro (Danger)
+            // Creamos una nueva clase para el botón de administrador (Rojo Vivo)
+            a(href="/admin/indexRegistrado", class="btn btn-lg w-100 neobrutalista-button-admin") GESTIONAR TIENDA
     
-    // Script de Bootstrap (opcional, pero útil si se usan componentes interactivos)
-    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js", xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz", crossorigin="anonymous")
+    // Script de Bootstrap 
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js", crossorigin="anonymous")
