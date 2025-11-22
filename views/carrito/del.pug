@@ -1,42 +1,21 @@
-extends ../layouts/main
+block head
+  title Confirmar Eliminación
 
-block contenido
-    h2 Dar de baja una camiseta 
-    form(method="POST")    
-        label.form-label(for="talla") Talla
-        select(name="talla", id="talla", disabled) 
-            option(value="xxs", selected=(datos.talla=="xxs")) XXS 
-            option(value="xs", selected=(datos.talla=="xs")) XS
-            option(value="s", selected=(datos.talla=="s")) S
-            option(value="m", selected=(datos.talla=="m")) M
-            option(value="l", selected=(datos.talla=="l")) L
-            option(value="xl", selected=(datos.talla=="xl")) XL
-            option(value="xxl", selected=(datos.talla=="xxl")) XXL
-        <br>
-        label.form-label(for="sexo") Sexo
-        select(name="sexo", id="sexo", disabled) 
-            option(value="chica", selected=(datos.sexo=="chica")) chica 
-            option(value="chico", selected=(datos.sexo=="chico")) chico
-            option(value="unisex", selected=(datos.sexo=="unisex")) unisex
-            option(value="niño", selected=(datos.sexo=="niño")) niño
-            option(value="niña", selected=(datos.sexo=="niña")) niña
-            option(value="unisex_infantil", selected=(datos.sexo=="unisex_infantil")) unisex_infantil
-        <br>
-        label.form-label(for="color") Color
-        input.form-control(type="color", name="color", id="color", disabled, value= datos.color)
-        <br>
-        label.form-label(for="marca") Marca
-        input.form-control(type="marca", name="marca", id="marca", disabled, value= datos.marca )
-        <br>
-        label.form-label(for="stock") Stock
-        input.form-control(type="number", name="stock", id="stock" min="0" max="1000", disabled, value=datos.stock)
-        <br>    
-        label.form-label(for="precio") Precio 
-        input.form-control(type="number",  name="precio", id="precio", step="any", disabled, value=datos.precio)
-        <br>
-        
-        label.form-check-label(for="activo") Activo
-        input.form-check-input(type="checkbox", name="activo", id="activo", disabled, , checked= datos.activo==1)
-        <br>
-        button.btn.btn-primary(type="submit") Borrar 
-        button.btn.btn-danger(type="reset") Cancelar
+block content
+  .container
+    h1.my-4 🗑️ Eliminar Producto del Carrito
+
+    .alert.alert-danger(role='alert')
+      h2 ¡Confirmación Requerida!
+      h3 ¿Estás **totalmente seguro** de que quieres eliminar la camiseta **#{camiseta.marca} - #{camiseta.color} (#{camiseta.talla})** de tu carrito?
+
+    .card.shadow-sm.mb-4
+      .card-body
+        h5 Detalles del Artículo
+        ul.list-unstyled
+          li **Cantidad en Carrito:** **#{cantidadActual}** unidades
+          li **Precio de Venta (Registro):** $#{precioVenta}
+
+    form(action=`/carro/del/camiseta/${camiseta.id}`, method='POST')
+      button.btn.btn-danger.me-2(type='submit') Sí, Eliminar del Carrito
+      a.btn.btn-secondary(href='/carro/list') No, Volver al Carrito

@@ -1,5 +1,6 @@
 header
     link(rel="stylesheet", href="/css/layouts/cabecera.css")
+    br
     nav 
         ul
             li: a(href="/indexRegistrado") Inicio
@@ -12,5 +13,7 @@ header
                 li: a(href="/admin/indexRegistrado") Listado de Camisetas
                 li: a(href="/admin/usuarios/list") Listado de Usuarios
                 li: a(href="/admin/camiseta/add") Añadir una Camiseta
+            else
+                li: a(href="/auth/carrito") Carrito
             if !isAdmin && user
                 li: a(href="/auth/carrito") Carrito

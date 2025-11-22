@@ -5,16 +5,18 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
+const carritoRouter = require('./routes/carritoRouter');
 const db = require('./db'); // Necesitas acceder a la base de datos
 
 const app = express();
 
 // Cargo el .ENV
 require('dotenv').config({ path: './stack-camisetas/.env' });
-const port = process.env.APP_PORT;
+const port = process.env.APP_PORT || 3000; // Uso 3000 por defecto si no está en .env
 
 // Configuración de Pug
 app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views')); // Asegura la ruta de las vistas
 
 // Configuración de la Sesión (Básico para que funcione el login)
 app.use(session({
@@ -26,6 +28,9 @@ app.use(session({
 // Middleware para BodyParser (para manejar datos de formularios)
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// RUTAS CSS (Asumiendo que están en 'styles')
+app.use(express.static('styles')); 
+
 // Middleware de log
 app.use((req, res, next) =>{
     console.log("Petición recibida en: " + req.url);
@@ -33,12 +38,9 @@ app.use((req, res, next) =>{
 });
 
 // --- MIDDLEWARE GLOBAL DE SESIÓN ---
-// Pasa la información de la sesión a TODAS las vistas (archivos .pug)
 app.use((req, res, next) => {
     if (req.session.usuario) {
-        // Pasa el nombre de usuario
         res.locals.user = req.session.usuario.username; 
-        // Pasa un flag si es administrador
         res.locals.isAdmin = req.session.usuario.tipo === 'OPERADOR'; 
         console.log("Usuario en sesión: " + res.locals.user + " | isAdmin: " + res.locals.isAdmin);         
     } else {
@@ -57,20 +59,18 @@ function isAdmin(req, res, next) {
 }
 
 
-// --- RUTAS ---
 
 // Rutas de administración para Camisetas
 app.use('/admin/indexRegistrado', isAdmin, camisetaRouter);
-//Esta ruta se usará para las peticiones
 app.use('/admin', isAdmin, camisetaRouter);
-//Est parte es para guias las solicitudes de esdicion de camisetas
 app.use("/admin/camiseta", camisetaRouter)
-//Esta es la que se usa para los usuarios normales
+// Esta es la que se usa para los usuarios normales
 app.use('/camisetas', camisetaRouter);
 // Rutas de autenticación
 app.use('/auth', authRouter);
 
-
+// RUTAS DEL CARRITO <--- NUEVO
+app.use('/carrito', carritoRouter);
 
 
 // RUTA DE USUARIOS AÑADIDA DIRECTAMENTE AQUÍ PARA EVITAR CREAR usuarioRouter.js
@@ -86,16 +86,12 @@ app.get('/admin/usuarios/list', isAdmin, (req, res) => {
                 mensaje: 'Imposible acceder a la lista de usuarios: ' + error.message
             });
         } else     
-            res.render('usuarios/list', { usuarios: resultado }); // Se asume que la vista se encuentra en 'usuario/list.pug'
+            res.render('usuarios/list', { usuarios: resultado });
         
     });
 });
 
 
-// RUTAS CSS
-app.use(express.static('styles'));
-
-// --------------------------------------------------------------------------
 
 // Ruta principal
 app.get("/", (req, res) => {
@@ -104,16 +100,26 @@ app.get("/", (req, res) => {
 
 // Ruta a la que se redirige tras el login exitoso
 app.get("/indexRegistrado", (req, res) => {
-    if (!req.session.usuario) {
+    if (!req.session.usuario)
         return res.redirect('/auth/login');
-    }else{
+    else
         res.render(`indexRegistrado`)
-    }
+    
 });
 
 app.get("/logout-success", (req, res) => {
     res.render("auth/logout");
 });
+
+// Simulación de Checkout
+app.get('/pedido/checkout', (req, res) => {
+    if (!req.session.usuario) {
+        return res.redirect('/auth/login');
+    }
+    const carrito = req.session.carrito || { total: 0 };
+    res.render('checkout', { total: carrito.total });
+});
+
 
 // Poner el servidor a escuchar
 app.listen(port, () => {
