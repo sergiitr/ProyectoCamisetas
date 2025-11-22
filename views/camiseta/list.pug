@@ -14,12 +14,19 @@ block contenido
                 th marca 
                 th stock 
                 th precio 
+<<<<<<< HEAD
                 if isAdmin
                     th activo
                     th editar
                     th borrar
                 if (isAdmin == false)
                     th comprar
+=======
+                is isAdmin
+                    th activo
+                    th editar
+                    th borrar
+>>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
         tbody 
             each camiseta in camisetas
                 tr 
@@ -33,7 +40,11 @@ block contenido
                     td=camiseta.precio 
 
                     //Si eres admin sehace las siguientes lineas
+<<<<<<< HEAD
                     if isAdmin
+=======
+                    is isAdmin
+>>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
 
                         td=camiseta.activo==1
                     
@@ -42,6 +53,10 @@ block contenido
                         td
                             a.btn.btn-danger(href=`/admin/camiseta/del/${camiseta.id}`) borrar
                     //Si no eres admin se hacen estas otras lineas
+<<<<<<< HEAD
                     if (isAdmin == false)
+=======
+                    Is !isAdmin
+>>>>>>> a47b4ff858b92b480f4005b1d51ab381fe164b44
                         td
                             a.btn.btn-danger(href=`/camiseta/del/${camiseta.id}`) comprar
