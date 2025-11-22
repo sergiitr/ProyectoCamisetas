@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
-const carritoRouter = require('./routes/carroRouter');
+const carritoRouter = require('./routes/carroRouter'); // <--- NUEVO
 const db = require('./db'); // Necesitas acceder a la base de datos
 
 const app = express();
@@ -59,7 +59,6 @@ function isAdmin(req, res, next) {
 }
 
 
-// --- RUTAS ---
 
 // Rutas de administración para Camisetas
 app.use('/admin/indexRegistrado', isAdmin, camisetaRouter);
@@ -93,7 +92,6 @@ app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 });
 
 
-// --------------------------------------------------------------------------
 
 // Ruta principal
 app.get("/", (req, res) => {
@@ -102,11 +100,11 @@ app.get("/", (req, res) => {
 
 // Ruta a la que se redirige tras el login exitoso
 app.get("/indexRegistrado", (req, res) => {
-    if (!req.session.usuario) {
+    if (!req.session.usuario)
         return res.redirect('/auth/login');
-    }else{
+    else
         res.render(`indexRegistrado`)
-    }
+    
 });
 
 app.get("/logout-success", (req, res) => {
