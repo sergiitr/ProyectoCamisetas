@@ -1,21 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const carrito = require('../controllers/usuarioController');
+const usuarioController = require('../controllers/usuarioController');
 
 // Ruta base para el listado (list.pug)
-router.get('/', camisetaController.camisetas)
+router.get('/list',usuarioController.usuarioListado)
 
 // Rutas de CRUD (fijas)
-router.get('/add', camisetaController.camisetaAddForm)
-router.post('/add', camisetaController.camisetaAdd)
 
-router.get('/edit/:id', camisetaController.camisetaUpdateForm)
-router.post('/edit/:id', camisetaController.camisetaUpdate)
+//Editar
+router.get('/edit/:id', usuarioController.usuarioEditarForm)
+router.post('/edit/:id', usuarioController.usuarioEditar)
 
-router.get('/del/:id', camisetaController.camisetaDeleteForm)
-router.post('/del/:id', camisetaController.camisetaDelete)
-
-// RUTA PARA OBTENER UNA SOLA CAMISETA (DEBE IR LA ÚLTIMA)
-router.get('/:id', camisetaController.camiseta)
+//borrar
+router.get('/del/:id', usuarioController.usuarioDeleteForm)
+router.post('/del/:id', usuarioController.usuarioDelete)
 
 module.exports = router;

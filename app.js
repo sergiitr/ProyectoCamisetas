@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
-const carritoRouter = require('./routes/carritoRouter'); // <--- NUEVO
+const carritoRouter = require('./routes/carritoRouter'); 
+const usuarioRouter = require(`./routes/usuarioRouter`)
 const db = require('./db'); // Necesitas acceder a la base de datos
 
 const app = express();
@@ -127,7 +128,7 @@ app.get('/pedido/checkout', (req, res) => {
 });
 
 // Parte de admisistracion de usuarios
-app.get(``)
+app.use(`/admin/usuario`,isAdmin, usuarioRouter)
 
 
 

@@ -5,8 +5,7 @@ const carrito = require('../controllers/carritoController');
 // Listado
 router.get('/list', carrito.isClient, carrito.list);
 
-// Añadir// Parte de admisistracion de usuarios
-app.get()
+// Añadir
 router.get('/add/camiseta/:id', carrito.isClient, carrito.addForm);
 router.post('/add/camiseta/:id', carrito.isClient, carrito.add);
 
