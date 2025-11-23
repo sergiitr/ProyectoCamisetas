@@ -31,7 +31,7 @@ header.neobrutalista-header
                         // Lógica para USUARIO NORMAL (Carrito)
                         if user 
                             li.nav-item
-                                a.nav-link.neobrutalista-button(href="/auth/carrito") Carrito 🛒
+                                a.nav-link.neobrutalista-button(href="/carrito/list") Carrito 🛒
                     
                     // Lógica de AUTENTICACIÓN
                     if !user 
@@ -62,4 +62,4 @@ header.neobrutalista-header
                     .d-flex.justify-content-between.align-items-center.mt-3
                         h4.neobrutalista-price #{camiseta.precio}€
                         
-                        a.btn.btn-sm.neobrutalista-button-acento(href=`/auth/carrito/add/${camiseta.id}`) Añadir al Carrito
+                        a.btn.btn-sm.neobrutalista-button-acento(href=`/carrito/add/${camiseta.id}`) Añadir al Carrito
