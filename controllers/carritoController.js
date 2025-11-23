@@ -1,8 +1,6 @@
 const db = require('../db');
 
-// --------------------------------------------------------
 // Inicializar carrito en sesión
-// --------------------------------------------------------
 function initcarrito(req) {
     if (!req.session.carrito) {
         req.session.carrito = {
@@ -13,26 +11,20 @@ function initcarrito(req) {
     return req.session.carrito;
 }
 
-// --------------------------------------------------------
-// Recalcular total del carrito
-// --------------------------------------------------------
+// Recalcular total
 function updatecarritoTotal(carrito) {
     carrito.total = parseFloat(
         carrito.lineasPedido.reduce((acc, linea) => acc + (linea.cantidad * linea.precio_venta), 0).toFixed(2)
     );
 }
 
-// --------------------------------------------------------
 // Comprobar si está logueado
-// --------------------------------------------------------
 exports.isClient = (req, res, next) => {
     if (!req.session.usuario) return res.redirect('/auth/login');
     next();
 };
 
-// --------------------------------------------------------
 // LIST — Mostrar carrito
-// --------------------------------------------------------
 exports.list = async (req, res) => {
     const carrito = initcarrito(req);
 
@@ -59,9 +51,7 @@ exports.list = async (req, res) => {
     res.render('carrito/list', { pedido: carrito, lineasPedido: lineasCompletas });
 };
 
-// --------------------------------------------------------
 // ADD FORM — Añadir producto (GET)
-// --------------------------------------------------------
 exports.addForm = (req, res) => {
     const id = parseInt(req.params.id);
     const carrito = initcarrito(req);
@@ -78,9 +68,7 @@ exports.addForm = (req, res) => {
     });
 };
 
-// --------------------------------------------------------
-// ADD (POST) — Insertar/Actualizar línea del carrito
-// --------------------------------------------------------
+// ADD (POST)
 exports.add = (req, res) => {
     const id = parseInt(req.params.id);
     const cantidad = parseInt(req.body.cantidad);
@@ -114,9 +102,7 @@ exports.add = (req, res) => {
     });
 };
 
-// --------------------------------------------------------
 // EDIT FORM — Formulario editar cantidad (GET)
-// --------------------------------------------------------
 exports.editForm = (req, res) => {
     const id = parseInt(req.params.id);
     const carrito = initcarrito(req);
@@ -137,9 +123,7 @@ exports.editForm = (req, res) => {
     });
 };
 
-// --------------------------------------------------------
-// EDIT (POST) — Actualizar cantidad del carrito
-// --------------------------------------------------------
+// EDIT (POST)
 exports.edit = (req, res) => {
     const id = parseInt(req.params.id);
     const cantidad = parseInt(req.body.cantidad);
@@ -148,15 +132,12 @@ exports.edit = (req, res) => {
     const idx = carrito.lineasPedido.findIndex(lp => lp.id_producto === id);
     if (idx === -1 || !cantidad || cantidad < 1) return res.redirect('/carrito/list');
 
-    // Actualizar cantidad
     carrito.lineasPedido[idx].cantidad = cantidad;
     updatecarritoTotal(carrito);
     res.redirect('/carrito/list');
 };
 
-// --------------------------------------------------------
 // DEL FORM — Confirmación de borrado (GET)
-// --------------------------------------------------------
 exports.delForm = (req, res) => {
     const id = parseInt(req.params.id);
     const carrito = initcarrito(req);
@@ -164,14 +145,21 @@ exports.delForm = (req, res) => {
     const linea = carrito.lineasPedido.find(lp => lp.id_producto === id);
     if (!linea) return res.redirect('/carrito/list');
 
-    const query = 'SELECT talla, color, marca FROM camiseta WHERE id = ?';
+    const query = 'SELECT id, talla, color, marca FROM camiseta WHERE id = ?';
 
     db.query(query, [id], (error, resultado) => {
-        const camiseta = resultado?.[0] || {
+        const datos = resultado?.[0] || {
             id,
             talla: 'N/A',
             color: 'N/A',
             marca: 'Producto eliminado'
+        };
+
+        const camiseta = {
+            id: datos.id,
+            talla: datos.talla,
+            color: datos.color,
+            marca: datos.marca
         };
 
         res.render('carrito/del', {
@@ -182,9 +170,7 @@ exports.delForm = (req, res) => {
     });
 };
 
-// --------------------------------------------------------
-// DEL (POST) — Eliminar línea del carrito
-// --------------------------------------------------------
+// DEL (POST) — Eliminar línea
 exports.del = (req, res) => {
     const id = parseInt(req.params.id);
     const carrito = initcarrito(req);

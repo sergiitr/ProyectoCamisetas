@@ -8,6 +8,8 @@ const authRouter = require('./routes/authRouter');
 const carritoRouter = require('./routes/carritoRouter'); 
 const usuarioRouter = require(`./routes/usuarioRouter`)
 const db = require('./db'); // Necesitas acceder a la base de datos
+const pedidoRouter = require('./routes/pedidoRouter');
+
 
 const app = express();
 
@@ -118,14 +120,9 @@ app.get("/logout-success", (req, res) => {
     res.render("auth/logout");
 });
 
-// Simulación de Checkout
-app.get('/pedido/checkout', (req, res) => {
-    if (!req.session.usuario) {
-        return res.redirect('/auth/login');
-    }
-    const carrito = req.session.carrito || { total: 0 };
-    res.render('checkout', { total: carrito.total });
-});
+// Checkout
+
+app.use('/pedido', pedidoRouter);
 
 // Parte de admisistracion de usuarios
 app.use(`/admin/usuario`,isAdmin, usuarioRouter)

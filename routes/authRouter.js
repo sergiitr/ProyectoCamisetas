@@ -35,6 +35,7 @@ router.post('/login', (req, res) => {
         if (contrasenaCorrecta) {
             // IMPORTANTE: Guardamos el nombre y el TIPO en la sesión
             req.session.usuario = {
+                id: usuario.id,
                 username: usuario.username,
                 tipo: usuario.tipo // Clave para control de acceso (ADMIN/CLIENTE)
             };
