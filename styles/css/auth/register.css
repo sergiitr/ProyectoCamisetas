@@ -70,6 +70,25 @@ button.btn-primary {
     padding: 10px 30px;
     margin-top: 30px;
 }
+/* Botón de Login - TAMAÑO MÁS PEQUEÑO EN LETRA */
+a.btn-login {
+    border-radius: 0 !important; 
+    font-family: 'Arial Black', sans-serif;
+    
+    /* MODIFICACIÓN CLAVE: Reducir tamaño de letra, ej: de 1.5em a 1.2em */
+    font-size: 1em; 
+    
+    font-weight: 900;
+    text-transform: uppercase;
+    
+    color: #000000 !important; 
+    background-color: #33FFC7 !important; /* Verde Menta Brillante */
+    border: 4px solid #000000 !important; 
+    box-shadow: 6px 6px 0px #000000 !important; 
+    padding: 10px 30px; /* Se mantiene igual que btn-primary */
+    margin-top: 30px;
+}
+
 
 /* Hover: El "Salto" */
 button.btn-primary:hover {
@@ -77,6 +96,15 @@ button.btn-primary:hover {
     transform: translate(-3px, -3px);
     box-shadow: 9px 9px 0px #000000 !important;
 }
+
+/* Hover: El "Salto" */
+a.btn-login:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px #000000 !important;
+}
+
+
 
 /* Active: La "Presión" */
 button.btn-primary:active {

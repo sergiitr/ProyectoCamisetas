@@ -23,5 +23,8 @@ block contenido
             input.form-control(id="telefono", type="tel", name="telefono", pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}", placeholder="555-123-456")
             
 
-            button.btn.btn-primary(type="submit") ¡Registrarse!
+            .d-flex.justify-content-between.mt-3
+                button.btn.btn-primary(type="submit") ¡Registrarse!
+                a.btn.btn-login(href="/auth/login") ¿ya tienes una cuenta?
+
     
