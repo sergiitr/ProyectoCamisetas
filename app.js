@@ -93,6 +93,12 @@ app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 
 
 
+
+
+
+
+
+
 // Ruta principal
 app.get("/", (req, res) => {
   res.render("index");
@@ -120,8 +126,40 @@ app.get('/pedido/checkout', (req, res) => {
     res.render('checkout', { total: carrito.total });
 });
 
+// Parte de admisistracion de usuarios
+app.get(``)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Poner el servidor a escuchar
 app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`);
 });
+
+
+
