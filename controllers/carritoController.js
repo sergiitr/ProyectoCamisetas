@@ -18,18 +18,15 @@ function initcarrito(req) {
 // --------------------------------------------------------
 function updatecarritoTotal(carrito) {
     carrito.total = parseFloat(
-        carrito.lineasPedido.reduce((acc, linea) => {
-            return acc + (linea.cantidad * linea.precio_venta);
-        }, 0.00).toFixed(2)
+        carrito.lineasPedido.reduce((acc, linea) => acc + (linea.cantidad * linea.precio_venta), 0).toFixed(2)
     );
 }
 
 // --------------------------------------------------------
-// Comprobar si está logeado
+// Comprobar si está logueado
 // --------------------------------------------------------
 exports.isClient = (req, res, next) => {
-    if (!req.session.usuario)
-        return res.redirect('/auth/login');
+    if (!req.session.usuario) return res.redirect('/auth/login');
     next();
 };
 
@@ -40,10 +37,7 @@ exports.list = async (req, res) => {
     const carrito = initcarrito(req);
 
     if (carrito.lineasPedido.length === 0) {
-        return res.render('carrito/list', {
-            pedido: carrito,
-            lineasPedido: []
-        });
+        return res.render('carrito/list', { pedido: carrito, lineasPedido: [] });
     }
 
     const lineasCompletas = await Promise.all(
@@ -56,19 +50,13 @@ exports.list = async (req, res) => {
                         color: 'N/A',
                         marca: 'Producto eliminado'
                     };
-                    resolve({
-                        ...linea,
-                        camiseta: { ...detalles, id: linea.id_producto }
-                    });
+                    resolve({ ...linea, camiseta: { ...detalles, id: linea.id_producto } });
                 });
             });
         })
     );
 
-    res.render('carrito/list', {
-        pedido: carrito,
-        lineasPedido: lineasCompletas
-    });
+    res.render('carrito/list', { pedido: carrito, lineasPedido: lineasCompletas });
 };
 
 // --------------------------------------------------------
@@ -79,20 +67,13 @@ exports.addForm = (req, res) => {
     const carrito = initcarrito(req);
 
     const yaExiste = carrito.lineasPedido.find(lp => lp.id_producto === id);
-    if (yaExiste)
-        return res.redirect(`/carrito/edit/camiseta/${id}`);
+    if (yaExiste) return res.redirect(`/carrito/edit/camiseta/${id}`);
 
-    const query = `
-        SELECT id, talla, sexo, color, marca, stock, precio
-        FROM camiseta
-        WHERE id = ? AND activo = 1
-    `;
+    const query = `SELECT id, talla, sexo, color, marca, stock, precio 
+                   FROM camiseta WHERE id = ? AND activo = 1`;
 
     db.query(query, [id], (error, resultado) => {
-        if (error || resultado.length === 0) {
-            return res.redirect('/camisetas');
-        }
-
+        if (error || resultado.length === 0) return res.redirect('/camisetas');
         res.render('carrito/add', { camiseta: resultado[0] });
     });
 };
@@ -105,26 +86,18 @@ exports.add = (req, res) => {
     const cantidad = parseInt(req.body.cantidad);
     const carrito = initcarrito(req);
 
-    if (!cantidad || cantidad < 1)
-        return res.redirect('/carrito/list');
+    if (!cantidad || cantidad < 1) return res.redirect('/carrito/list');
 
-    const query = `
-        SELECT precio, stock, talla, color, marca
-        FROM camiseta
-        WHERE id = ? AND activo = 1
-    `;
+    const query = `SELECT precio, stock, talla, color, marca 
+                   FROM camiseta WHERE id = ? AND activo = 1`;
 
     db.query(query, [id], (error, resultado) => {
-        if (error || resultado.length === 0)
-            return res.redirect('/carrito/list');
+        if (error || resultado.length === 0) return res.redirect('/carrito/list');
 
         const { precio, stock, talla, color, marca } = resultado[0];
-
-        if (cantidad > stock)
-            return res.redirect(`/carrito/edit/camiseta/${id}`);
+        if (cantidad > stock) return res.redirect(`/carrito/edit/camiseta/${id}`);
 
         const idx = carrito.lineasPedido.findIndex(lp => lp.id_producto === id);
-
         if (idx !== -1) {
             carrito.lineasPedido[idx].cantidad = cantidad;
         } else {
@@ -142,26 +115,20 @@ exports.add = (req, res) => {
 };
 
 // --------------------------------------------------------
-// EDIT FORM — Formulario editar cantidad
+// EDIT FORM — Formulario editar cantidad (GET)
 // --------------------------------------------------------
 exports.editForm = (req, res) => {
     const id = parseInt(req.params.id);
     const carrito = initcarrito(req);
 
     const linea = carrito.lineasPedido.find(lp => lp.id_producto === id);
-    if (!linea)
-        return res.redirect(`/carrito/add/camiseta/${id}`);
+    if (!linea) return res.redirect(`/carrito/add/camiseta/${id}`);
 
-    const query = `
-        SELECT id, talla, sexo, color, marca, stock, precio
-        FROM camiseta
-        WHERE id = ? AND activo = 1
-    `;
+    const query = `SELECT id, talla, sexo, color, marca, stock, precio 
+                   FROM camiseta WHERE id = ? AND activo = 1`;
 
     db.query(query, [id], (error, resultado) => {
-        if (error || resultado.length === 0) {
-            return res.redirect('/carrito/list');
-        }
+        if (error || resultado.length === 0) return res.redirect('/carrito/list');
 
         res.render('carrito/edit', {
             camiseta: resultado[0],
@@ -171,15 +138,31 @@ exports.editForm = (req, res) => {
 };
 
 // --------------------------------------------------------
-// DEL FORM — Confirmación de borrado
+// EDIT (POST) — Actualizar cantidad del carrito
+// --------------------------------------------------------
+exports.edit = (req, res) => {
+    const id = parseInt(req.params.id);
+    const cantidad = parseInt(req.body.cantidad);
+    const carrito = initcarrito(req);
+
+    const idx = carrito.lineasPedido.findIndex(lp => lp.id_producto === id);
+    if (idx === -1 || !cantidad || cantidad < 1) return res.redirect('/carrito/list');
+
+    // Actualizar cantidad
+    carrito.lineasPedido[idx].cantidad = cantidad;
+    updatecarritoTotal(carrito);
+    res.redirect('/carrito/list');
+};
+
+// --------------------------------------------------------
+// DEL FORM — Confirmación de borrado (GET)
 // --------------------------------------------------------
 exports.delForm = (req, res) => {
     const id = parseInt(req.params.id);
     const carrito = initcarrito(req);
 
     const linea = carrito.lineasPedido.find(lp => lp.id_producto === id);
-    if (!linea)
-        return res.redirect('/carrito/list');
+    if (!linea) return res.redirect('/carrito/list');
 
     const query = 'SELECT talla, color, marca FROM camiseta WHERE id = ?';
 
@@ -208,6 +191,5 @@ exports.del = (req, res) => {
 
     carrito.lineasPedido = carrito.lineasPedido.filter(lp => lp.id_producto !== id);
     updatecarritoTotal(carrito);
-
     res.redirect('/carrito/list');
 };
