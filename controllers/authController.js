@@ -49,18 +49,18 @@ exports.login = (req, res) => {
         if (!bcrypt.compareSync(password, user.password))
             return res.render('auth/login', { mensaje: 'Usuario o contraseña incorrectos' });
         
-        // Guardar usuario en sesión
+        // Guardar usuario en sesión (ahora incluye ID)
         req.session.usuario = {
-            id: user.id,
+            id: user.id,           
             username: user.username,
             tipo: user.tipo
         };
 
-        // Redirigir al panel de usuario
-        if (red.session.usuario.tipo === "OPERARIO")
-            res.redirect('/admin/indexRegistrado'); //usuario admin
+        // Redirigir según tipo
+        if (req.session.usuario.tipo === "OPERARIO")
+            res.redirect('/admin/indexRegistrado'); // usuario admin
         else
-            res.redirect('/indexRegistrado'); //usuario normal
+            res.redirect('/indexRegistrado'); // usuario normal
     });
 };
 

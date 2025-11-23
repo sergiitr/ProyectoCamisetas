@@ -53,8 +53,8 @@ html(lang='es')
                           td 
                             strong.text-primary #{(linea.precio_venta * linea.cantidad).toFixed(2)} €
                           td
-                            a.btn.btn-sm.btn-outline-info.me-1(href=`/carrito/edit/camiseta/${linea.id_producto}`, title='Cambiar Cantidad') ✏️
-                            a.btn.btn-sm.btn-outline-danger(href=`/carrito/del/camiseta/${linea.id_producto}`, title='Eliminar') 🗑️
+                            a.btn.btn-sm.btn-outline-info.me-1(href=`/carrito/edit/camiseta/${linea.id_producto}`, title='Cambiar Cantidad')
+                            a.btn.btn-sm.btn-outline-danger(href=`/carrito/del/camiseta/${linea.id_producto}`, title='Eliminar')
 
         .row.justify-content-end.mt-4
           .col-md-6.col-lg-5

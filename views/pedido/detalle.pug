@@ -1,0 +1,29 @@
+extends ../layouts/main
+
+block contenido
+  .container.py-5
+    h1.text-center.mb-4 Detalle del Pedido
+
+    p Cliente: #{pedido.cliente}
+    p Estado: #{pedido.estado}
+    p Total: #{pedido.total} €
+
+    h2 Lineas del pedido
+    table.table
+      thead
+        tr
+          th Producto
+          th Marca
+          th Color
+          th Talla
+          th Precio
+          th Cantidad
+      tbody
+        each linea in lineas
+          tr
+            td= linea.producto
+            td= linea.marca
+            td= linea.color
+            td= linea.talla
+            td= linea.precio_venta
+            td= linea.cantidad
