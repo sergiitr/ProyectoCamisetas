@@ -69,7 +69,7 @@ app.use('/camisetas', camisetaRouter);
 // Rutas de autenticación
 app.use('/auth', authRouter);
 
-// RUTAS DEL CARRITO <--- NUEVO
+// RUTAS DEL CARRITO
 app.use('/carrito', carritoRouter);
 
 
