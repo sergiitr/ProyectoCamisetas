@@ -5,7 +5,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const camisetaRouter = require('./routes/camisetaRouter');
 const authRouter = require('./routes/authRouter');
-const carritoRouter = require('./routes/carritoRouter');
+const carritoRouter = require('./routes/carritoRouter'); 
+const usuarioRouter = require(`./routes/usuarioRouter`)
 const db = require('./db'); // Necesitas acceder a la base de datos
 const pedidoRouter = require('./routes/pedidoRouter');
 
@@ -95,6 +96,12 @@ app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 
 
 
+
+
+
+
+
+
 // Ruta principal
 app.get("/", (req, res) => {
   res.render("index");
@@ -117,8 +124,40 @@ app.get("/logout-success", (req, res) => {
 
 app.use('/pedido', pedidoRouter);
 
+// Parte de admisistracion de usuarios
+app.use(`/admin/usuario`,isAdmin, usuarioRouter)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Poner el servidor a escuchar
 app.listen(port, () => {
     console.log(`Servidor escuchando en el puerto ${port}`);
 });
+
+
+

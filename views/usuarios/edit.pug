@@ -13,7 +13,7 @@ block contenido
         input.form-control(type="email",  name="email", id="email", required, value=datos.email)
         <br>
         label.form-label(for="tlfn") Tlfn
-        input.form-control(type="tel",  name="tlfn", id="tlfn", required, value=datos.tlfn)
+        input.form-control(type="tel",  name="tlfn", id="tlfn", required, value=datos.telefono)
         <br>
         label.form-label(for="direccion") Direccion
         input.form-control(type="text", name="direccion", id="direccion", required, value=datos.direccion)
@@ -24,8 +24,8 @@ block contenido
         
         label.form-label(for="tipo") Tipo
         select(name="tipo", id="tipo", required)
-            option(value="cliente", selected=(datos.tipo=="cliente")) Cliente
-            option(value="admin", selected=(datos.tipo=="admin")) Admin
+            option(value="CLIENTE", selected=(datos.tipo=="CLIENTE")) Cliente
+            option(value="OPERADOR", selected=(datos.tipo=="OPERADOR")) Admin
         <br>
         button.btn.btn-info(type="submit") Enviar 
-        button.btn.btn-danger(type="reset") Cancelar
+        a.btn.btn-danger(href="/admin/usuario/list") Cancelar
