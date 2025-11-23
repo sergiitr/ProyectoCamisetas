@@ -6,18 +6,18 @@ const carritoController = require('../controllers/carritoController');
 router.use(carritoController.isClient);
 
 // LIST
-router.get('/carrito', carritoController.list);
+router.get('/list', carritoController.list);
 
 // ADD
-router.get('/carrito/add/camiseta/:id', carritoController.addForm);
-router.post('/carrito/add/camiseta/:id', carritoController.add);
+router.get('/add/camiseta/:id', carritoController.addForm);
+router.post('/add/camiseta/:id', carritoController.add);
 
 // EDIT
-router.get('/carrito/edit/camiseta/:id', carritoController.editForm);
-router.post('/carrito/edit/camiseta/:id', carritoController.edit);
+router.get('/edit/camiseta/:id', carritoController.editForm);
+router.post('/edit/camiseta/:id', carritoController.edit);
 
 // DELETE
-router.get('/carrito/del/camiseta/:id', carritoController.delForm);
-router.post('/carrito/del/camiseta/:id', carritoController.del);
+router.get('/del/camiseta/:id', carritoController.delForm);
+router.post('/del/camiseta/:id', carritoController.del);
 
 module.exports = router;
