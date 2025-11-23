@@ -1,21 +1,41 @@
 block head
-  title Confirmar Eliminación
+  style.
+    .confirm-container {
+      max-width: 600px;
+      margin: auto;
+    }
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #842029;
+      border-color: #f5c2c7;
+    }
+    .card {
+      border-radius: 0.75rem;
+    }
+    .btn-danger {
+      min-width: 140px;
+    }
+    .btn-secondary {
+      min-width: 140px;
+    }
 
 block content
-  .container
-    h1.my-4 🗑️ Eliminar Producto del Carrito
+  .confirm-container.my-5
+    h1.text-center.mb-4 Confirmar Eliminación
 
-    .alert.alert-danger(role='alert')
-      h2 ¡Confirmación Requerida!
-      h3 ¿Estás **totalmente seguro** de que quieres eliminar la camiseta **#{camiseta.marca} - #{camiseta.color} (#{camiseta.talla})** de tu carrito?
+    .alert.alert-danger.text-center
+      h4 ¡Confirmación requerida!
+      p.fs-5 | ¿Deseas eliminar la camiseta
+        strong #{camiseta.marca} - #{camiseta.color} (#{camiseta.talla})
+        |  de tu carrito?
 
     .card.shadow-sm.mb-4
       .card-body
-        h5 Detalles del Artículo
-        ul.list-unstyled
-          li **Cantidad en Carrito:** **#{cantidadActual}** unidades
-          li **Precio de Venta (Registro):** $#{precioVenta}
+        ul.list-unstyled.fs-5
+          li **Cantidad en carrito:** #{cantidadActual}
+          li **Precio unitario:** #{precioVenta}€
 
-    form(action=`/carro/del/camiseta/${camiseta.id}`, method='POST')
-      button.btn.btn-danger.me-2(type='submit') Sí, Eliminar del Carrito
-      a.btn.btn-secondary(href='/carro/list') No, Volver al Carrito
+    .d-flex.justify-content-center.gap-3
+      form(action=`/carrito/del/camiseta/${camiseta.id}`, method='POST')
+        button.btn.btn-danger.btn-lg(type='submit') Sí, eliminar
+      a.btn.btn-secondary.btn-lg(href='/carrito') No, volver

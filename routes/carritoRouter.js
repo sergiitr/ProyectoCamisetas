@@ -1,20 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const carrito = require('../controllers/carritoController');
+const carritoController = require('../controllers/carritoController');
 
-// Listado
-router.get('/list', carrito.isClient, carrito.list);
+// Middleware de sesión
+router.use(carritoController.isClient);
 
-// Añadir
-router.get('/add/camiseta/:id', carrito.isClient, carrito.addForm);
-router.post('/add/camiseta/:id', carrito.isClient, carrito.add);
+// LIST
+router.get('/carrito', carritoController.list);
 
-// Editar cantidad
-router.get('/edit/camiseta/:id', carrito.isClient, carrito.editForm);
-router.post('/edit/camiseta/:id', carrito.isClient, carrito.edit);  // ← FALTABA ESTA
+// ADD
+router.get('/carrito/add/camiseta/:id', carritoController.addForm);
+router.post('/carrito/add/camiseta/:id', carritoController.add);
 
-// Eliminar
-router.get('/del/camiseta/:id', carrito.isClient, carrito.delForm);
-router.post('/del/camiseta/:id', carrito.isClient, carrito.del);
+// EDIT
+router.get('/carrito/edit/camiseta/:id', carritoController.editForm);
+router.post('/carrito/edit/camiseta/:id', carritoController.edit);
+
+// DELETE
+router.get('/carrito/del/camiseta/:id', carritoController.delForm);
+router.post('/carrito/del/camiseta/:id', carritoController.del);
 
 module.exports = router;

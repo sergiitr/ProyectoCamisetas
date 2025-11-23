@@ -4,16 +4,22 @@ html(lang='es')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     title Mi Carrito de Compras
-    // Cargar Bootstrap CSS para que la vista se vea bien de forma autónoma
     link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH', crossorigin='anonymous')
+    
+    style.
+      .badge-color {
+        display: inline-block;
+        padding: 0.35em 0.65em;
+        border-radius: 0.25rem;
+        font-size: 0.85em;
+        color: #fff;
+      }
 
   body
     .container.py-5
-      
       h1.text-center.mb-5.fw-light Carrito de Compras
 
       if lineasPedido && lineasPedido.length
-        
         .row.justify-content-center
           .col-lg-12
             .card.shadow-lg.mb-4.border-0
@@ -38,7 +44,8 @@ html(lang='es')
                           td #{index + 1}
                           td.fw-medium #{linea.camiseta.marca}
                           td 
-                            span.badge.border(style=`background-color: ${linea.camiseta.color}; color: ${linea.camiseta.color === '#000000' ? '#ffffff' : '#000000'};`) #{linea.camiseta.color}
+                            - var textColor = (linea.camiseta.color.toLowerCase() === '#000000' || linea.camiseta.color.toLowerCase() === 'negro') ? '#ffffff' : '#000000';
+                            span.badge(style=`background-color:${linea.camiseta.color}; color:${textColor};`) #{linea.camiseta.color}
                           td.fw-bold #{linea.camiseta.talla.toUpperCase()}
                           td 
                             span.badge.bg-secondary.text-white #{linea.cantidad}
@@ -48,21 +55,20 @@ html(lang='es')
                           td
                             a.btn.btn-sm.btn-outline-info.me-1(href=`/carrito/edit/camiseta/${linea.id_producto}`, title='Cambiar Cantidad') ✏️
                             a.btn.btn-sm.btn-outline-danger(href=`/carrito/del/camiseta/${linea.id_producto}`, title='Eliminar') 🗑️
-                            
-          
-          .row.justify-content-end.mt-4
-            .col-md-6.col-lg-5
-              .card.bg-light.shadow.border-0
-                .card-body
-                  h5.card-title.fw-bold Resumen de la Compra
-                  ul.list-group.list-group-flush.mb-3
-                    li.list-group-item.d-flex.justify-content-between.align-items-center.bg-light.border-0
-                      span.fw-medium Total (IVA incluido):
-                      h4.mb-0.text-success.fw-bolder $#{pedido.total}
-                      
-                  .d-grid.gap-2.mt-4
-                    a.btn.btn-lg.btn-success.text-uppercase(href='/pedido/checkout') Finalizar Pedido
-                    a.btn.btn-outline-primary.btn-sm(href='/camisetas') Seguir Comprando
+
+        .row.justify-content-end.mt-4
+          .col-md-6.col-lg-5
+            .card.bg-light.shadow.border-0
+              .card-body
+                h5.card-title.fw-bold Resumen de la Compra
+                ul.list-group.list-group-flush.mb-3
+                  li.list-group-item.d-flex.justify-content-between.align-items-center.bg-light.border-0
+                    span.fw-medium Total (IVA incluido):
+                    h4.mb-0.text-success.fw-bolder $#{pedido.total}
+                    
+                .d-grid.gap-2.mt-4
+                  a.btn.btn-lg.btn-success.text-uppercase(href='/pedido/checkout') Finalizar Pedido
+                  a.btn.btn-outline-primary.btn-sm(href='/camisetas') Seguir Comprando
 
       else
         .row.justify-content-center
@@ -72,6 +78,5 @@ html(lang='es')
               p Parece que aún no has añadido ninguna camiseta. Explora nuestro catálogo y encuentra tus favoritas.
               hr
               a.btn.btn-primary.btn-lg.mt-2(href='/camisetas') Ver Catálogo de Camisetas
-              
-    // Cargar Bootstrap JS
+
     script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js', integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz', crossorigin='anonymous')
