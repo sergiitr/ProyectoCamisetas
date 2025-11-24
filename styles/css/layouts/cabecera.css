@@ -1,7 +1,7 @@
 /*
     PALETA DE COLORES:
     - Fondo Gris Claro: #e0e0e0
-    - Azul Oscuro (Botones): #1a4d90
+    - Azul Oscuro (Botones): #33FFC7
     - Rosa Fosforito (Acento/Hover): #ff69b4
     - Negro (Bordes): #000
 */
@@ -36,9 +36,10 @@
 .neobrutalista-button {
     display: inline-block; 
     border: 3px solid #000;
-    
+    box-shadow: 5px 5px 0px #000000 !important;
+
     /* Color de botón: Azul Oscuro */
-    background-color: #1a4d90; 
+    background-color: #33FFC7; 
     color: #fff !important; 
     
     padding: 5px 15px;
@@ -48,11 +49,30 @@
 }
 
 .neobrutalista-button:hover {
-    /* Color de hover: Rosa Fosforito */
-    background-color: #ff00ff; 
-    color: #000 !important; 
-    
-    /* Efecto de 'presionado' brutalista */
-    transform: translate(3px, 3px); 
-    box-shadow: none;
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000000 !important;
 }
+
+/* --- ESTILOS DE BOTÓN DE NAVEGACIÓN (neobrutalista-button) --- */
+.neobrutalista-button-admin {
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000000 !important;
+
+    /* Color de botón: Azul Oscuro */
+    background-color: #ff5757; 
+    color: #fff !important; 
+    
+    padding: 5px 15px;
+    margin-left: 10px;
+    border-radius: 0;
+    transition: all 0.1s ease-in-out;
+}
+
+.neobrutalista-button-admin:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000000 !important;
+}
+
