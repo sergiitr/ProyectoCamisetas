@@ -1,0 +1,93 @@
+/*
+    PALETA DE COLORES:
+    - Fondo Gris Claro: #e0e0e0
+    - Verde Menta (Botón Confirmar): #33FFC7
+    - Rosa Fosforito (Sombra/Acento): #ff69b4
+    - Naranja Brillante (Hover): #FFC733
+    - Negro (Bordes): #000
+    - Azul Oscuro (Títulos/Texto): #1A4D90
+*/
+
+/* ==================================== */
+/* 1. CONTENEDOR Y PÁGINA               */
+/* ==================================== */
+
+.neobrutalismo-checkout-container {
+    /* Centrar verticalmente el contenido principal de la página */
+    min-height: 69vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenedor que simula la tarjeta principal de checkout */
+.neobrutalismo-checkout-card {
+    background-color: #e0e0e0;
+    max-width: 900px; /* Ancho moderado para el resumen */
+    width: 100%;
+    padding: 200px;    
+    /* Borde y Sombra Proyectada Brutalista */
+    border: 5px solid #000;
+    /* Sombra con el acento Rosa Fosforito */
+    box-shadow: 12px 12px 0px 0px #ff69b4; 
+    
+    border-radius: 0 !important; 
+}
+
+/* ==================================== */
+/* 2. TIPOGRAFÍA Y RESUMEN DE PEDIDO    */
+/* ==================================== */
+
+.neobrutalismo-heading-checkout {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+}
+
+.neobrutalismo-total-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem;
+    color: #1A4D90; /* Azul Oscuro */
+    margin-bottom: 30px;
+}
+
+.neobrutalismo-total-amount {
+    /* Resaltar el monto total */
+    font-weight: 900;
+    color: #000;
+    font-size: 1.8rem;
+    padding: 5px 10px;
+    border: 3px solid #ff69b4; /* Borde rosa para destacar */
+}
+
+/* ==================================== */
+/* 3. BOTÓN DE CONFIRMACIÓN (SUBMIT)    */
+/* ==================================== */
+
+.neobrutalismo-confirm-button {
+    /* Estilos base de botón brutalista, con acento Verde Menta */
+    display: block; 
+    border: 4px solid #000;
+    /* Sombra fuerte para llamar la atención */
+    box-shadow: 8px 8px 0px #000 !important; 
+
+    background-color: #33FFC7 !important; /* Verde Menta (Confirmación) */
+    color: #000 !important; 
+    
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 15px 30px; /* Botón grande y prominente */
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+}
+
+.neobrutalismo-confirm-button:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0px #ff69b4 !important; /* Sombra Rosa proyectada */
+}

@@ -1,0 +1,100 @@
+/*
+    PALETA DE COLORES:
+    - Fondo Gris Claro: #e0e0e0
+    - Rosa Fosforito (Acento/Sombra): #ff69b4
+    - Naranja Brillante (Hover): #FFC733
+    - Negro (Bordes): #000
+    - Azul Oscuro (Títulos/Texto): #1A4D90
+*/
+
+/* ==================================== */
+/* 1. CONTENEDOR Y TARJETA PRINCIPAL    */
+/* ==================================== */
+
+.neobrutalismo-pedido-detalle-container {
+    padding-top: 40px; 
+    padding-bottom: 40px;
+}
+
+.neobrutalismo-pedido-detalle-card {
+    background-color: #e0e0e0;
+    max-width: 1000px; /* Ancho amplio para la tabla */
+    width: 100%;
+    margin: 0 auto; /* Centrar la tarjeta */
+    padding: 30px;
+    
+    /* Borde y Sombra Proyectada Brutalista */
+    border: 5px solid #000;
+    box-shadow: 15px 15px 0px 0px #ff69b4; /* Sombra Rosa Fosforito */
+    
+    border-radius: 0 !important; 
+}
+
+/* ==================================== */
+/* 2. TIPOGRAFÍA Y TÍTULOS              */
+/* ==================================== */
+
+.neobrutalismo-heading-detalle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #000;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    border-bottom: 4px solid #000;
+    padding-bottom: 10px;
+}
+
+.neobrutalismo-subheading-detalle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: #1A4D90; /* Azul oscuro */
+    text-transform: uppercase;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.neobrutalismo-info-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.3rem;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* ==================================== */
+/* 3. TABLA DE LÍNEAS DE PEDIDO         */
+/* ==================================== */
+
+.neobrutalismo-table {
+    width: 100%;
+    /* Borde exterior de la tabla */
+    border: 4px solid #000 !important; 
+    border-collapse: collapse; /* Asegura bordes limpios */
+}
+
+/* Encabezados de la tabla (TH) */
+.neobrutalismo-table thead th {
+    font-family: 'Arial Black', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 12px;
+    background-color: #33FFC7; /* Fondo Verde Menta para el encabezado */
+    color: #000;
+    border: 2px solid #000 !important;
+}
+
+/* Celdas de la tabla (TD) */
+.neobrutalismo-table tbody td {
+    font-family: 'Arial', sans-serif;
+    padding: 10px;
+    border: 2px solid #000 !important;
+    vertical-align: middle;
+}
+
+/* Filas alternas (para legibilidad brutalista) */
+.neobrutalismo-table tbody tr:nth-child(even) {
+    background-color: #f7f7f7; /* Gris muy claro */
+}
+.neobrutalismo-table tbody tr:hover {
+    background-color: #FFC733; /* Naranja Brillante al pasar el ratón */
+    color: #000;
+}

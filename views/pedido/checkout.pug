@@ -1,11 +1,20 @@
 extends ../layouts/main
 
 block contenido
-  .container.py-5
-    h1.text-center.mb-4 Finalizar Pedido
+  // Enlace al nuevo CSS de checkout
+  link(rel="stylesheet", href="/css/pedido/checkout.css") 
+  
+  // Usamos el contenedor para centrar todo el contenido de la página
+  .container.neobrutalismo-checkout-container
+    
+    // Tarjeta que envuelve el título, el total y el formulario
+    .neobrutalismo-checkout-card.text-center
+      
+      h2.neobrutalismo-heading-checkout Finalizar Pedido
 
-    p.text-center Total del pedido: 
-      strong #{total} €
+      p.neobrutalismo-total-text Total del pedido: 
+        strong.neobrutalismo-total-amount #{total} €
 
-    form(action='/pedido/confirmar' method='POST')
-      button.btn.btn-success.btn-lg.w-100(type='submit') Confirmar Pedido
+      form(action='/pedido/confirmar' method='POST')
+        // Aplicamos la clase brutalista al botón de acción principal
+        button.neobrutalismo-confirm-button(type='submit') CONFIRMAR PEDIDO

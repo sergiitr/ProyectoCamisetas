@@ -1,29 +1,49 @@
 extends ../layouts/main
 
 block contenido
+  // Enlace al CSS del detalle de pedido
+  link(rel="stylesheet", href="/css/pedido/detalle.css") 
+  
   .container.py-5
-    h1.text-center.mb-4 Detalle del Pedido
+    
+    // Tarjeta contenedora principal
+    .neobrutalismo-pedido-detalle-card
+      
+      h1.neobrutalismo-heading-detalle.text-center Detalle del Pedido
 
-    p Cliente: #{pedido.cliente}
-    p Estado: #{pedido.estado}
-    p Total: #{pedido.total} €
+      // Datos principales del pedido
+      .neobrutalismo-info-text.mb-4
+        p Pedido número: #[strong #{pedido.cliente}]
+        p Cliente: #[strong #{user}]
+        p Estado: #[strong #{pedido.estado}]
+        p Total: #[strong #{pedido.total} €]
 
-    h2 Lineas del pedido
-    table.table
-      thead
-        tr
-          th Producto
-          th Marca
-          th Color
-          th Talla
-          th Precio
-          th Cantidad
-      tbody
-        each linea in lineas
+      h2.neobrutalismo-subheading-detalle Líneas del pedido
+      
+      // Tabla
+      table.table.neobrutalismo-table
+        thead
           tr
-            td= linea.producto
-            td= linea.marca
-            td= linea.color
-            td= linea.talla
-            td= linea.precio_venta
-            td= linea.cantidad
+            th Producto
+            th Marca
+            th Color 
+            th Talla
+            th Precio
+            th Cantidad
+            th Precio Total
+        tbody
+          each linea in lineas
+            tr
+              td= linea.producto
+              td= linea.marca
+              td 
+                - var colorValue = linea.color || linea.camiseta.color; // Usa 'linea.color' si existe, sino 'linea.camiseta.color'
+                - var lowerCaseColor = colorValue.toLowerCase();
+                // Determinar el color del texto para que contraste con el fondo.
+                - var textColor = (lowerCaseColor === '#000000' || lowerCaseColor === 'negro') ? '#ffffff' : '#000000';
+                
+                span.neobrutalismo-color-badge(style=`background-color:${colorValue}; color:${textColor};`) #{colorValue}
+              td= linea.talla
+              td= linea.precio_venta
+              td= linea.cantidad
+              td= pedido.total
