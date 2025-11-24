@@ -1,0 +1,86 @@
+/*
+ * ESTILOS ESPECÍFICOS PARA LA VISTA DE BIENVENIDA (Sobreescribimos el body y el contenedor)
+ */
+
+body {
+    /* Fondo Gris Claro Neobrutalista */
+    background-color: #2F4F4F; 
+}
+
+.center-container {
+    /* Contenedor Centrado */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.neobrutalista-welcome-card {
+    /* Fondo de Tarjeta Gris Claro Neobrutalista */
+    background-color: #e0e0e0; 
+    
+    /* Borde y Sombra Proyectada */
+    border: 4px solid #000;
+    box-shadow: 10px 10px 0px 0px #ff5757; /* Sombra Azul Oscuro */
+    
+    /* Neobrutalista: sin bordes redondeados */
+    border-radius: 0 !important; 
+    padding: 40px 30px; 
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+.neobrutalista-heading-welcome {
+    /* Estilo para el título de bienvenida */
+    font-family: 'Bebas Neue', sans-serif; /* Asumiendo que Bebas Neue está enlazada globalmente */
+    font-size: 2.5rem;
+    color: #000; /* Rosa Fosforito para el acento */
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border-bottom: 4px solid #000;
+    padding-bottom: 15px;
+}
+
+/* * ESTILOS DE BOTÓN DE ACCIÓN (Añadir si no están en cabecera.css)
+ * Estos estilos deben estar definidos en alguna parte de tus CSS.
+ */
+
+/* Ejemplo: Botón de Usuario Normal (Ver Camisetas) */
+.neobrutalista-button-welcome {
+    background-color: #33FFC7 !important;
+    color: #000 !important;
+    border-radius: 0 !important;
+    border: 3px solid #000 !important;
+    box-shadow: 5px 5px 0px #000 !important;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+
+}
+
+.neobrutalista-button-welcome:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000000 !important;
+    color: #000;
+}
+
+
+/* Ejemplo: Botón de Administrador (Gestionar Tienda) */
+.neobrutalista-button-admin {
+    background-color: #ff5757 !important; /* Rojo vivo */
+    color: #000 !important;
+    border-radius: 0 !important;
+    border: 3px solid #000 !important;
+    box-shadow: 5px 5px 0px #000 !important;
+    font-family: 'Impact', sans-serif;
+    text-transform: uppercase;
+}
+.neobrutalista-button-admin:hover {
+    background-color: #FFC733 !important; /* Gris Claro */
+    color: #000 !important;
+    transform: translate(2px, 2px);
+    box-shadow: none !important;
+}
