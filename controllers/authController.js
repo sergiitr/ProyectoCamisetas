@@ -57,7 +57,7 @@ exports.login = (req, res) => {
         };
 
         // Redirigir según tipo
-        if (req.session.usuario.tipo === "OPERARIO")
+        if (req.session.usuario.tipo === "OPERADOR")
             res.redirect('/admin/indexRegistrado'); // usuario admin
         else
             res.redirect('/indexRegistrado'); // usuario normal

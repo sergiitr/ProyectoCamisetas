@@ -24,8 +24,10 @@ block contenido
                             
                             // Título y Marca
                             h5.card-title.neobrutalista-title.mb-1= camiseta.marca
-                            p.neobrutalista-text.mb-2 | Talla: #{camiseta.talla} <br/>| Color: 
+                            p.neobrutalista-text.mb-2 | Talla: #{camiseta.talla} 
+                            <br/>| Color: 
                                 span(style=`font-weight: bold; color:${camiseta.color}`)= camiseta.color 
+                                <br/> | Stock: #{camiseta.stock}
                             
                             // Espacio para empujar el precio y botón al final
                             .mt-auto

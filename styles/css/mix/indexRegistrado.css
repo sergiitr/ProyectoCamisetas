@@ -22,7 +22,7 @@ body {
     
     /* Borde y Sombra Proyectada */
     border: 4px solid #000;
-    box-shadow: 10px 10px 0px 0px #ff5757; /* Sombra Azul Oscuro */
+    box-shadow: 10px 10px 0px 0px #ff69b4; /* Sombra Azul Oscuro */
     
     /* Neobrutalista: sin bordes redondeados */
     border-radius: 0 !important; 

@@ -12,14 +12,17 @@ exports.camisetas = (req, res) => {
 }
 
 exports.camisetasUsuarioForm = (req, res) => {
-    let query = 'SELECT *  FROM camiseta WHERE  activo = 1'
-    db.query(query, (error, resultado)=>{
+    const tipo = req.session.usuario?.tipo;  // saca el valor de sesión OPERADOR o CLIENTE, así las activas=0 no aparecen a los clientes
+    const esOperador = (tipo === "OPERADOR");
+    let query = esOperador ? 'SELECT * FROM camiseta' : 'SELECT * FROM camiseta WHERE activo = 1';
+    db.query(query, (error, resultado) => {
         if (error)
-            res.render('error', { mensaje: 'Imposible acceder a las camisetas' })
+            res.render('error', { mensaje: 'Imposible acceder a las camisetas' });
         else
-            res.render('camiseta/list', {camisetas: resultado})
+            res.render('camiseta/list', { camisetas: resultado });
     })
 }
+
 
 
 exports.camiseta = (req, res) => {
@@ -64,7 +67,6 @@ exports.camisetaUpdateForm = (req, res) => {
     const { id } = req.params;
     if (isNaN(id))
         res.render( 'error', {mensaje:'CAMISETA GETONE PARAMETROS INCORRECTOS'} )
-    
     let query = 'SELECT * FROM camiseta where id=?'
     db.query(query, id, (error, resultado)=>{
         if (error)

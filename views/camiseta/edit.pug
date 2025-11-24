@@ -1,43 +1,71 @@
 extends ../layouts/main
 
 block contenido
-    h2 Editar camiseta             
-    form(method="POST")    
-        label.form-label(for="talla") Talla: 
-        select(name="talla", id="talla", required) 
-            option(value="xxs", selected=(datos.talla=="xxs")) XXS 
-            option(value="xs", selected=(datos.talla=="xs")) XS
-            option(value="s", selected=(datos.talla=="s")) S
-            option(value="m", selected=(datos.talla=="m")) M
-            option(value="l", selected=(datos.talla=="l")) L
-            option(value="xl", selected=(datos.talla=="xl")) XL
-            option(value="xxl", selected=(datos.talla=="xxl")) XXL
-        <br>
-        label.form-label(for="sexo") Sexo: 
-        select(name="sexo", id="sexo", required, value=datos.sexo) 
-            option(value="chica", selected=(datos.sexo=="chica")) chica 
-            option(value="chico", selected=(datos.sexo=="chico")) chico
-            option(value="unisex", selected=(datos.sexo=="unisex")) unisex
-            option(value="niño", selected=(datos.sexo=="niño")) niño
-            option(value="niña", selected=(datos.sexo=="niña")) niña
-            option(value="unisex_infantil", selected=(datos.sexo=="unisex_infantil")) unisex_infantil
-        <br>
-        label.form-label(for="color") Color
-        input.form-control(type="color", name="color", id="color", required, value=datos.color)
-        <br>
-        label.form-label(for="marca") Marca
-        input.form-control(type="marca", name="marca", id="marca", required, value=datos.marca)
-        <br>
-        label.form-label(for="stock") Stock
-        input.form-control(type="number", name="stock", id="stock" min="0" max="1000", required, value=datos.stock)
-        <br>    
-        label.form-label(for="precio") Precio 
-        input.form-control(type="number",  name="precio", id="precio", step="any", required, value=datos.precio)
-        <br>
+    // Asegúrate de que este enlace apunte a tu nuevo archivo CSS
+    link(rel="stylesheet", href="/css/camiseta/edit.css") 
+    
+    // Contenedor principal centrado
+    .container.neobrutalismo-edit-container
         
-        label.form-check-label(for="activo") Activo
-        input.form-check-input(type="checkbox", name="activo", id="activo", checked= datos.activo==1)
-        <br>
-        button.btn.btn-info(type="submit") Enviar 
-        //Tiene que ser este tipo de boton para que envie como get
-        a.btn.btn-sm.neobrutalismo-editar(href=`/admin/Gestionar/Ges`) Cancelar
+        // --- TARJETA DE EDICIÓN NEOBRUTALISTA ---
+        .neobrutalismo-edit-card.mx-auto.p-4 
+            
+            h2.neobrutalismo-heading-edit Editar camiseta
+            
+            form(method="POST") 
+                // TALLA
+                .mb-3
+                    label.neobrutalismo-label-edit(for="talla") Talla: 
+                    select.neobrutalismo-select-edit(name="talla", id="talla", required) 
+                        option(value="xxs", selected=(datos.talla=="xxs")) XXS 
+                        option(value="xs", selected=(datos.talla=="xs")) XS
+                        option(value="s", selected=(datos.talla=="s")) S
+                        option(value="m", selected=(datos.talla=="m")) M
+                        option(value="l", selected=(datos.talla=="l")) L
+                        option(value="xl", selected=(datos.talla=="xl")) XL
+                        option(value="xxl", selected=(datos.talla=="xxl")) XXL
+                
+                // SEXO
+                .mb-3
+                    label.neobrutalismo-label-edit(for="sexo") Sexo: 
+                    select.neobrutalismo-select-edit(name="sexo", id="sexo", required, value=datos.sexo) 
+                        option(value="chica", selected=(datos.sexo=="chica")) chica 
+                        option(value="chico", selected=(datos.sexo=="chico")) chico
+                        option(value="unisex", selected=(datos.sexo=="unisex")) unisex
+                        option(value="niño", selected=(datos.sexo=="niño")) niño
+                        option(value="niña", selected=(datos.sexo=="niña")) niña
+                        option(value="unisex_infantil", selected=(datos.sexo=="unisex_infantil")) unisex_infantil
+                
+                // COLOR
+                .mb-3
+                    label.neobrutalismo-label-edit(for="color") Color
+                    // El input type=color es difícil de estilizar, pero le aplicamos la clase genérica de input
+                    input.neobrutalismo-input-edit(type="color", name="color", id="color", required, value=datos.color)
+                
+                // MARCA
+                .mb-3
+                    label.neobrutalismo-label-edit(for="marca") Marca
+                    // Cambiado type="marca" a type="text" si ese era un error tipográfico
+                    input.neobrutalismo-input-edit(type="text", name="marca", id="marca", required, value=datos.marca)
+                
+                // STOCK
+                .mb-3
+                    label.neobrutalismo-label-edit(for="stock") Stock
+                    input.neobrutalismo-input-edit(type="number", name="stock", id="stock" min="0" max="1000", required, value=datos.stock)
+                
+                // PRECIO
+                .mb-3
+                    label.neobrutalismo-label-edit(for="precio") Precio 
+                    input.neobrutalismo-input-edit(type="number", name="precio", id="precio", step="any", required, value=datos.precio)
+                
+                // ACTIVO (Checkbox)
+                // Usamos d-flex para que el label y el checkbox estén en línea
+                .mb-3.d-flex.align-items-center
+                    label.neobrutalismo-check-label(for="activo") Activo
+                    input.neobrutalismo-check-input(type="checkbox", name="activo", id="activo", checked= datos.activo==1)
+                    
+                // BOTONES DE ACCIÓN (Separados en extremos)
+                .d-flex.justify-content-between.mt-4
+                    button.neobrutalismo-submit-button(type="submit") Enviar 
+                    // El botón de Cancelar es el enlace (<a>)
+                    a.neobrutalismo-cancel-button(href=`/admin/Gestionar`) Cancelar

@@ -1,42 +1,69 @@
 extends ../layouts/main
 
 block contenido
-    h2 Dar de baja una camiseta 
-    form(method="POST")    
-        label.form-label(for="talla") Talla
-        select(name="talla", id="talla", disabled) 
-            option(value="xxs", selected=(datos.talla=="xxs")) XXS 
-            option(value="xs", selected=(datos.talla=="xs")) XS
-            option(value="s", selected=(datos.talla=="s")) S
-            option(value="m", selected=(datos.talla=="m")) M
-            option(value="l", selected=(datos.talla=="l")) L
-            option(value="xl", selected=(datos.talla=="xl")) XL
-            option(value="xxl", selected=(datos.talla=="xxl")) XXL
-        <br>
-        label.form-label(for="sexo") Sexo
-        select(name="sexo", id="sexo", disabled) 
-            option(value="chica", selected=(datos.sexo=="chica")) chica 
-            option(value="chico", selected=(datos.sexo=="chico")) chico
-            option(value="unisex", selected=(datos.sexo=="unisex")) unisex
-            option(value="niño", selected=(datos.sexo=="niño")) niño
-            option(value="niña", selected=(datos.sexo=="niña")) niña
-            option(value="unisex_infantil", selected=(datos.sexo=="unisex_infantil")) unisex_infantil
-        <br>
-        label.form-label(for="color") Color
-        input.form-control(type="color", name="color", id="color", disabled, value= datos.color)
-        <br>
-        label.form-label(for="marca") Marca
-        input.form-control(type="marca", name="marca", id="marca", disabled, value= datos.marca )
-        <br>
-        label.form-label(for="stock") Stock
-        input.form-control(type="number", name="stock", id="stock" min="0" max="1000", disabled, value=datos.stock)
-        <br>    
-        label.form-label(for="precio") Precio 
-        input.form-control(type="number",  name="precio", id="precio", step="any", disabled, value=datos.precio)
-        <br>
+    // Asegúrate de que este enlace apunte al CSS de eliminación
+    link(rel="stylesheet", href="/css/camiseta/del.css") 
+    
+    // Contenedor principal centrado
+    .container.neobrutalismo-delete-container
         
-        label.form-check-label(for="activo") Activo
-        input.form-check-input(type="checkbox", name="activo", id="activo", disabled, , checked= datos.activo==1)
-        <br>
-        button.btn.btn-primary(type="submit") Borrar 
-        a.btn.btn-sm.neobrutalismo-editar(href=`/admin/Gestionar/Ges`) Cancelar
+        // --- TARJETA DE ELIMINACIÓN NEOBRUTALISTA ---
+        .neobrutalismo-delete-card.mx-auto.p-4 
+            
+            h2.neobrutalismo-heading-delete Dar de baja una camiseta
+            
+            form(method="POST") 
+                // TALLA
+                .mb-3
+                    label.neobrutalismo-label-delete(for="talla") Talla
+                    select.neobrutalismo-select-delete(name="talla", id="talla", disabled) 
+                        option(value="xxs", selected=(datos.talla=="xxs")) XXS 
+                        option(value="xs", selected=(datos.talla=="xs")) XS
+                        option(value="s", selected=(datos.talla=="s")) S
+                        option(value="m", selected=(datos.talla=="m")) M
+                        option(value="l", selected=(datos.talla=="l")) L
+                        option(value="xl", selected=(datos.talla=="xl")) XL
+                        option(value="xxl", selected=(datos.talla=="xxl")) XXL
+                
+                // SEXO
+                .mb-3
+                    label.neobrutalismo-label-delete(for="sexo") Sexo
+                    select.neobrutalismo-select-delete(name="sexo", id="sexo", disabled) 
+                        option(value="chica", selected=(datos.sexo=="chica")) chica 
+                        option(value="chico", selected=(datos.sexo=="chico")) chico
+                        option(value="unisex", selected=(datos.sexo=="unisex")) unisex
+                        option(value="niño", selected=(datos.sexo=="niño")) niño
+                        option(value="niña", selected=(datos.sexo=="niña")) niña
+                        option(value="unisex_infantil", selected=(datos.sexo=="unisex_infantil")) unisex_infantil
+                
+                // COLOR
+                .mb-3
+                    label.neobrutalismo-label-delete(for="color") Color
+                    input.neobrutalismo-input-delete(type="color", name="color", id="color", disabled, value= datos.color)
+                
+                // MARCA
+                .mb-3
+                    label.neobrutalismo-label-delete(for="marca") Marca
+                    input.neobrutalismo-input-delete(type="text", name="marca", id="marca", disabled, value= datos.marca )
+                
+                // STOCK
+                .mb-3
+                    label.neobrutalismo-label-delete(for="stock") Stock
+                    input.neobrutalismo-input-delete(type="number", name="stock", id="stock" min="0" max="1000", disabled, value=datos.stock)
+                
+                // PRECIO
+                .mb-3
+                    label.neobrutalismo-label-delete(for="precio") Precio 
+                    input.neobrutalismo-input-delete(type="number", name="precio", id="precio", step="any", disabled, value=datos.precio)
+                
+                // ACTIVO (Checkbox)
+                .mb-3.d-flex.align-items-center
+                    label.neobrutalismo-check-label(for="activo") Activo
+                    input.neobrutalismo-check-input(type="checkbox", name="activo", id="activo", disabled, checked= datos.activo==1)
+                    
+                // BOTONES DE ACCIÓN (Separados en extremos)
+                .d-flex.justify-content-between.mt-4
+                    // Botón Borrar (Submit - Rojo Peligro)
+                    button.neobrutalismo-delete-button(type="submit") Borrar 
+                    // Botón Cancelar (Enlace - Verde Menta)
+                    a.neobrutalismo-cancel-button(href=`/admin/Gestionar/Ges`) Cancelar
