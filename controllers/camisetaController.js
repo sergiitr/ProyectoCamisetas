@@ -89,6 +89,7 @@ exports.camisetaUpdate = (req, res) => {
     const { id } = req.params;
     // En el cuerpo del formulario vienen los datos
     const { talla, sexo, color, marca, stock, precio, activo} = req.body
+    console.log(req.body)//comprobacion por si me llegan correctamente los datos
     let disponible = activo=='on'?1:0;
     let sql = "UPDATE `camiseta` SET \
         `talla`  = ?,\
@@ -102,6 +103,7 @@ exports.camisetaUpdate = (req, res) => {
 
     db.query(sql, [talla, sexo, color, 
         marca, stock, precio, disponible, id], (error, resultado)=>{
+            
         if (error) {
             console.log(error)
             res.render('error', { mensaje: 'Imposible actualizar la camiseta'})
