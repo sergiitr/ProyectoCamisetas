@@ -59,7 +59,7 @@ exports.camisetaAdd = (req, res) => {
             console.log(error)
             res.render('error', { mensaje: 'Imposible añadir la camiseta' })
         } else 
-            res.redirect('/admin/camiseta')
+            res.redirect('/admin/Gestionar')
     })
 }
 
