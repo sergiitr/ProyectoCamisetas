@@ -11,6 +11,17 @@ exports.camisetas = (req, res) => {
     })
 }
 
+exports.camisetasUsuarioForm = (req, res) => {
+    let query = 'SELECT *  FROM camiseta WHERE  activo = 1'
+    db.query(query, (error, resultado)=>{
+        if (error)
+            res.render('error', { mensaje: 'Imposible acceder a las camisetas' })
+        else
+            res.render('camiseta/list', {camisetas: resultado})
+    })
+}
+
+
 exports.camiseta = (req, res) => {
     const { id } = req.params;
     if (isNaN(id))

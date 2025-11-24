@@ -64,7 +64,7 @@ function isAdmin(req, res, next) {
 
 
 // Rutas de administración para Camisetas
-app.use('/admin/indexRegistrado', isAdmin, camisetaRouter);
+app.use('/admin/Gestionar', isAdmin, camisetaRouter);
 app.use('/admin', isAdmin, camisetaRouter);
 app.use("/admin/camiseta", camisetaRouter)
 // Esta es la que se usa para los usuarios normales
