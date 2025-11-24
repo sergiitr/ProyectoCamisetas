@@ -123,6 +123,7 @@ exports.camisetaDelete = (req, res) => {
     if (isNaN(id))
         return res.render( 'error', {mensaje:'CAMISETA DELETE PARAMETROS INCORRECTOS'} )
     
+    console.log(id)
     let query = 'DELETE FROM camiseta where id=?'
     console.log(req.params)
     db.query(query, id, (error, resultado)=>{
@@ -130,6 +131,6 @@ exports.camisetaDelete = (req, res) => {
             console.log(error)
             res.render('error', { mensaje: 'Imposible borrar la camiseta' })
         } else
-            res.redirect('/admin/camiseta')
+            res.redirect('/admin/Gestionar')
     })
 }
