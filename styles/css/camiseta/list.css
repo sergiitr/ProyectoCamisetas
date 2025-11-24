@@ -1,10 +1,11 @@
 /*
     ESTILOS ESPECÍFICOS PARA LA VISTA DE LISTADO DE CAMISETAS (CARDS)
+    (Usados en list.pug)
 
     PALETA DE COLORES:
     - Fondo Gris Claro: #e0e0e0
     - Azul Oscuro (Botones BASE/Sombra): #1a4d90
-    - Rosa Fosforito (Acento/Hover): #ff00ff
+    - Rosa Fosforito (Acento/Hover/Precio): #ff00ff #ff69b4
     - Rojo Peligro: #ff5757
     - Verde Menta: #33FFC7
     - Negro (Bordes): #000
@@ -26,44 +27,14 @@
     transition: transform 0.1s ease-in-out;
 }
 
-/* Estilo Específico para el Botón EDITAR (Azul Oscuro) */
-.neobrutalista-card .neobrutalista-btn {
-    /* Forzamos el color base Azul Oscuro y texto blanco */
-    background-color: #1a4d90 !important; 
-    color: #fff !important;
-    box-shadow: 2px 2px 0px #000 !important; /* Añadimos sombra para la estética */
-}
-
-.neobrutalista-card .neobrutalista-btn:hover {
-    /* Forzamos el hover Rosa Fosforito */
-    background-color: #ff00ff !important; 
-    color: #000 !important;
-    transform: translate(2px, 2px); 
-    box-shadow: none !important;
-}
-
 .neobrutalista-card:hover {
     /* Desplazamiento y sombra de acento al pasar el ratón */
     transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px 0px #ff00ff; /* Sombra que cambia a Rosa Fosforito */
-}
-
-/* Imagen del producto */
-.neobrutalista-card img {
-    /* Borde separador */
-    border-bottom: 4px solid #000;
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: translateY(50%);
+    box-shadow: 8px 8px 0px 0px #ff69b4; /* Sombra que cambia a Rosa Fosforito */
 }
 
 /* ==================================== */
-/* 2. TIPOGRAFÍA Y PRECIO               */
+/* 2. TIPOGRAFÍA Y TÍTULO PRINCIPAL     */
 /* ==================================== */
 
 .neobrutalista-title {
@@ -72,6 +43,20 @@
     font-size: 1.5rem;
     color: #000;
 }
+
+/* Estilo para el título H2 */
+.user-highlight {
+    color: #000;
+; /* Verde Menta Brillante para el dato clave */
+    background-color: #e0e0e0; /* Fondo Azul Oscuro */
+    text-transform: uppercase;
+    padding: 2px 5px;
+    border: 4px solid #000;
+    box-shadow: 6px 6px 0px 0px #1a4d90; /* Sombra Azul Oscuro */
+    font-weight: bold;
+    display: block;
+}
+
 .neobrutalista-text {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.9rem;
@@ -86,7 +71,7 @@
 }
 
 /* ==================================== */
-/* 4. INDICADOR DE STOCK (BADGE)        */
+/* 3. INDICADOR DE STOCK (BADGE)        */
 /* ==================================== */
 
 .neobrutalista-stock {
@@ -99,7 +84,7 @@
     box-shadow: 2px 2px 0px #000;
 }
 
-/* Sobrescribir el color de fondo de las clases de stock de Bootstrap */
+/* Colores de stock Neobrutalista */
 .neobrutalista-stock.bg-success {
     background-color: #33FFC7 !important; /* Verde Menta Neobrutalista */
 }
@@ -108,17 +93,78 @@
     background-color: #ff5757 !important; /* Rojo vivo */
 }
 
-/* ================ */
-/* 5.- Extra        */
-/* ================ */
+/* ==================================== */
+/* 4. BOTONES DE ACCIÓN (COMPRAR, EDITAR, BORRAR) */
+/* ==================================== */
 
-.user-highlight {
-    color: #33FFC7; /* Verde Menta Brillante para el dato clave */
-    background-color: #1A4D90; /* Negro Fuerte - El color de tu texto principal / bordes */
-    text-transform: uppercase;
-    padding: 2px 5px;
-    border: 4px solid #000;
-    font-weight: bold; /* Opcional: Para darle más peso */
+/* --- BOTÓN COMPRAR (Acento) --- */
+.neobrutalista-button-acento {
     display: inline-block;
+    border: 3px solid #000;
+    background-color: #1a4d90; /* Azul Oscuro para el botón */
+    color: #fff !important;
+    font-weight: bold;                  
+    text-transform: uppercase;
+    border-radius: 0;
+    transition: all 0.1s ease-in-out;
 }
+
+.neobrutalista-button-acento:hover {
+    background-color: #ff69b4; /* Rosa Fosforito en hover */
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none;
+}
+
+/* --- BOTÓN EDITAR (Administrador) --- */
+.neobrutalismo-editar {
+    display: inline-block; 
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 0 !important;
+    transition: all 0.1s ease-in-out;
+    padding: 5px 10px; 
+    
+    /* Color BASE: Azul Oscuro */
+    background-color: #1a4d90 !important; 
+    color: #fff !important;
+    box-shadow: 4px 4px 0px #000 !important;
+}
+
+.neobrutalismo-editar:hover {
+    background-color: #ff69b4 !important; /* HOVER: Rosa Fosforito */
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
+}
+
+/* --- BOTÓN BORRAR (Administrador) --- */
+.neobrutalista-borrar {
+    display: inline-block; 
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 0 !important;
+    transition: all 0.1s ease-in-out;
+    padding: 5px 10px; 
+
+    /* Color BASE: Rojo Vivo */
+    background-color: #ff5757 !important; 
+    color: #000 !important;
+    box-shadow: 4px 4px 0px #000 !important;
+}
+
+.neobrutalista-borrar:hover {
+    /* HOVER: Rojo Vivo */
+    background-color: #ff5757 !important; 
+    color: #000 !important;
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
+}
+
 

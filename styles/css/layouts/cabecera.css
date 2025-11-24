@@ -2,12 +2,8 @@
     PALETA DE COLORES:
     - Fondo Gris Claro: #e0e0e0
     - Azul Oscuro (Botones): #1a4d90
-    - Rosa Fosforito (Acento/Hover): #ff00ff
+    - Rosa Fosforito (Acento/Hover): #ff69b4
     - Negro (Bordes): #000
-    
-    FUENTES RECOMENDADAS (Deben ser cargadas, ej: Google Fonts):
-    - Títulos/Grandes: Bebas Neue, Anton (Sans-Serif gruesa)
-    - Texto/Navegación: JetBrains Mono, IBM Plex Mono (Monoespaciada)
 */
 
 /* --- ESTILOS GENERALES DE LA CABECERA --- */
@@ -36,7 +32,7 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
-/* --- ESTILOS DE BOTÓN (Login/Logout) --- */
+/* --- ESTILOS DE BOTÓN DE NAVEGACIÓN (neobrutalista-button) --- */
 .neobrutalista-button {
     display: inline-block; 
     border: 3px solid #000;
@@ -59,157 +55,4 @@
     /* Efecto de 'presionado' brutalista */
     transform: translate(3px, 3px); 
     box-shadow: none;
-}
-
-/* ==================================== */
-/* 3. BOTONES DE ACCIÓN EN LA TARJETA   */
-/* ==================================== */
-
-/* --- ESTILOS PARA LAS TARJETAS DE PRODUCTO --- */
-
-.neobrutalista-card {
-    background-color: #e0e0e0; /* Fondo Gris Claro */
-    
-    /* Bordes y Sombra Proyectada */
-    border: 4px solid #000;
-    box-shadow: 6px 6px 0px 0px #1a4d90; /* Sombra Azul Oscuro */
-    
-    border-radius: 0 !important; 
-    transition: transform 0.1s ease-in-out;
-}
-
-.neobrutalista-card:hover {
-    /* Desplazamiento y sombra de acento al pasar el ratón */
-    transform: translate(-2px, -2px);
-    box-shadow: 8px 8px 0px 0px #ff00ff; /* Sombra que cambia a Rosa Fosforito */
-}
-
-.neobrutalista-card img {
-    /* Borde separador */
-    border-bottom: 4px solid #000;
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 0;
-}
-
-/* Tipografía de Títulos y Precio */
-.neobrutalista-title {
-    font-family: 'Bebas Neue', sans-serif;
-    text-transform: uppercase;
-    font-size: 1.5rem;
-    color: #000;
-}
-.neobrutalista-text {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
-    color: #333;
-}
-
-.neobrutalista-price {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 2rem;
-    color: #ff00ff; /* Precio en Rosa Fosforito */
-    font-weight: bold;
-}
-
-/* Botón de Añadir al Carrito (Botón de Acento) */
-.neobrutalista-button-acento {
-    display: inline-block;
-    border: 3px solid #000;
-    background-color: #1a4d90; /* Azul Oscuro para el botón */
-    color: #fff !important;
-    font-weight: bold;                  
-    text-transform: uppercase;
-    border-radius: 0;
-    transition: all 0.1s ease-in-out;
-}
-
-.neobrutalista-button-acento:hover {
-    background-color: #ff00ff; /* Rosa Fosforito en hover */
-    color: #000 !important;
-    transform: translate(2px, 2px); 
-    box-shadow: none;
-}
-/* ==================================== */
-/* 3. BOTONES DE ACCIÓN EN LA TARJETA (INDEPENDIENTES) */
-/* ==================================== */
-
-/* --- BOTÓN EDITAR (Azul Base / Hover Rosa Fosforito) --- */
-.neobrutalismo-editar {
-    /* Propiedades de Esqueleto (Recreando .neobrutalista-btn) */
-    display: inline-block; 
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 3px solid #000;
-    border-radius: 0 !important;
-    transition: all 0.1s ease-in-out;
-    padding: 5px 10px; /* Aseguramos padding consistente */
-    
-    /* Color BASE: Azul Oscuro */
-    background-color: #1a4d90 !important; 
-    color: #fff !important;
-    box-shadow: 4px 4px 0px #000 !important; /* Sombra inicial marcada */
-}
-
-.neobrutalismo-editar:hover {
-    background-color: #ff00ff !important; /* HOVER: Rosa Fosforito */
-    color: #000 !important;
-    transform: translate(2px, 2px); 
-    box-shadow: none !important;
-}
-
-/* --- BOTÓN EDITAR (Azul Base / Hover Rosa Fosforito) --- */
-.neobrutalismo-editar {
-    /* Propiedades de Esqueleto */
-    display: inline-block; 
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 3px solid #000;
-    border-radius: 0 !important;
-    transition: all 0.1s ease-in-out;
-    padding: 5px 10px; 
-    
-    /* Color BASE: Azul Oscuro */
-    background-color: #1a4d90 !important; 
-    color: #fff !important;
-    box-shadow: 4px 4px 0px #000 !important;
-}
-
-.neobrutalismo-editar:hover {
-    background-color: #ff00ff !important; /* HOVER: Rosa Fosforito */
-    color: #000 !important;
-    transform: translate(2px, 2px); 
-    box-shadow: none !important;
-}
-
-/* --- CLASE PARA EL BOTÓN BORRAR (Rojo Base / Hover Rojo Vivo) --- */
-.neobrutalista-borrar {
-    /* Propiedades de Esqueleto (DEBEN SER DEFINIDAS DE NUEVO) */
-    display: inline-block; 
-    text-decoration: none;
-    text-align: center;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: 3px solid #000;
-    border-radius: 0 !important;
-    transition: all 0.1s ease-in-out;
-    padding: 5px 10px; 
-
-    /* Color BASE: Rojo Vivo */
-    background-color: #ff5757 !important; 
-    color: #000 !important; /* Texto negro para contraste */
-    box-shadow: 4px 4px 0px #000 !important;
-}
-
-.neobrutalista-borrar:hover {
-    /* HOVER: Rojo Vivo (Confirmando el requisito de usar el rojo en hover) */
-    background-color: #ff5757 !important; 
-    color: #000 !important;
-    transform: translate(2px, 2px); 
-    box-shadow: none !important;
 }
