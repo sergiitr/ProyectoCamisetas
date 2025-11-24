@@ -39,5 +39,5 @@ block contenido
         input.form-check-input(type="checkbox", name="activo", id="activo", checked= datos.activo==1)
         <br>
         button.btn.btn-info(type="submit") Enviar 
-
-        button.btn.btn-danger(type="reset") Cancelar
+        //Tiene que ser este tipo de boton para que envie como get
+        a.btn.btn-sm.neobrutalismo-editar(href=`/admin/camiseta/`) Cancelar

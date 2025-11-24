@@ -3,7 +3,11 @@ const router = express.Router()
 const camisetaController = require('../controllers/camisetaController')
 
 // Ruta base para el listado (list.pug)
-router.get('/', camisetaController.camisetas)
+router.get('/', camisetaController.camisetasUsuarioForm)
+
+//ruta de administrador de camisetas
+router.get(`/Ges`, camisetaController.camisetas)
+
 
 // Rutas de CRUD (fijas)
 router.get('/add', camisetaController.camisetaAddForm)
