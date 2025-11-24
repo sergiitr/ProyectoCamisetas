@@ -96,32 +96,24 @@ exports.camisetaDeleteForm = (req, res) => {
 }
 
 exports.camisetaUpdate = (req, res) => {
-    // El id viene en la ruta
     const { id } = req.params;
-    // En el cuerpo del formulario vienen los datos
-    const { talla, sexo, color, marca, stock, precio, activo} = req.body
-    console.log(req.body)//comprobacion por si me llegan correctamente los datos
-    let disponible = activo=='on'?1:0;
-    let sql = "UPDATE `camiseta` SET \
-        `talla`  = ?,\
-        `sexo`   = ?,\
-        `color`  = ?,\
-        `marca`  = ?,\
-        `stock`  = ?,\
-        `precio` = ?,\
-        `activo` = ?\
-        WHERE `id` = ?"
+    const { talla, sexo, color, marca, stock, precio, activo } = req.body;
 
-    db.query(sql, [talla, sexo, color, 
-        marca, stock, precio, disponible, id], (error, resultado)=>{
-            
+    console.log(req.body);
+
+    let disponible = activo ? 1 : 0;
+
+    let sql = "UPDATE camiseta SET talla=?, sexo=?, color=?, marca=?, stock=?, precio=?, activo=? WHERE id=?";
+
+    db.query(sql, [talla, sexo, color, marca, stock, precio, disponible, id], (error, resultado) => {
         if (error) {
-            console.log(error)
-            res.render('error', { mensaje: 'Imposible actualizar la camiseta'})
-        } else 
-            res.redirect('/admin/camiseta')
-    })
-}
+            console.log(error);
+            res.render('error', { mensaje: 'Imposible actualizar la camiseta' });
+        } else {
+            res.redirect('/admin/Gestionar/Ges');
+        }
+    });
+};
 
 
 exports.camisetaDelete = (req, res) => {
@@ -130,6 +122,7 @@ exports.camisetaDelete = (req, res) => {
         return res.render( 'error', {mensaje:'CAMISETA DELETE PARAMETROS INCORRECTOS'} )
     
     let query = 'DELETE FROM camiseta where id=?'
+    console.log(req.params)
     db.query(query, id, (error, resultado)=>{
         if (error) {
             console.log(error)
