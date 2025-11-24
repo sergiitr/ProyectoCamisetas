@@ -6,50 +6,10 @@ html(lang="es")
     title Inicio Neobrutalista
     // Enlace a los archivos CSS de Bootstrap
     link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css", rel="stylesheet", crossorigin="anonymous")
-    // Enlace a estilos Neobrutalistas globales (NECESARIO)
-    // Asume que aquí están definidos .neobrutalista-button, .neobrutalista-title, etc.
-    link(rel="stylesheet", href="/css/layouts/cabecera.css") 
     
-    // ESTILOS ESPECÍFICOS PARA LA PÁGINA DE BIENVENIDA (Sobreescribimos el body y el contenedor)
-    style.
-      body {
-        /* Fondo Gris Claro Neobrutalista */
-        background-color: #e0e0e0; 
-      }
-      .center-container {
-        /* Contenedor Centrado */
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .neobrutalista-welcome-card {
-        /* Fondo de Tarjeta Gris Claro Neobrutalista */
-        background-color: #e0e0e0; 
-        
-        /* Borde y Sombra Proyectada */
-        border: 4px solid #000;
-        box-shadow: 10px 10px 0px 0px #1a4d90; /* Sombra Azul Oscuro */
-        
-        /* Neobrutalista: sin bordes redondeados */
-        border-radius: 0 !important; 
-        padding: 40px 30px; 
-        max-width: 500px;
-        width: 100%;
-        text-align: center;
-      }
-      .neobrutalista-heading-welcome {
-        /* Estilo para el título de bienvenida */
-        font-family: 'Bebas Neue', sans-serif;
-        font-size: 2.5rem;
-        color: #ff00ff; /* Rosa Fosforito para el acento */
-        text-transform: uppercase;
-        margin-bottom: 30px;
-        border-bottom: 4px solid #000;
-        padding-bottom: 15px;
-      }
-
+    // ENLACE A ESTILOS NEOBRUTALISTAS ESPECÍFICOS (Reemplazando el bloque <style>)
+    link(rel="stylesheet", href="/css/mix/indexRegistrado.css") 
+    
   body
     .center-container
       div.neobrutalista-welcome-card
@@ -59,13 +19,11 @@ html(lang="es")
         div.action-link
           if !isAdmin 
             // Botón para USUARIO NORMAL (Ver Camisetas): Azul Oscuro / Hover Rosa
-            // Usamos la clase personalizada .neobrutalista-button
-            a(href="/camisetas", class="btn btn-lg w-100 neobrutalista-button") VER CAMISETAS
+            a.neobrutalista-button-welcome(href="/camisetas", class="btn btn-lg w-100 neobrutalista-button") VER CAMISETAS
           
           if isAdmin
             // Botón para ADMINISTRADOR (Gestionar Tienda): Rojo Peligro (Danger)
-            // Creamos una nueva clase para el botón de administrador (Rojo Vivo)
-            a(href="/admin/Gestionar/Ges", class="btn btn-lg w-100 neobrutalista-button-admin") GESTIONAR TIENDA
+            a.neobrutalista-button-welcome(href="/admin/Gestionar/Ges", class="btn btn-lg w-100 neobrutalista-button-admin") GESTIONAR TIENDA
     
     // Script de Bootstrap 
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js", crossorigin="anonymous")

@@ -24,13 +24,14 @@ footer p {
     font-size: 1.1em;
     font-weight: 900;
     margin: 5px 0;
+    color: #000000;
 }
 
 
 /* /css/layouts/pie.css */
-.user-highlight {
+.user-highlight-footer {
     color: #33FFC7; /* Verde Menta Brillante para el dato clave */
-    background-color: #1A4D90; /* Negro Fuerte - El color de tu texto principal / bordes */
+    background-color: #1A1A1A; /* Negro Fuerte - El color de tu texto principal / bordes */
     text-transform: uppercase;
     padding: 2px 5px;
     font-weight: bold; /* Opcional: Para darle más peso */
