@@ -9,6 +9,31 @@
 /* 1. ESTRUCTURA Y CABECERAS */
 /* ------------------------- */
 
+
+.neobrutalismo-checkout-container {
+    /* Centrar verticalmente el contenido principal de la página */
+    min-height: 69vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0; /* Asegurar padding para móviles */
+}
+
+.neobrutalismo-checkout-card {
+    /* Mantenemos las propiedades visuales más fuertes del CSS base */
+    background-color: #e0e0e0;
+    max-width: 1900px;
+    width: 100%;
+    /* Reducimos el padding excesivo del base, ya que el contenido real ya tiene padding */
+    padding: 30px;    
+    
+    /* Borde y Sombra Proyectada Brutalista del CSS base */
+    border: 5px solid #000;
+    box-shadow: 12px 12px 0px 0px #ff69b4; 
+    border-radius: 0 !important; 
+}
+
 .neobrutalismo-heading {
     /* Resetear las propiedades anteriores */
     padding-bottom: 10px;
@@ -31,7 +56,7 @@
     /* Bordes y Sombra Proyectada (Usando el Rosa Fosforito para el acento) */
     border: 4px solid #000000; 
     box-shadow: 8px 8px 0px #ff69b4; /* Sombra proyectada hacia abajo y derecha */
-    margin-bottom: 0px; 
+    margin-bottom: 30px !important; 
 }
 
 .neobrutalismo-carrito-list-card {
@@ -40,8 +65,11 @@
 }
 
 .neobrutalismo-carrito-list-header {
+    background-color: #1a4d90; /* Azul oscuro para el encabezado */
+    color: #fff;
     font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
     border-bottom: 3px solid #000; padding-left: 15px;
+
 }
 
 /* 2. ESTILOS DE LA TABLA */
@@ -59,7 +87,7 @@
     background-color: #33FFC7; color: #000; text-align: center;
 }
 .neobrutalismo-carrito-list-table tbody tr:nth-child(even) {
-    background-color: #e0e0e0;
+    background-color: #f0f0f0; /* Color ligeramente más claro para filas pares */
 }
 .neobrutalismo-carrito-list-table tbody tr:hover {
     background-color: #ff69b4; color: #000;
@@ -92,15 +120,15 @@
 }
 
 .neobrutalismo-list-summary-title {
-    /* CLAVE: Cambiar display a block para que ocupe el 100% del ancho */
     display: block; 
-    
-    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #000;
-    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 15px;
-    
-    /* Centrar o alinear el texto si es necesario */
-    /* text-align: center; */ 
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 1.8rem; 
+    color: #000;
+    border-bottom: 2px solid #000; 
+    padding-bottom: 5px; 
+    margin-bottom: 15px;
 }
+
 .neobrutalismo-list-total-line {
     display: flex; justify-content: space-between; align-items: center;
     padding: 10px 0; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
@@ -127,8 +155,42 @@
     box-shadow: 7px 7px 0px #000 !important;
 }
 
+/* --- CLASES IMPORTADAS DEL CHECKOUT PARA ALINEAR BOTÓN SECUNDARIO --- */
 
-/* Botones de Iconos */
+/* Contenedor que alinea el contenido a la derecha */
+.align-right-wrapper {
+    margin-top: 30px; /* Separación del botón principal */
+    text-align: right;
+}
+
+/* Estilo del botón secundario (Volver/Seguir Comprando) */
+.neobrutalismo-see-catalog{
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    
+    background-color: #ff5757 !important; /* Rojo Peligro */
+    color: #000 !important;
+    margin-top: 0; /* Lo gestiona el wrapper */
+}
+
+.neobrutalismo-see-catalog:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0px #000 !important; 
+}
+
+
+/* ------------------------------------------------------------------ */
+
+/* Botones de Iconos (Editar/Eliminar) */
 .neobrutalismo-button-edit,
 .neobrutalismo-button-delete {
     display: inline-block; font-size: 1.2rem; padding: 5px 8px; border: 2px solid #000;

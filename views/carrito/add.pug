@@ -1,93 +1,44 @@
-doctype html
-html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
-    title Añadir Camiseta al Carrito
+extends ../layouts/main
 
-    // Bootstrap 5
-    link(
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
-      rel="stylesheet"
-    )
+block contenido
+  // ENLACE AL CSS NEOBRUTALISTA (Se mueve directamente al bloque de contenido)
+  link(rel="stylesheet", href="/css/carrito/add.css") 
 
-    // CSS PERSONALIZADO
-    style.
-      /* Centrado general */
-      .center-wrapper {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-      }
+  // Se combinan las clases .container y .neobrutalista-carrito-add en un solo elemento.
+  .neobrutalista-carrito-add
+      h1 Añadir Camiseta: #{camiseta.marca} - #{camiseta.talla.toUpperCase()}
+      .row            
+        .col-md-12
+          h3.form-label 
+            strong Detalles del Producto
+          // Aplicamos clases de lista para el estilo Neobrutalista
+          ul.list-group.list-group-flush.mb-3
+            li.list-group-item
+              strong Precio:
+              |  
+              span.price-value #{camiseta.precio} € 
+            li.list-group-item
+              strong Stock Disponible:
+              |  #{camiseta.stock} unidades
+          
+          // FORMULARIO
+          form(action=`/carrito/add/camiseta/${camiseta.id}`, method='POST')
+            .mb-3
+              label.form-label(for='cantidad')
+                strong Cantidad a Añadir:
+              // Aplicamos .form-control que es estilizado en el Canvas
+              input.form-control#cantidad(
+                type='number', 
+                name='cantidad', 
+                min='1', 
+                max=camiseta.stock, 
+                value='1', 
+                required
+              )
 
-      /* Tarjeta principal */
-      .card {
-        max-width: 650px;
-        width: 100%;
-        border-radius: 12px;
-      }
-
-      /* Título */
-      h1.my-4 {
-        text-align: center;
-        font-weight: 600;
-      }
-
-      /* Lista */
-      .list-group-item {
-        font-size: 1rem;
-        background-color: #f8f9fa;
-      }
-
-      /* Botón principal */
-      button.btn-success {
-        font-size: 1.1rem;
-        padding: 10px;
-      }
-
-      /* Botón de volver */
-      a.btn-outline-secondary {
-        width: 100%;
-        text-align: center;
-      }
-
-  body
-    .center-wrapper
-      .container
-        h1.my-4 Añadir Camiseta: #{camiseta.marca} - #{camiseta.talla.toUpperCase()}
-        
-        .card.shadow-sm
-          .card-body
-            .row            
-              .col-md-12
-                h3 Detalles del Producto
-                ul.list-group.list-group-flush.mb-3
-                  li.list-group-item 
-                    strong Precio:
-                    |  $#{camiseta.precio} €
-                  li.list-group-item 
-                    strong Stock Disponible:
-                    |  #{camiseta.stock} unidades
-                
-                // RUTA CORRECTA /carrito/
-                form(action=`/carrito/add/camiseta/${camiseta.id}`, method='POST')
-                  .mb-3
-                    label.form-label(for='cantidad')
-                      strong Cantidad a Añadir:
-                    input.form-control#cantidad(
-                      type='number', 
-                      name='cantidad', 
-                      min='1', 
-                      max=camiseta.stock, 
-                      value='1', 
-                      required
-                    )
-                  
-                  button.btn.btn-success.w-100(type='submit') Añadir al Carrito
-                
-                a.btn.btn-outline-secondary.mt-3(href='/camisetas') ⬅️ Volver al Catálogo
-
-    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js")
+            // El botón de submit es estilizado en la sección 4 del Canvas
+            button(type='submit') Añadir al Carrito
+          
+          .align-right-wrapper
+            // El enlace de vuelta es estilizado en la sección 5 del Canvas
+            a(href='/camisetas') ⬅️ Volver al Catálogo

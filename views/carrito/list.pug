@@ -5,77 +5,81 @@ block contenido
   // Enlaza el CSS específico del carrito
   link(rel="stylesheet", href="/css/carrito/list.css") 
   
-  // Contenedor principal que usa las clases de estilo
-  .container.py-5.neobrutalismo-carrito-container
+  .container.neobrutalismo-checkout-container
 
-    // CLAVE: Cambiamos mb-5 por mb-0 para eliminar el margen inferior de Bootstrap.
-    h1.text-center.mb-0.neobrutalismo-heading Carrito de Compras 
+    // Contenedor principal que usa las clases de estilo
+    .neobrutalismo-checkout-card.text-center
+      // CLAVE: Cambiamos mb-5 por mb-0 para eliminar el margen inferior de Bootstrap.
+      h1.text-center.mb-0.neobrutalismo-heading Carrito de Compras 
 
-    if lineasPedido && lineasPedido.length
-      .row.justify-content-center
-        .col-lg-12
-          // CLAVE: Añadimos mt-0 para asegurar que la tabla no tenga margen superior.
-          .neobrutalismo-carrito-list-card.mt-0.mb-4
-            // Encabezado (neobrutalismo-carrito-list-header)
-            .neobrutalismo-carrito-list-header.py-3
-              h4.mb-0 Artículos en tu Cesta
-            
-            .neobrutalismo-carrito-body.p-0
-              .table-responsive
-                // Tabla (neobrutalismo-carrito-list-table)
-                table.table.neobrutalismo-carrito-list-table.align-middle
-                  thead
-                    tr
-                      th #
-                      th Producto
-                      th Color
-                      th Talla
-                      th Cantidad
-                      th Precio Unitario
-                      th Subtotal
-                      th Acciones
-                  tbody
-                    each linea, index in lineasPedido
+      if lineasPedido && lineasPedido.length
+        .row.justify-content
+          .col-lg-12
+            // CLAVE: Añadimos mt-0 para asegurar que la tabla no tenga margen superior.
+            .neobrutalismo-carrito-list-card.mt-0.mb-4
+              // Encabezado (neobrutalismo-carrito-list-header)
+              .neobrutalismo-carrito-list-header.py-3
+                h4.mb-0 Artículos en tu Cesta
+              
+              .neobrutalismo-carrito-body.p-0
+                .table-responsive
+                  // Tabla (neobrutalismo-carrito-list-table)
+                  table.table.neobrutalismo-carrito-list-table.align-middle
+                    thead
                       tr
-                        td.neobrutalismo-table-cell #{index + 1}
-                        td.neobrutalismo-table-cell #{linea.camiseta.marca}
-                        td 
-                          - var textColor = (linea.camiseta.color.toLowerCase() === '#000000' || linea.camiseta.color.toLowerCase() === 'negro') ? '#ffffff' : '#000000';
-                          span.neobrutalismo-color-badge(style=`background-color:${linea.camiseta.color}; color:${textColor};`) #{linea.camiseta.color}
-                        td.neobrutalismo-table-cell #{linea.camiseta.talla.toUpperCase()}
-                        td 
-                          span.neobrutalismo-quantity-badge #{linea.cantidad}
-                        td.neobrutalismo-table-cell #{linea.precio_venta} €
-                        td.neobrutalismo-table-cell-subtotal
-                          strong #{(linea.precio_venta * linea.cantidad).toFixed(2)} €
-                        td.neobrutalismo-table-cell-actions
-                          a.neobrutalismo-button-edit.me-1(href=`/carrito/edit/camiseta/${linea.id_producto}`, title='Cambiar Cantidad') ✏️
-                          a.neobrutalismo-button-delete(href=`/carrito/del/camiseta/${linea.id_producto}`, title='Eliminar') 🗑️
+                        th #
+                        th Producto
+                        th Color
+                        th Talla
+                        th Cantidad
+                        th Precio Unitario
+                        th Subtotal
+                        th Acciones
+                    tbody
+                      each linea, index in lineasPedido
+                        tr
+                          td.neobrutalismo-table-cell #{index + 1}
+                          td.neobrutalismo-table-cell #{linea.camiseta.marca}
+                          td 
+                            - var textColor = (linea.camiseta.color.toLowerCase() === '#000000' || linea.camiseta.color.toLowerCase() === 'negro') ? '#ffffff' : '#000000';
+                            span.neobrutalismo-color-badge(style=`background-color:${linea.camiseta.color}; color:${textColor};`) #{linea.camiseta.color}
+                          td.neobrutalismo-table-cell #{linea.camiseta.talla.toUpperCase()}
+                          td 
+                            span.neobrutalismo-quantity-badge #{linea.cantidad}
+                          td.neobrutalismo-table-cell #{linea.precio_venta} €
+                          td.neobrutalismo-table-cell-subtotal
+                            strong #{(linea.precio_venta * linea.cantidad).toFixed(2)} €
+                          td.neobrutalismo-table-cell-actions
+                            a.neobrutalismo-button-edit.me-1(href=`/carrito/edit/camiseta/${linea.id_producto}`, title='Cambiar Cantidad') ✏️
+                            a.neobrutalismo-button-delete(href=`/carrito/del/camiseta/${linea.id_producto}`, title='Eliminar') 🗑️
 
-      // Resumen y Botones Finales
-      .row.justify-content-center
-        .col-lg-12
-          // Tarjeta de Resumen (neobrutalismo-carrito-list-summary-card)
-          .neobrutalismo-carrito-list-summary-card
-            // Título (neobrutalismo-list-summary-title)
-            h5.neobrutalismo-list-summary-title Resumen de la Compra
-            
-            // Línea de Total (neobrutalismo-list-total-line)
-            .neobrutalismo-list-total-line
-              span Total (IVA incluido):
-              // Monto del Total (neobrutalismo-list-total-amount)
-              h4.neobrutalismo-list-total-amount #{pedido.total} €
-                  
-            .d-grid.gap-2.mt-4
-              a.neobrutalismo-confirm-button(href='/pedido/checkout') FINALIZAR PEDIDO
-              a.neobrutalismo-confirm-button(href='/camisetas') Seguir Comprando
+        // Resumen y Botones Finales
+        .row.justify-content-center
+          .col-lg-12
+            // Tarjeta de Resumen (neobrutalismo-carrito-list-summary-card)
+            .neobrutalismo-carrito-list-summary-card.text-start.mt-4
+              // Título (neobrutalismo-list-summary-title)
+              h5.neobrutalismo-list-summary-title Resumen de la Compra
+              
+              // Línea de Total (neobrutalismo-list-total-line)
+              .neobrutalismo-list-total-line
+                span Total (IVA incluido):
+                // Monto del Total (neobrutalismo-list-total-amount)
+                h4.neobrutalismo-list-total-amount #{pedido.total} €
+                    
+              // Botón principal de ancho completo
+              a.neobrutalismo-confirm-button.w-100.mt-4(href='/pedido/checkout') FINALIZAR PEDIDO
+              
+              // Botón secundario alineado a la derecha
+              .align-right-wrapper
+                a.neobrutalismo-see-catalog(href='/camisetas') ⬅️ Seguir Comprando
 
-    else
-      .row.justify-content-center
-        .col-md-8.text-center
-          // Alerta de Carrito Vacío (neobrutalismo-carrito-list-empty-alert)
-          .neobrutalismo-carrito-list-empty-alert(role='alert')
-            h4.neobrutalismo-empty-heading ¡Tu carrito está vacío!
-            p.neobrutalismo-empty-text Parece que aún no has añadido ninguna camiseta. Explora nuestro catálogo y encuentra tus favoritas.
-            hr.neobrutalismo-separator
-            a.neobrutalismo-confirm-button.mt-2(href='/camisetas') Ver Catálogo de Camisetas
+      else
+        .row.justify-content-center
+          .col-md-8.text-center
+            // Alerta de Carrito Vacío (neobrutalismo-carrito-list-empty-alert)
+            .neobrutalismo-carrito-list-empty-alert(role='alert')
+              h4.neobrutalismo-empty-heading ¡Tu carrito está vacío!
+              p.neobrutalismo-empty-text Parece que aún no has añadido ninguna camiseta. Explora nuestro catálogo y encuentra tus favoritas.
+              hr.neobrutalismo-separator
+              a.neobrutalismo-confirm-button.mt-2(href='/camisetas') Ver Catálogo de Camisetas

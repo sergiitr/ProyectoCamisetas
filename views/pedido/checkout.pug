@@ -66,6 +66,9 @@ block contenido
               form(action='/pedido/confirmar' method='POST')
                 // Aplicamos la clase brutalista al botón de acción principal
                 button.neobrutalismo-confirm-button.w-100.mt-4(type='submit') CONFIRMAR PEDIDO
+                .align-right-wrapper
+                  a.neobrutalismo-see-catalog(href='/camisetas') ⬅️ Ver Catálogo
+                
           
           else 
             // Mensaje si el carrito está vacío
@@ -73,4 +76,4 @@ block contenido
               h4.neobrutalismo-empty-heading ¡Tu carrito está vacío!
               p.neobrutalismo-empty-text No puedes finalizar el pedido sin artículos.
               hr.neobrutalismo-separator
-              a.neobrutalismo-confirm-button.mt-2(href='/camisetas') Ver Catálogo
+              a.neobrutalismo-confirm-button.mt-2(href='/camisetas') ⬅️ Ver Catálogo

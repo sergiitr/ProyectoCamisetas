@@ -1,0 +1,176 @@
+/*
+    PALETA DE COLORES:
+    - Fondo Gris Claro: #e0e0e0
+    - Verde Menta (Botón Submit/ADD): #33FFC7 
+    - Rosa Fosforito (Sombra Principal/Acento): #ff69b4
+    - Naranja Brillante (Hover): #FFC733
+    - Negro (Bordes): #000
+    - Rojo Peligro (Botón Cancelar/Secundario): #ff5757
+*/
+
+
+/* ==================================== */
+/* 1. CONTENEDOR Y TARJETA (CARD) - .neobrutalista-carrito-add */
+/* (Adaptado de .neobrutalismo-add-card) */
+/* ==================================== */
+
+.neobrutalista-carrito-add {
+    background-color: #e0e0e0; /* Fondo Gris Claro */
+    
+    /* Borde y Sombra Proyectada Brutalista (Rosa Fosforito) */
+    border: 4px solid #000;
+    box-shadow: 10px 10px 0px 0px #ff69b4; /* Sombra Rosa Fosforito */
+    
+    border-radius: 0; 
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+h1 {
+    /* Adaptado de .neobrutalismo-heading-add */
+    font-family: 'Bebas Neue', sans-serif; /* Simulación */
+    text-transform: uppercase;    
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #000;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #000;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1A4D90;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+/* ==================================== */
+/* 2. LISTA DE DETALLES (LIST GROUP)    */
+/* ==================================== */
+
+.list-group {
+    border: 3px solid #000;
+    border-radius: 0;
+    margin-bottom: 25px !important;
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 4px 4px 0px #000;
+}
+
+.list-group-item {
+    background-color: inherit !important;
+    border-color: #000 !important;
+    font-size: 1.1rem;
+}
+
+.list-group strong {
+    font-weight: bold;
+}
+
+.price-value {
+    color: #ff69b4; /* Rosa Fosforito (Color de acento) */
+    font-weight: 900;
+}
+
+/* ==================================== */
+/* 3. INPUTS (Cantidad) - .form-control */
+/* (Adaptado de .neobrutalismo-input-add) */
+/* ==================================== */
+
+.form-label strong {
+    /* Adaptando el label */
+    font-family: 'JetBrains Mono', monospace; /* Simulación */
+    font-weight: 800;
+    color: #1A4D90;
+    text-transform: uppercase; 
+    font-size: 1.2rem;
+    display: block; 
+    margin-bottom: 5px;
+}
+
+.form-control {
+    /* Hereda estilos de .neobrutalismo-input-add */
+    width: 100%;
+    background-color: #FFFFFF !important; 
+    border: 3px solid #000 !important;
+    border-radius: 0 !important;
+    box-shadow: 2px 2px 0px #000;
+    padding: 8px 12px;
+    
+    font-family: 'Arial', sans-serif;
+    font-size: 1rem;
+    color: #000;
+    transition: all 0.1s;
+}
+
+.form-control:focus {
+    /* Borde Rosa al enfocar */
+    border-color: #ff69b4 !important; 
+    /* Sombra Negra al enfocar */
+    box-shadow: 4px 4px 0px #000 !important; 
+    outline: none;
+}
+
+/* ==================================== */
+/* 4. BOTÓN DE SUBMIT (Añadir al Carrito) - button[type='submit'] */
+/* (Adaptado de .neobrutalismo-submit-button) */
+/* ==================================== */
+
+button[type='submit'] {
+    /* Hereda estilos base de .neobrutalismo-submit-button */
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    width: 100%; /* Mantiene el ancho completo */
+    
+    background-color: #33FFC7 !important; /* Verde Menta */
+    color: #000 !important;
+    margin-top: 20px; /* Separación del formulario */
+}
+
+button[type='submit']:hover {
+    background-color: #FFC733 !important; /* Naranja Brillante */
+    transform: translate(-2px, -2px); /* Efecto de desplazamiento */
+    box-shadow: 7px 7px 0px #000 !important; 
+}
+
+/* ==================================== */
+/* 5. ENLACE DE VUELTA - a[href='/camisetas'] */
+/* (Adaptado de .neobrutalismo-cancel-button) */
+/* ==================================== */
+
+a[href='/camisetas'] {
+    /* Hereda estilos base de .neobrutalismo-cancel-button */
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    
+    background-color: #ff5757 !important; /* Rojo Peligro (Cancelar/Volver) */
+    color: #000 !important;
+    margin-top: 30px; 
+}
+
+.align-right-wrapper {
+    text-align: right;
+}
+
+a[href='/camisetas']:hover {
+    transform: translate(-2px, -2px); 
+    box-shadow: 7px 7px 0px #000 !important; 
+    background-color: #ff5757 !important; /* Usando Naranja Brillante en hover para contraste */
+}

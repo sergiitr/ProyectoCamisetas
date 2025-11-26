@@ -24,7 +24,7 @@
 .neobrutalismo-checkout-card {
     /* Mantenemos las propiedades visuales más fuertes del CSS base */
     background-color: #e0e0e0;
-    max-width: 900px;
+    max-width: 1900px;
     width: 100%;
     /* Reducimos el padding excesivo del base, ya que el contenido real ya tiene padding */
     padding: 30px;    
@@ -215,5 +215,33 @@
 .neobrutalismo-confirm-button:hover {
     background-color: #FFC733 !important; /* Naranja Brillante */
     transform: translate(-3px, -3px);
-    box-shadow: 10px 10px 0px #ff69b4 !important; /* Sombra Rosa proyectada */
+    box-shadow: 10px 10px 0px #000 !important; /* Sombra Rosa proyectada */
+}
+
+.neobrutalismo-see-catalog{
+    text-align: right;
+     /* Hereda estilos base de .neobrutalismo-cancel-button */
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    
+    background-color: #ff5757 !important; /* Rojo Peligro (Cancelar/Volver) */
+    color: #000 !important;
+    margin-top: 30px; 
+}
+.align-right-wrapper {
+    text-align: right;
+}
+
+.neobrutalismo-see-catalog:hover {
+    background-color: #ff5757 !important; /* Naranja Brillante */
+    transform: translate(-3px, -3px);
+    box-shadow: 10px 10px 0px #000 !important; /* Sombra Rosa proyectada */
 }
