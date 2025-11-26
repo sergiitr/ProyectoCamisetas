@@ -1,7 +1,7 @@
 extends ../layouts/main
 
 block contenido
-  // Enlace al nuevo CSS de checkout
+  // Enlace al CSS de checkout (asumimos que este archivo incluye o importa el CSS del carrito)
   link(rel="stylesheet", href="/css/pedido/checkout.css") 
   
   // Usamos el contenedor para centrar todo el contenido de la página
@@ -12,9 +12,65 @@ block contenido
       
       h2.neobrutalismo-heading-checkout Finalizar Pedido
 
-      p.neobrutalismo-total-text Total del pedido: 
-        strong.neobrutalismo-total-amount #{total} €
+      // Contenedor principal para la tabla y el resumen
+      .row.justify-content-center
+        .col-lg-12
+          
+          if lineasPedido && lineasPedido.length
+            // TABLA DE ARTÍCULOS (Sin columna de Acciones)
+            .neobrutalismo-carrito-list-card.mt-0.mb-4
+              // Encabezado 
+              .neobrutalismo-carrito-list-header.py-3
+                h4.mb-0 Artículos a Comprar
+              
+              .neobrutalismo-carrito-body.p-0
+                .table-responsive
+                  // Tabla
+                  table.table.neobrutalismo-carrito-list-table.align-middle
+                    thead
+                      tr
+                        th #
+                        th Producto
+                        th Color
+                        th Talla
+                        th Cantidad
+                        th Precio Unitario
+                        th Subtotal
+                    tbody
+                      each linea, index in lineasPedido
+                        tr
+                          td.neobrutalismo-table-cell #{index + 1}
+                          td.neobrutalismo-table-cell #{linea.camiseta.marca}
+                          td 
+                            - var textColor = (linea.camiseta.color.toLowerCase() === '#000000' || linea.camiseta.color.toLowerCase() === 'negro') ? '#ffffff' : '#000000';
+                            span.neobrutalismo-color-badge(style=`background-color:${linea.camiseta.color}; color:${textColor};`) #{linea.camiseta.color}
+                          td.neobrutalismo-table-cell #{linea.camiseta.talla.toUpperCase()}
+                          td 
+                            span.neobrutalismo-quantity-badge #{linea.cantidad}
+                          td.neobrutalismo-table-cell #{linea.precio_venta} €
+                          td.neobrutalismo-table-cell-subtotal
+                            strong #{(linea.precio_venta * linea.cantidad).toFixed(2)} €
 
-      form(action='/pedido/confirmar' method='POST')
-        // Aplicamos la clase brutalista al botón de acción principal
-        button.neobrutalismo-confirm-button(type='submit') CONFIRMAR PEDIDO
+            // RESUMEN DE LA COMPRA (Debajo de la tabla)
+            .neobrutalismo-carrito-list-summary-card.text-start.mt-4
+              // Título 
+              h5.neobrutalismo-list-summary-title Resumen de la Compra
+              
+              // Línea de Total 
+              .neobrutalismo-list-total-line
+                span Total (IVA incluido):
+                // Monto del Total 
+                h4.neobrutalismo-list-total-amount #{pedido.total} €
+              
+              // Contenedor del Botón de Confirmación
+              form(action='/pedido/confirmar' method='POST')
+                // Aplicamos la clase brutalista al botón de acción principal
+                button.neobrutalismo-confirm-button.w-100.mt-4(type='submit') CONFIRMAR PEDIDO
+          
+          else 
+            // Mensaje si el carrito está vacío
+            .neobrutalismo-carrito-list-empty-alert(role='alert')
+              h4.neobrutalismo-empty-heading ¡Tu carrito está vacío!
+              p.neobrutalismo-empty-text No puedes finalizar el pedido sin artículos.
+              hr.neobrutalismo-separator
+              a.neobrutalismo-confirm-button.mt-2(href='/camisetas') Ver Catálogo

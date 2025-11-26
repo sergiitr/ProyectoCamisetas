@@ -1,15 +1,14 @@
 /*
-    PALETA DE COLORES:
-    - Fondo Gris Claro: #e0e0e0
-    - Verde Menta (Botón Confirmar): #33FFC7
-    - Rosa Fosforito (Sombra/Acento): #ff69b4
-    - Naranja Brillante (Hover): #FFC733
-    - Negro (Bordes): #000
-    - Azul Oscuro (Títulos/Texto): #1A4D90
+    CSS NEOBRUTALISTA PARA LA VISTA CHECKOUT (checkout.pug)
+    
+    Fusiona el CSS base de checkout con los estilos de tabla/resumen del carrito.
 */
 
+/* PALETA: #e0e0e0 (Gris), #1a4d90 (Azul Oscuro), #ff69b4 (Rosa), 
+   #ff5757 (Rojo), #33FFC7 (Menta), #000 (Negro), #FFC733 (Naranja) */
+
 /* ==================================== */
-/* 1. CONTENEDOR Y PÁGINA               */
+/* 1. ESTRUCTURA Y CONTENEDOR PRINCIPAL */
 /* ==================================== */
 
 .neobrutalismo-checkout-container {
@@ -19,59 +18,186 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px 0; /* Asegurar padding para móviles */
 }
 
-/* Contenedor que simula la tarjeta principal de checkout */
 .neobrutalismo-checkout-card {
+    /* Mantenemos las propiedades visuales más fuertes del CSS base */
     background-color: #e0e0e0;
-    max-width: 900px; /* Ancho moderado para el resumen */
+    max-width: 900px;
     width: 100%;
-    padding: 200px;    
-    /* Borde y Sombra Proyectada Brutalista */
-    border: 5px solid #000;
-    /* Sombra con el acento Rosa Fosforito */
-    box-shadow: 12px 12px 0px 0px #ff69b4; 
+    /* Reducimos el padding excesivo del base, ya que el contenido real ya tiene padding */
+    padding: 30px;    
     
+    /* Borde y Sombra Proyectada Brutalista del CSS base */
+    border: 5px solid #000;
+    box-shadow: 12px 12px 0px 0px #ff69b4; 
     border-radius: 0 !important; 
 }
 
-/* ==================================== */
-/* 2. TIPOGRAFÍA Y RESUMEN DE PEDIDO    */
-/* ==================================== */
-
+/* Encabezado H2 del Checkout */
 .neobrutalismo-heading-checkout {
+    /* Combina fuente y tamaño del base con estilo de bloque del fusionado */
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    color: #000;
     text-transform: uppercase;
-    margin-bottom: 25px;
+    
+    /* Estilo de Bloque Pesado (Reutilizado y ajustado) */
+    display: block; 
+    padding: 15px 10px;
+    margin-bottom: 30px;
+    
+    background-color: #e0e0e0;
+    color: #000;
+    
+    /* Borde similar al bloque de listado, pero con la sombra base del checkout */
+    border: 5px solid #000000; 
+    box-shadow: 8px 8px 0px #ff69b4; 
+    
+    font-size: 2.8rem; /* Ajuste entre 3rem y 2.5rem */
 }
 
+/* ==================================== */
+/* 2. TABLA DE ARTÍCULOS (LISTADO)      */
+/* ==================================== */
+
+/* Tarjeta que envuelve la tabla */
+.neobrutalismo-carrito-list-card {
+    background-color: #e0e0e0; 
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px 0px #ff69b4; 
+    border-radius: 0; 
+    overflow: hidden; 
+}
+
+/* Encabezado de la tabla (Artículos a Comprar) */
+.neobrutalismo-carrito-list-header {
+    background-color: #1a4d90; 
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 1.8rem;
+    border-bottom: 3px solid #000; 
+    padding-left: 15px;
+}
+
+/* Estilos de la Tabla */
+.neobrutalismo-carrito-list-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-bottom: 0;
+}
+.neobrutalismo-carrito-list-table th, 
+.neobrutalismo-carrito-list-table td {
+    border: 2px solid #000 !important; 
+    padding: 12px; 
+    vertical-align: middle;
+}
+.neobrutalismo-carrito-list-table thead th {
+    font-family: 'Bebas Neue', sans-serif; 
+    text-transform: uppercase; 
+    font-size: 1rem;
+    background-color: #33FFC7; 
+    color: #000; 
+    text-align: center;
+}
+.neobrutalismo-carrito-list-table tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+.neobrutalismo-carrito-list-table tbody tr:hover {
+    background-color: #ff69b4; 
+    color: #000;
+}
+.neobrutalismo-table-cell {
+    font-family: 'JetBrains Mono', monospace; 
+    font-weight: bold;
+}
+.neobrutalismo-table-cell-subtotal strong {
+    color: #ff00ff; 
+    font-weight: 900;
+}
+
+/* Badges */
+.neobrutalismo-color-badge {
+    display: inline-block; 
+    padding: 4px 8px; 
+    font-size: 0.8rem; 
+    font-weight: bold;
+    text-transform: uppercase; 
+    border: 2px solid #000; 
+    border-radius: 0;
+    box-shadow: 2px 2px 0px #000;
+}
+.neobrutalismo-quantity-badge {
+    font-family: 'JetBrains Mono', monospace; 
+    font-weight: bold; 
+    color: #000 !important;
+    background-color: #e0e0e0 !important; 
+    padding: 5px 10px; 
+    border: 2px solid #000;
+    border-radius: 0; 
+    box-shadow: 2px 2px 0px #000;
+}
+
+
+/* ==================================== */
+/* 3. RESUMEN Y TOTALES (BASE Y LISTADO)*/
+/* ==================================== */
+
+/* Tarjeta que envuelve el resumen (separamos de la tabla) */
+.neobrutalismo-carrito-list-summary-card {
+    background-color: #e0e0e0; 
+    padding: 20px; 
+    border: 4px solid #000;
+    box-shadow: 8px 8px 0px 0px #ff69b4; 
+    border-radius: 0;
+}
+
+/* Título de la sección de Resumen */
+.neobrutalismo-list-summary-title {
+    display: block; 
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 1.8rem; 
+    color: #000;
+    border-bottom: 2px solid #000; 
+    padding-bottom: 5px; 
+    margin-bottom: 15px;
+}
+
+/* Línea de Total (Separador punteado) */
+.neobrutalismo-list-total-line {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 10px 0; 
+    font-family: 'JetBrains Mono', monospace; 
+    font-size: 1.1rem;
+    border-bottom: 1px dashed #000;
+}
+
+/* Monto Total Final (Sobrescribe el .neobrutalismo-total-amount base) */
+.neobrutalismo-list-total-amount {
+    font-size: 2.2rem; 
+    color: #ff00ff; /* Precio en Rosa Fosforito (Acento) */
+    font-family: 'Bebas Neue', sans-serif; 
+    font-weight: 900;
+}
+
+/* Clases de texto base que no se usan en la tabla/resumen pero estaban en el CSS base */
 .neobrutalismo-total-text {
     font-family: 'JetBrains Mono', monospace;
     font-size: 1.5rem;
-    color: #1A4D90; /* Azul Oscuro */
+    color: #1A4D90; 
     margin-bottom: 30px;
-}
-
-.neobrutalismo-total-amount {
-    /* Resaltar el monto total */
-    font-weight: 900;
-    color: #000;
-    font-size: 1.8rem;
-    padding: 5px 10px;
-    border: 3px solid #ff69b4; /* Borde rosa para destacar */
+    /* Eliminamos el .neobrutalismo-total-amount base ya que usamos .neobrutalismo-list-total-amount */
 }
 
 /* ==================================== */
-/* 3. BOTÓN DE CONFIRMACIÓN (SUBMIT)    */
+/* 4. BOTÓN DE CONFIRMACIÓN (SUBMIT)    */
 /* ==================================== */
 
 .neobrutalismo-confirm-button {
-    /* Estilos base de botón brutalista, con acento Verde Menta */
+    /* Mantenemos la versión más agresiva del botón de confirmación del CSS base */
     display: block; 
     border: 4px solid #000;
-    /* Sombra fuerte para llamar la atención */
     box-shadow: 8px 8px 0px #000 !important; 
 
     background-color: #33FFC7 !important; /* Verde Menta (Confirmación) */
@@ -80,7 +206,7 @@
     font-family: 'Arial Black', sans-serif;
     font-weight: 900;
     text-transform: uppercase;
-    padding: 15px 30px; /* Botón grande y prominente */
+    padding: 15px 30px; 
     border-radius: 0 !important;
     text-decoration: none;
     transition: all 0.1s ease-in-out;

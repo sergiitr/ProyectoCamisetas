@@ -1,87 +1,57 @@
-doctype html
-html(lang="es")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1")
-    title Editar Cantidad de Camiseta
+extends ../layouts/main
 
-    // Bootstrap 5
-    link(
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css",
-      rel="stylesheet"
-    )
+block contenido
 
-    // CSS PERSONALIZADO
-    style.
-      /* Wrapper centrado */
-      .center-wrapper {
-        min-height: 100vh;               
-        display: flex;
-        flex-direction: column;
-        justify-content: center;         
-        align-items: center;             
-        padding: 20px;
-        background-color: #f8f9fa;
-      }
+  link(rel="stylesheet", href="/css/carrito/edit.css") 
+  
+  // Título (Inyectado en el <body>, aunque su lugar ideal es el <head>)
+  title Editar Cantidad de Camiseta
 
-      /* Ajustes principales */
-      .card {
-        max-width: 650px;
-        width: 100%;
-        border-radius: 12px;
-      }
+  // Contenido Principal
+  .d-flex.justify-content-center.align-items-center.neobrutalismo-edit-carrito-container
+    .container
+      .row.justify-content-center
+        .col-lg-8.col-xl-6
 
-      h1.my-4 {
-        text-align: center;
-        font-weight: 600;
-      }
+          // Tarjeta principal (Aplicando la clase de estilo)
+          .card.neobrutalismo-edit-carrito-card.shadow-sm
+            .card-body.p-4
 
-      button.btn-primary {
-        font-size: 1.1rem;
-        padding: 10px;
-      }
+              // Título (Aplicando la clase de estilo)
+              h2.text-center.neobrutalismo-heading-edit.mb-4
+                | Editar Cantidad en Carrito
+              
+              // Información del Producto
+              // CLASE APLICADA: Título del producto
+              h3.mb-2.neobrutalismo-edit-carrito-product-title | Camiseta:  #{camiseta.marca} <br/> | Talla :  #{camiseta.talla.toUpperCase()}<br/> | Stock disponible:  #{camiseta.stock}
 
-      a.btn-outline-secondary {
-        width: 100%;
-        text-align: center;
-      }
+              // FORMULARIO
+              form(action=`/carrito/edit/camiseta/${camiseta.id}`, method='POST')
+                .mb-4
+                  // Label (Aplicando la clase de estilo)
+                  label.form-label.neobrutalismo-edit-carrito-label(for='cantidad')
+                    strong Nueva Cantidad:
+                    
+                  // Input (Aplicando la clase de estilo)
+                  input.form-control.neobrutalismo-edit-carrito-input#cantidad(
+                    type='number', 
+                    name='cantidad', 
+                    min='1', 
+                    max=camiseta.stock, 
+                    value=cantidadActual, 
+                    required
+                  )
+                  .neobrutalismo-edit-carrito-product-cuantity 
+                    | La cantidad actual en tu carrito es: 
+                    strong #{cantidadActual}.
 
-      p.text-muted {
-        font-size: 1rem;
-      }
+                // Botón Submit (Aplicando la clase de estilo)
+                button.neobrutalismo-edit-carrito-submit-button.w-100(type='submit') 
+                  | Actualizar Cantidad
 
-  body
-    .center-wrapper
-      .container
-        h1.my-4 Editar Cantidad en Carrito
-        
-        .card.shadow-sm
-          .card-body
-            h3 Camiseta: #{camiseta.marca} - #{camiseta.talla.toUpperCase()}
-            p.text-muted 
-              | Stock disponible: 
-              strong #{camiseta.stock}
+              // Botón Cancelar (Aplicando la clase de estilo)
+              a.neobrutalismo-edit-carrito-cancel-button.w-100.mt-3.text-center(href='/carrito/list') 
+                | Cancelar y Volver al Carrito
 
-            // FORMULARIO CORREGIDO: ruta POST correcta para actualizar cantidad
-            form(action=`/carrito/edit/camiseta/${camiseta.id}`, method='POST')
-              .mb-3
-                label.form-label(for='cantidad')
-                  strong Nueva Cantidad:
-                input.form-control#cantidad(
-                  type='number', 
-                  name='cantidad', 
-                  min='1', 
-                  max=camiseta.stock, 
-                  value=cantidadActual, 
-                  required
-                )
-                .form-text.text-primary 
-                  | La cantidad actual en tu carrito es: 
-                  strong #{cantidadActual}.
-
-              button.btn.btn-primary.w-100(type='submit') Actualizar Cantidad
-
-            a.btn.btn-outline-secondary.mt-3(href='/carrito/list') Cancelar y Volver al Carrito
-
-    // Bootstrap JS
-    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js")
+  // Bootstrap JS (Inyectado al final del block contenido/body)
+  script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js")

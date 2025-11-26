@@ -14,7 +14,7 @@ footer {
     text-align: center;
     
     /* Bordes y Sombra Proyectada */
-    border: 5px solid #000000; 
+    border: 4px solid #000000; 
     box-shadow: 10px -10px 0px #ff69b4; /* Sombra proyectada hacia arriba (Rojo Intenso) */
 }
 

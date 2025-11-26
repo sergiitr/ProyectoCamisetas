@@ -1,0 +1,167 @@
+/*
+    CSS NEOBRUTALISTA PARA LA VISTA DE CARRITO (LISTADO)
+*/
+
+/* PALETA: #e0e0e0 (Gris), #1a4d90 (Azul Oscuro), #ff69b4 (Rosa), 
+   #ff5757 (Rojo), #33FFC7 (Menta), #000 (Negro), #FFC733 (Naranja) */
+
+
+/* 1. ESTRUCTURA Y CABECERAS */
+/* ------------------------- */
+
+.neobrutalismo-heading {
+    /* Resetear las propiedades anteriores */
+    padding-bottom: 10px;
+    border-bottom: none; /* Elimina la línea de subrayado */
+    
+    /* Propiedades de Fuente */
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 2.5rem; 
+    text-transform: uppercase; 
+    
+    /* -- Estilo de Bloque Pesado (Tomado del footer) -- */
+    display: block; /* Asegura que ocupe todo el ancho */
+    width: 100%;
+    text-align: center;
+    padding: 20px 10px; /* Relleno generoso */
+    
+    background-color: #e0e0e0; /* Fondo Gris Claro */
+    color: #000; /* Texto Negro */
+    
+    /* Bordes y Sombra Proyectada (Usando el Rosa Fosforito para el acento) */
+    border: 4px solid #000000; 
+    border-bottom: none; /* <-- ¡Esto quita el borde que se solapa! */
+    box-shadow: 8px 8px 0px #ff69b4; /* Sombra proyectada hacia abajo y derecha */
+    margin-bottom: 0px; 
+}
+
+.neobrutalismo-carrito-list-card {
+    background-color: #e0e0e0; border: 4px solid #000;
+    box-shadow: 8px 8px 0px 0px #ff69b4; border-radius: 0; overflow: hidden; 
+}
+
+.neobrutalismo-carrito-list-header {
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem;
+    border-bottom: 3px solid #000; padding-left: 15px;
+}
+
+/* 2. ESTILOS DE LA TABLA */
+/* ------------------------- */
+
+.neobrutalismo-carrito-list-table {
+    width: 100%; border-collapse: collapse; margin-bottom: 0;
+}
+.neobrutalismo-carrito-list-table th, 
+.neobrutalismo-carrito-list-table td {
+    border: 2px solid #000 !important; padding: 12px; vertical-align: middle;
+}
+.neobrutalismo-carrito-list-table thead th {
+    font-family: 'Bebas Neue', sans-serif; text-transform: uppercase; font-size: 1rem;
+    background-color: #33FFC7; color: #000; text-align: center;
+}
+.neobrutalismo-carrito-list-table tbody tr:nth-child(even) {
+    background-color: #e0e0e0;
+}
+.neobrutalismo-carrito-list-table tbody tr:hover {
+    background-color: #ff69b4; color: #000;
+}
+.neobrutalismo-table-cell {
+    font-family: 'JetBrains Mono', monospace; font-weight: bold;
+}
+.neobrutalismo-table-cell-subtotal strong {
+    color: #ff00ff; font-weight: 900; font-weight: bold;
+}
+
+/* Badges */
+.neobrutalismo-color-badge {
+    display: inline-block; padding: 4px 8px; font-size: 0.8rem; font-weight: bold;
+    text-transform: uppercase; border: 2px solid #000; border-radius: 0;
+    box-shadow: 2px 2px 0px #000;
+}
+.neobrutalismo-quantity-badge {
+    font-family: 'JetBrains Mono', monospace; font-weight: bold; color: #000 !important;
+    background-color: #e0e0e0 !important; padding: 5px 10px; border: 2px solid #000;
+    border-radius: 0; box-shadow: 2px 2px 0px #000;
+}
+
+/* 3. RESUMEN Y TOTALES */
+/* ------------------------- */
+
+.neobrutalismo-carrito-list-summary-card {
+    background-color: #e0e0e0; padding: 20px; border: 4px solid #000;
+    box-shadow: 8px 8px 0px 0px #ff69b4; border-radius: 0;
+}
+
+.neobrutalismo-list-summary-title {
+    /* CLAVE: Cambiar display a block para que ocupe el 100% del ancho */
+    display: block; 
+    
+    font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; color: #000;
+    border-bottom: 2px solid #000; padding-bottom: 5px; margin-bottom: 15px;
+    
+    /* Centrar o alinear el texto si es necesario */
+    /* text-align: center; */ 
+}
+.neobrutalismo-list-total-line {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; font-family: 'JetBrains Mono', monospace; font-size: 1.1rem;
+    border-bottom: 1px dashed #000;
+}
+.neobrutalismo-list-total-amount {
+    font-size: 2.2rem; color: #ff00ff; font-family: 'Bebas Neue', sans-serif; font-weight: 900;
+}
+
+/* 4. BOTONES DE ACCIÓN */
+/* ------------------------- */
+
+.neobrutalismo-confirm-button {
+    display: block; border: 3px solid #000; font-family: 'Arial Black', sans-serif;
+    font-weight: 900; text-transform: uppercase; border-radius: 0 !important;
+    text-decoration: none; text-align: center; transition: all 0.1s ease-in-out;
+}
+.neobrutalismo-confirm-button {
+    padding: 15px 20px; background-color: #33FFC7 !important; color: #000 !important;
+    box-shadow: 5px 5px 0px #000 !important;
+}
+.neobrutalismo-confirm-button:hover {
+    background-color: #FFC733 !important; transform: translate(-2px, -2px);
+    box-shadow: 7px 7px 0px #000 !important;
+}
+
+
+/* Botones de Iconos */
+.neobrutalismo-button-edit,
+.neobrutalismo-button-delete {
+    display: inline-block; font-size: 1.2rem; padding: 5px 8px; border: 2px solid #000;
+    border-radius: 0; line-height: 1; box-shadow: 2px 2px 0px #000; transition: all 0.1s;
+}
+.neobrutalismo-button-edit {
+    background-color: #FFC733; color: #000;
+}
+.neobrutalismo-button-edit:hover {
+    background-color: #FFC733; color: #000; transform: translate(-1px, -1px);
+}
+.neobrutalismo-button-delete {
+    background-color: #ff5757; color: #000;
+}
+.neobrutalismo-button-delete:hover {
+    background-color: #ff5757; color: #000; transform: translate(-1px, -1px);
+}
+
+/* 5. ALERTA DE CARRITO VACÍO */
+/* ------------------------- */
+
+.neobrutalismo-carrito-list-empty-alert {
+    background-color: #e0e0e0; padding: 30px; border: 4px solid #000;
+    box-shadow: 10px 10px 0px 0px #ff5757; border-radius: 0;
+}
+.neobrutalismo-empty-heading {
+    font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #ff5757; 
+    text-transform: uppercase; margin-bottom: 10px;
+}
+.neobrutalismo-empty-text {
+    font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: #333; margin-bottom: 15px;
+}
+.neobrutalismo-separator {
+    border-top: 2px solid #000; opacity: 1; margin-top: 15px; margin-bottom: 15px;
+}
