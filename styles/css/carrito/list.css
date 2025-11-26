@@ -30,7 +30,6 @@
     
     /* Bordes y Sombra Proyectada (Usando el Rosa Fosforito para el acento) */
     border: 4px solid #000000; 
-    border-bottom: none; /* <-- ¡Esto quita el borde que se solapa! */
     box-shadow: 8px 8px 0px #ff69b4; /* Sombra proyectada hacia abajo y derecha */
     margin-bottom: 0px; 
 }
@@ -154,6 +153,7 @@
 .neobrutalismo-carrito-list-empty-alert {
     background-color: #e0e0e0; padding: 30px; border: 4px solid #000;
     box-shadow: 10px 10px 0px 0px #ff5757; border-radius: 0;
+    margin-top: 30px;
 }
 .neobrutalismo-empty-heading {
     font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; color: #ff5757; 

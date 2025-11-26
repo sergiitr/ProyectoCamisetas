@@ -34,7 +34,7 @@ block contenido
         tbody
           each linea in lineas
             tr
-              td= linea.producto
+              td= 'Nº '+linea.producto
               td= linea.marca
               td 
                 - var colorValue = linea.color || linea.camiseta.color; // Usa 'linea.color' si existe, sino 'linea.camiseta.color'

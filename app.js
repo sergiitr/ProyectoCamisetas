@@ -9,6 +9,7 @@ const carritoRouter = require('./routes/carritoRouter');
 const usuarioRouter = require(`./routes/usuarioRouter`)
 const db = require('./db'); // Necesitas acceder a la base de datos
 const pedidoRouter = require('./routes/pedidoRouter');
+const pedidoController = require('./controllers/pedidoController');
 
 
 const app = express();

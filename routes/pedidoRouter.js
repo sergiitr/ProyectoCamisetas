@@ -3,9 +3,8 @@ const router = express.Router();
 const pedido = require('../controllers/pedidoController');
 
 // Mostrar resumen y botón final
-router.get('/checkout', (req, res) => {
-    res.render('pedido/checkout'); // <<--- RUTA CORRECTA
-});
+router.get('/checkout', pedido.checkout); 
+
 
 // Confirmación final → crea el pedido en la BD
 router.post('/confirmar', pedido.confirmar);

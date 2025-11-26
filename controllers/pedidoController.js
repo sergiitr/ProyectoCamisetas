@@ -1,16 +1,55 @@
 // controllers/pedidoController.js
 const db = require('../db');
 
+// Inicializar carrito en sesión
+function initcarrito(req) {
+    if (!req.session.carrito) {
+        req.session.carrito = {
+            total: 0.00,
+            lineasPedido: []
+        };
+    }
+    return req.session.carrito;
+}
+
 module.exports = {
 
-    checkout: (req, res) => {
+    // 🔴 FUNCIÓN CORREGIDA: Ahora obtiene detalles de la DB y pasa las variables correctas (pedido y lineasPedido)
+    checkout: async (req, res) => {
         if (!req.session.usuario) return res.redirect('/auth/login');
 
-        const carrito = req.session.carrito || { lineasPedido: [], total: 0 };
-
+        const carrito = initcarrito(req); // Usamos initcarrito para asegurar la estructura
+        
+        // 1. Comprobar si está vacío antes de consultar la DB
+        if (carrito.lineasPedido.length === 0) {
+            return res.render('pedido/checkout', {
+                pedido: carrito,
+                lineasPedido: []
+            });
+        }
+        
+        // 2. Obtener los detalles completos de la camiseta para cada línea (Lógica de la DB)
+        const lineasCompletas = await Promise.all(
+            carrito.lineasPedido.map(async (linea) => {
+                const query = 'SELECT talla, color, marca FROM camiseta WHERE id = ?';
+                return new Promise(resolve => {
+                    db.query(query, [linea.id_producto], (error, resultado) => {
+                        const detalles = resultado?.[0] || {
+                            talla: 'N/A',
+                            color: 'N/A',
+                            marca: 'Producto eliminado'
+                        };
+                        // Adjuntamos el objeto 'camiseta' a la línea de pedido
+                        resolve({ ...linea, camiseta: { ...detalles, id: linea.id_producto } });
+                    });
+                });
+            })
+        );
+        
+        // 3. Renderizar la vista con las variables que el Pug espera
         res.render('pedido/checkout', {
-            total: carrito.total,
-            lineas: carrito.lineasPedido
+            pedido: carrito, // Pasa { total: X.XX }
+            lineasPedido: lineasCompletas // Pasa el array completo con detalles de la camiseta
         });
     },
 
