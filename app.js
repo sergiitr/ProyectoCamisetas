@@ -95,13 +95,6 @@ app.get('/admin/usuarios/list', isAdmin, (req, res) => {
 });
 
 
-
-
-
-
-
-
-
 // Ruta principal
 app.get("/", (req, res) => {
   res.render("index");
@@ -121,7 +114,6 @@ app.get("/logout-success", (req, res) => {
 });
 
 // Checkout
-
 app.use('/pedido', pedidoRouter);
 
 // Parte de admisistracion de usuarios
