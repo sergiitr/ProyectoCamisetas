@@ -32,8 +32,11 @@ app.use(session({
 // Middleware para BodyParser (para manejar datos de formularios)
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// RUTAS CSS (Asumiendo que están en 'styles')
+// RUTAS CSS 
 app.use(express.static('styles')); 
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Middleware de log
 app.use((req, res, next) =>{

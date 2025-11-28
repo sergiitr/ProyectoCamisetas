@@ -2,14 +2,13 @@ const express = require('express')
 const router = express.Router()
 const camisetaController = require('../controllers/camisetaController')
 
-// Ruta base para el listado (list.pug)
-router.get('/', camisetaController.camisetasUsuarioForm)
+// Ruta base usuario
+router.get('/', camisetaController.camisetas)
 
-//ruta de administrador de camisetas
-router.get(`/Ges`, camisetaController.camisetas)
+// Ruta administrador
+router.get('/Ges', camisetaController.camisetas)
 
-
-// Rutas de CRUD (fijas)
+// Rutas de CRUD 
 router.get('/add', camisetaController.camisetaAddForm)
 router.post('/add', camisetaController.camisetaAdd)
 
