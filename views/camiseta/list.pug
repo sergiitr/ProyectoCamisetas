@@ -18,16 +18,26 @@ block contenido
                     
                     // --- INICIO DE LA TARJETA DE PRODUCTO ---
                     .card.neobrutalista-card(style="height: 100%;")
+
+                        // --- IMAGEN ALEATORIA ---
+                        img.card-img-top(
+                            src=camiseta.imagenUrl
+                            alt="Imagen de camiseta"
+                            style="height:180px; object-fit:contain; border-bottom:4px solid #000;"
+                        )
                     
                         // Cuerpo de la Tarjeta
                         .card-body.p-3.d-flex.flex-column
                             
                             // Título y Marca
                             h5.card-title.neobrutalista-title.mb-1= camiseta.marca
-                            p.neobrutalista-text.mb-2 | Talla: #{camiseta.talla} 
-                            <br/>| Color: 
+                            p.neobrutalista-text.mb-2 
+                                | Talla: #{camiseta.talla} 
+                                <br/> 
+                                | Color:
                                 span(style=`font-weight: bold; color:${camiseta.color}`)= camiseta.color 
-                                <br/> | Stock: #{camiseta.stock}
+                                <br/> 
+                                | Stock: #{camiseta.stock}
                             
                             // Espacio para empujar el precio y botón al final
                             .mt-auto
@@ -36,7 +46,9 @@ block contenido
                                     h4.neobrutalista-price #{camiseta.precio}€
                                     
                                     // INDICADOR DE STOCK (Estilo Neobrutalista)
-                                    span.badge.text-uppercase.neobrutalista-stock(class=camiseta.stock > 0 ? 'bg-success' : 'bg-danger')
+                                    span.badge.text-uppercase.neobrutalista-stock(
+                                        class=camiseta.stock > 0 ? 'bg-success' : 'bg-danger'
+                                    )
                                         | #{camiseta.stock > 0 ? 'En Stock' : 'Agotado'}
                                 
                                 // --- BOTONES DE ACCIÓN ---
