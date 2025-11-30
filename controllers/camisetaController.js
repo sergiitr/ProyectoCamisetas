@@ -122,7 +122,7 @@ exports.camisetaUpdate = (req, res) => {
             console.log(error);
             return res.render('error', { mensaje: 'Imposible actualizar la camiseta' });
         }
-        res.redirect('/admin/camiseta');
+        res.redirect('/admin/Gestionar');
     });
 };
 
@@ -138,6 +138,6 @@ exports.camisetaDelete = (req, res) => {
             console.log(error);
             return res.render('error', { mensaje: 'Imposible borrar la camiseta' });
         }
-        res.redirect('/admin/camiseta');
+        res.redirect('/admin/Gestionar');
     });
 };
