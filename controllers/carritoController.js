@@ -57,10 +57,10 @@ exports.addForm = (req, res) => {
     const carrito = initcarrito(req);
 
     const yaExiste = carrito.lineasPedido.find(lp => lp.id_producto === id);
-    if (yaExiste) return res.redirect(`/carrito/edit/camiseta/${id}`);
+    if (yaExiste)
+        return res.redirect(`/carrito/edit/camiseta/${id}`);
 
-    const query = `SELECT id, talla, sexo, color, marca, stock, precio 
-                   FROM camiseta WHERE id = ? AND activo = 1`;
+    const query = `SELECT id, talla, sexo, color, marca, stock, precio FROM camiseta WHERE id = ? AND activo = 1`;
 
     db.query(query, [id], (error, resultado) => {
         if (error || resultado.length === 0) return res.redirect('/camisetas');
