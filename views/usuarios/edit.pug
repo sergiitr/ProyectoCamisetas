@@ -1,31 +1,45 @@
 extends ../layouts/main
 
 block contenido
-    h2 Editar Usuario
-    form(method="POST")    
-        label.form-label(for="username") Username
-        input.form-control(type="text",  name="username", id="username", required, value=datos.username)
-        <br>
-        label.form-label(for="password") Password (Dejar en blanco para no cambiar)
-        input.form-control(type="password",  name="password", id="password")
-        <br>
-        label.form-label(for="email") Email
-        input.form-control(type="email",  name="email", id="email", required, value=datos.email)
-        <br>
-        label.form-label(for="tlfn") Tlfn
-        input.form-control(type="tel",  name="tlfn", id="tlfn", required, value=datos.telefono)
-        <br>
-        label.form-label(for="direccion") Direccion
-        input.form-control(type="text", name="direccion", id="direccion", required, value=datos.direccion)
-        <br>
-        label.form-check-label(for="activo") Activo
-        input.form-check-input(type="checkbox", name="activo", id="activo", checked= datos.activo==1)
-        <br>
-        
-        label.form-label(for="tipo") Tipo
-        select(name="tipo", id="tipo", required)
-            option(value="CLIENTE", selected=(datos.tipo=="CLIENTE")) Cliente
-            option(value="OPERADOR", selected=(datos.tipo=="OPERADOR")) Admin
-        <br>
-        button.btn.btn-info(type="submit") Enviar 
-        a.btn.btn-danger(href="/admin/usuario/list") Cancelar
+    // Enlace al CSS específico de edición
+    link(rel="stylesheet", href="/css/usuarios/edit.css") 
+
+    .container.neobrutalismo-edit-container.py-5
+        .neobrutalismo-edit-card.p-4.mx-auto
+            
+            h2.neobrutalismo-heading-edit.text-center Editar Usuario
+            
+            form(method="POST")    
+                .mb-3
+                    label.neobrutalismo-label-edit(for="username") Username
+                    input.neobrutalismo-input-edit(type="text",  name="username", id="username", required, value=datos.username)
+                
+                .mb-3
+                    label.neobrutalismo-label-edit(for="password") Password (Dejar en blanco para no cambiar)
+                    input.neobrutalismo-input-edit(type="password",  name="password", id="password")
+                
+                .mb-3
+                    label.neobrutalismo-label-edit(for="email") Email
+                    input.neobrutalismo-input-edit(type="email",  name="email", id="email", required, value=datos.email)
+                
+                .mb-3
+                    label.neobrutalismo-label-edit(for="tlfn") Tlfn
+                    input.neobrutalismo-input-edit(type="tel",  name="tlfn", id="tlfn", required, value=datos.telefono)
+                
+                .mb-3
+                    label.neobrutalismo-label-edit(for="direccion") Direccion
+                    input.neobrutalismo-input-edit(type="text", name="direccion", id="direccion", required, value=datos.direccion)
+                
+                .mb-3.d-flex.align-items-center
+                    input.neobrutalismo-check-input.me-2(type="checkbox", name="activo", id="activo", checked= datos.activo==1)
+                    label.neobrutalismo-check-label.mb-0(for="activo") Activo
+                
+                .mb-5
+                    label.neobrutalismo-label-edit(for="tipo") Tipo
+                    select.neobrutalismo-select-edit(name="tipo", id="tipo", required)
+                        option(value="CLIENTE", selected=(datos.tipo=="CLIENTE")) Cliente
+                        option(value="OPERADOR", selected=(datos.tipo=="OPERADOR")) Admin
+                
+                .d-flex.justify-content-center.gap-3.mt-4
+                    button.neobrutalismo-submit-button.btn-lg(type="submit") Enviar 
+                    a.neobrutalismo-cancel-button.btn-lg(href="/admin/usuario/list") Cancelar

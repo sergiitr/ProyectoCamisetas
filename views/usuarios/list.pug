@@ -1,32 +1,48 @@
 extends ../layouts/main
 
 block contenido
-    h2 Listado de Usuarios
-    if mensaje!=null
-        p= mensaje
-    table.table
-        thead 
-            tr 
-                th id
-                th username 
-                th email 
-                th tlfn 
-                th direccion 
-                th activo
-                th tipo
-                th editar
-                th borrar
-        tbody 
-            each usuario in usuarios
-                tr 
-                    td=usuario.id
-                    td=usuario.username 
-                    td=usuario.email 
-                    td=usuario.telefono
-                    td=usuario.direccion
-                    td=usuario.activo==1
-                    td=usuario.tipo
-                    td
-                        a.btn.btn-success(href=`/admin/usuario/edit/${usuario.id}`) editar
-                    td
-                        a.btn.btn-danger(href=`/admin/usuario/del/${usuario.id}`) borrar
+    // Enlace al CSS específico de listado
+    link(rel="stylesheet", href="/css/usuarios/list.css") 
+
+    .container.neobrutalismo-list-container
+        
+        if mensaje!=null
+            // Mensaje de éxito/error (usando un estilo simple)
+            p.fw-bold.text-success= mensaje 
+
+        // NUEVA TARJETA PRINCIPAL QUE CONTIENE TÍTULO Y TABLA
+        .neobrutalismo-list-card
+            h2.neobrutalismo-heading-list Listado de Usuarios
+
+            // Contenedor de desbordamiento (responsive wrapper)
+            .neobrutalismo-table-responsive
+                .neobrutalismo-table-wrapper
+                    table.neobrutalismo-table
+                        thead 
+                            tr 
+                                th id
+                                th username 
+                                th email 
+                                th tlfn 
+                                th direccion 
+                                th activo
+                                th tipo
+                                th editar
+                                th borrar
+                        tbody 
+                            each usuario in usuarios
+                                tr 
+                                    td=usuario.id
+                                    td=usuario.username 
+                                    td=usuario.email 
+                                    td=usuario.telefono
+                                    td=usuario.direccion
+                                    td
+                                        // Estilo dinámico para el campo 'activo'
+                                        span.neobrutalismo-active-status(class=(usuario.activo == 1 ? 'is-active' : 'is-inactive'))
+                                            = usuario.activo == 1 ? 'Sí' : 'No'
+                                    td=usuario.tipo
+                                    td
+                                        a.neobrutalismo-action-button.neobrutalismo-editar(href=`/admin/usuario/edit/${usuario.id}`) Editar
+                                    td
+                                        a.neobrutalismo-action-button.neobrutalismo-delete-button(href=`/admin/usuario/del/${usuario.id}`) Borrar

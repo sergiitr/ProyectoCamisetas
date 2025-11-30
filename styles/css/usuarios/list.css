@@ -1,0 +1,184 @@
+/*
+    CSS NEOBRUTALISTA PARA LA VISTA DE LISTADO DE USUARIOS (list.pug)
+    
+    PALETA DE COLORES:
+    - Fondo Gris Claro: #e0e0e0
+    - Azul Oscuro (Sombra/Botón Base): #1a4d90
+    - Rosa Fosforito (Hover/Acento): #ff69b4
+    - Rojo Peligro (Borrar): #ff5757 
+    - Verde Menta (Acento): #33FFC7
+    - Negro (Bordes): #000
+*/
+
+/* ==================================== */
+/* 1. CONTENEDOR Y ENCABEZADO           */
+/* ==================================== */
+
+.neobrutalismo-list-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px; 
+    padding-bottom: 50px;
+}
+
+/* NUEVA CLASE: Tarjeta Principal que envuelve el Título y la Tabla */
+.neobrutalismo-list-card {
+    background-color: #e0e0e0; /* Fondo Gris Claro */
+    padding: 30px; 
+    
+    /* Borde y Sombra Proyectada Brutalista */
+    border: 5px solid #000;
+    /* Usamos Rosa Fosforito para la sombra principal, como en el checkout */
+    box-shadow: 12px 12px 0px 0px #ff69b4; 
+    border-radius: 0 !important; 
+}
+
+
+.neobrutalismo-heading-list {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;    
+    
+    /* Estilo de Bloque Pesado */
+    display: block; 
+    padding: 15px 10px;
+    margin-bottom: 30px;
+    
+    background-color: #1A4D90; /* Azul Oscuro de fondo para el título */
+    color: #fff;
+    
+    /* Borde y sombra del título */
+    border: 5px solid #000000; 
+    box-shadow: 8px 8px 0px #000; /* Sombra negra */
+    
+    font-size: 2.8rem;
+    text-align: center; /* Centrar el texto del título */
+}
+
+/* Contenedor para hacer la tabla responsive */
+.neobrutalismo-table-responsive {
+    /* Permite desplazamiento horizontal si el contenido es demasiado ancho */
+    overflow-x: scroll; 
+    
+    /* SOLUCIÓN: Centrar el contenido interno si no hay desbordamiento */
+    display: flex;
+}
+
+/* Contenedor de la tabla (simplificado, ya no tiene la sombra principal) */
+.neobrutalismo-table-wrapper {
+    background-color: #fff; /* Fondo blanco para la tabla */
+    padding: 10px;
+    border: 4px solid #000;
+}
+
+
+/* ==================================== */
+/* 2. TABLA Y FILAS                     */
+/* ==================================== */
+
+.neobrutalismo-table {
+    /* Min-width para asegurar que no se colapsen las columnas en pantallas pequeñas */
+    min-width: 900px; 
+    width: 100%;
+    margin-bottom: 0;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.neobrutalismo-table th,
+.neobrutalismo-table td {
+    padding: 12px;
+    border: 2px solid #000; /* Borde interior fuerte */
+    vertical-align: middle;
+}
+
+.neobrutalismo-table thead {
+    background-color: #e0e0e0; /* Fondo Gris Claro para encabezado */
+    border-bottom: 4px solid #000;
+}
+
+.neobrutalismo-table th {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.neobrutalismo-table tbody tr {
+    transition: background-color 0.15s ease-in-out;
+}
+
+.neobrutalismo-table tbody tr:nth-child(even) {
+    background-color: #f5f5f5; /* Rayado suave */
+}
+
+/* Hover de la fila: Rosa Fosforito */
+.neobrutalismo-table tbody tr:hover {
+    background-color: #ff69b4; 
+    color: #000;
+    cursor: pointer;
+}
+
+/* Estilo para el campo 'Activo' (booleano) */
+.neobrutalismo-active-status {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+/* Verde Menta para 'true' */
+.neobrutalismo-active-status.is-active {
+    color: #33FFC7;
+    text-shadow: 1px 1px 0 #000;
+}
+/* Rojo Peligro para 'false' */
+.neobrutalismo-active-status.is-inactive {
+    color: #ff5757;
+    text-shadow: 1px 1px 0 #000;
+}
+
+
+/* ==================================== */
+/* 3. BOTONES DE ACCIÓN (Editar/Borrar) */
+/* ==================================== */
+
+/* Estilo base para los botones de acción en la tabla */
+.neobrutalismo-action-button {
+    display: inline-block; 
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 0 !important;
+    transition: all 0.1s ease-in-out;
+    padding: 5px 10px; 
+    font-size: 0.9rem;
+    box-shadow: 4px 4px 0px #000 !important; /* Sombra Negra */
+}
+
+.neobrutalismo-action-button:hover {
+    transform: translate(2px, 2px); 
+    box-shadow: none !important;
+}
+
+/* Botón Editar (BASE: Azul Oscuro, HOVER: Rosa Fosforito) */
+.neobrutalismo-editar {
+    background-color: #1a4d90 !important; /* Azul Oscuro */
+    color: #fff !important;
+}
+
+.neobrutalismo-editar:hover {
+    background-color: #ff69b4 !important; /* Rosa Fosforito en hover */
+    color: #000 !important;
+}
+
+/* Botón Borrar (BASE: Rojo Peligro, HOVER: Rosa Fosforito) */
+.neobrutalismo-delete-button {
+    background-color: #ff5757 !important; /* Rojo Peligro */
+    color: #000 !important;
+}
+
+.neobrutalismo-delete-button:hover {
+    background-color: #ff69b4 !important; /* Rosa Fosforito en hover */
+    color: #000 !important;
+}
