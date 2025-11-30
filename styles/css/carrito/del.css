@@ -1,0 +1,169 @@
+/*
+    CSS NEOBRUTALISTA PARA LA VISTA DE ELIMINACIÓN DE CARRITO (del.pug)
+*/
+
+/* PALETA: #e0e0e0 (Gris), #1a4d90 (Azul Oscuro), #ff69b4 (Rosa), 
+   #ff5757 (Rojo), #33FFC7 (Menta), #000 (Negro), #FFC733 (Naranja) */
+
+/* ==================================== */
+/* 1. CONTENEDOR Y TARJETA (CARD)       */
+/* ==================================== */
+
+.neobrutalismo-delete-container {
+    /* Centrado y límites (Ajustado para mantener la estructura simple del contenedor) */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px; 
+    padding-bottom: 50px;
+}
+
+.neobrutalismo-delete-card {
+    background-color: #e0e0e0; /* Fondo Gris Claro */
+    
+    /* Borde y Sombra Proyectada Brutalista */
+    border: 4px solid #000;
+    /* Usamos el Rojo Peligro para la sombra de la tarjeta de eliminación */
+    box-shadow: 10px 10px 0px 0px #ff69b4; 
+    
+    /* Neobrutalista: sin bordes redondeados */
+    border-radius: 0 !important; 
+}
+
+.neobrutalismo-heading-delete {
+    font-family: 'Bebas Neue', sans-serif;
+    text-transform: uppercase;    
+    font-size: 2.2rem; /* Ajustado a 2.2rem según tu referencia */
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 30px;
+    
+    /* Estilo de encabezado simple (sin sombra de bloque) */
+    display: block;
+    padding-bottom: 10px;
+    
+    /* Subrayado de advertencia (Rojo Peligro) */
+    border-bottom: 3px solid #ff5757; 
+    
+    /* Eliminadas las propiedades de bloque (fondo, borde, sombra) para simplificar */
+}
+
+/* Tarjeta de información (Detalles) */
+.neobrutalismo-info-card {
+    background-color: #fff; /* Fondo blanco para contraste */
+    border: 3px solid #000;
+    box-shadow: 6px 6px 0px 0px #1A4D90; /* Sombra Azul Oscuro */
+    border-radius: 0;
+    font-family: 'JetBrains Mono', monospace;
+}
+.neobrutalismo-info-list li {
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed #ccc;
+}
+.neobrutalismo-info-list li:last-child {
+    border-bottom: none;
+}
+.neobrutalismo-label-delete {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+    color: #1A4D90; 
+    margin-right: 15px;
+    text-transform: uppercase; 
+    font-size: 1.2rem; /* Ajustado a 1.2rem según tu referencia */
+}
+.neobrutalismo-info-value {
+    font-weight: bold;
+    color: #000;
+}
+
+
+/* ==================================== */
+/* 2. ALERTA DE CONFIRMACIÓN            */
+/* ==================================== */
+
+.neobrutalismo-alert-danger {
+    /* Fondo de Alerta */
+    background-color: #e0e0e0; /* Usamos el Rosa de acento para la alerta */
+    color: #000;
+    
+    /* Borde de peligro */
+    border: 4px solid #000; 
+    
+    /* Sombra de peligro */
+    box-shadow: 6px 6px 0px #ff69b4; 
+    border-radius: 0;
+}
+
+.neobrutalismo-alert-heading {
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 2rem; 
+    color: #ff5757; /* Texto de encabezado en Rojo Peligro */
+    text-transform: uppercase;
+}
+
+.neobrutalismo-alert-text strong {
+    color: #1A4D90; /* Destacamos el producto en Azul Oscuro */
+    font-weight: 900;
+}
+
+
+/* ==================================== */
+/* 3. BOTONES DE ACCIÓN                 */
+/* ==================================== */
+
+/* Ajustar el tamaño para que sean uniformes */
+.neobrutalismo-delete-button,
+.neobrutalismo-cancel-button {
+    min-width: 180px; /* Asegura que ambos botones tengan un ancho decente */
+    font-size: 1.1rem;
+    padding: 15px 30px; 
+}
+
+
+/* Botón de Eliminar (Submit - Rojo Peligro) */
+.neobrutalismo-delete-button {
+    /* Estilos base de botón brutalista */
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    
+    background-color: #ff5757 !important; /* Rojo Peligro */
+    color: #000 !important;
+}
+
+.neobrutalismo-delete-button:hover {
+    transform: translate(-2px, -2px);
+    /* Eliminado el cambio de color a Naranja Brillante */
+    box-shadow: 7px 7px 0px #000 !important; /* Sombra Negra */
+}
+
+/* Botón de Cancelar (Secundario - Enlace GET) */
+.neobrutalismo-cancel-button {
+    /* Hereda estilos base de botón brutalista */
+    display: inline-block; 
+    border: 3px solid #000;
+    box-shadow: 5px 5px 0px #000 !important; 
+    font-family: 'Arial Black', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    border-radius: 0 !important;
+    text-decoration: none;
+    transition: all 0.1s ease-in-out;
+    
+    background-color: #33FFC7 !important; /* Verde Menta para Cancelar */
+    color: #000 !important;
+}
+
+.neobrutalismo-cancel-button:hover {
+    transform: translate(-2px, -2px);
+    background-color: #FFC733 !important; /* Naranja Brillante en hover */
+    box-shadow: 7px 7px 0px #000 !important; 
+}

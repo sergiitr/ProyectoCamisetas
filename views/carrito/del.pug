@@ -1,41 +1,37 @@
-block head
-  style.
-    .confirm-container {
-      max-width: 600px;
-      margin: auto;
-    }
-    .alert-danger {
-      background-color: #f8d7da;
-      color: #842029;
-      border-color: #f5c2c7;
-    }
-    .card {
-      border-radius: 0.75rem;
-    }
-    .btn-danger {
-      min-width: 140px;
-    }
-    .btn-secondary {
-      min-width: 140px;
-    }
+extends ../layouts/main
 
-block content
-  .confirm-container.my-5
-    h1.text-center.mb-4 Confirmar Eliminación
+block contenido
+  // Enlace al CSS específico de eliminación
+  link(rel="stylesheet", href="/css/carrito/del.css") 
+  
+  .container.neobrutalismo-delete-container.py-5
+    
+    // Tarjeta principal con sombra de peligro
+    .neobrutalismo-delete-card.p-4.mx-auto
+      
+      h1.text-center.neobrutalismo-heading-delete Confirmar Eliminación
 
-    .alert.alert-danger.text-center
-      h4 ¡Confirmación requerida!
-      p.fs-5 | ¿Deseas eliminar la camiseta
-        strong #{camiseta.marca} - #{camiseta.color} (#{camiseta.talla})
-        |  de tu carrito?
+      // Alerta de peligro (rojo/rosa)
+      .neobrutalismo-alert-danger.text-center.mb-4.p-3
+        h4.neobrutalismo-alert-heading ¡Confirmación requerida!
+        p.neobrutalismo-alert-text.fs-5 | ¿Deseas eliminar la camiseta
+          strong #{camiseta.marca} - #{camiseta.color} (#{camiseta.talla})
+          |  de tu carrito?
 
-    .card.shadow-sm.mb-4
-      .card-body
-        ul.list-unstyled.fs-5
-          li **Cantidad en carrito:** #{cantidadActual}
-          li **Precio unitario:** #{precioVenta}€
+      // Tarjeta de detalles (opcionalmente podríamos usar la misma tarjeta .neobrutalismo-delete-card si estuviera dentro)
+      .neobrutalismo-info-card.shadow-sm.mb-4.p-3
+        ul.list-unstyled.neobrutalismo-info-list.fs-5
+          li 
+            span.neobrutalismo-label-delete Cantidad en carrito:
+            span.neobrutalismo-info-value #{cantidadActual}
+          li 
+            span.neobrutalismo-label-delete Precio unitario:
+            span.neobrutalismo-info-value #{precioVenta}€
 
-    .d-flex.justify-content-center.gap-3
-      form(action=`/carrito/del/camiseta/${camiseta.id}`, method='POST')
-        button.btn.btn-danger.btn-lg(type='submit') Sí, eliminar
-      a.btn.btn-secondary.btn-lg(href='/carrito') No, volver
+      .d-flex.justify-content-center.gap-3
+        form(action=`/carrito/del/camiseta/${camiseta.id}`, method='POST')
+          // Botón principal de peligro (rojo)
+          button.neobrutalismo-delete-button.btn-lg(type='submit') Sí, eliminar
+        
+        // Botón secundario para cancelar (verde menta)
+        a.neobrutalismo-cancel-button.btn-lg(href='/carrito') No, volver
