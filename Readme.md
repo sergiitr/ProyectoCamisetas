@@ -149,3 +149,10 @@ RUTA | VERBO HTTP | Observaciones | Perfil|
 /camiseta/\[id\] | GET | Muestra la camiseta con ese ID | CLIENTE
 /pedido | GET | Muestra todos mis pedidos | CLIENTE
 /pedido/\[id\] | GET | Muestra el pedido con ese ID | CLIENTE
+
+
+# Autores
+Dario Martos Lopez
+Rubén Bailén Castillo
+Antonio Galán Soto
+Sergio Trillo Rodriguez
