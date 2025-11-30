@@ -78,7 +78,7 @@ exports.camisetaAdd = (req, res) => {
             console.log(error);
             return res.render('error', { mensaje: 'Imposible añadir la camiseta' });
         }
-        res.redirect('/admin/camiseta');
+        res.redirect('/admin/Gestionar');
     });
 };
 

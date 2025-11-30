@@ -5,7 +5,7 @@ USE `camisetas`;
 CREATE TABLE `camiseta` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `talla` ENUM('xxs','xs','s','m','l','xl','xxl') NOT NULL,
-  `sexo` ENUM('chica','chico','unisex','niño','niña','unisex_infantil') NOT NULL,
+  `sexo` ENUM('chica','chico','unisex','nino','nina','unisex_infantil') NOT NULL,
   `color` VARCHAR(50) NOT NULL,
   `marca` VARCHAR(50) NOT NULL,
   `stock` INT UNSIGNED NOT NULL DEFAULT 0,
@@ -60,7 +60,7 @@ INSERT INTO `camiseta` (`id`, `talla`, `sexo`, `color`, `marca`, `stock`, `preci
 (1,	'xs',	'chico',	'#e01b24',	'Adidas',	3,	20.00,	1),
 (2,	'xs',	'chico',	'#a0aba4',	'Puma',	10,	15.00,	0),
 (3,	's',	'unisex',	'#000000',	'Puma',	3,	1.20,	1),
-(4,	'xxs',	'niña',	'#ed333b',	'Puma',	12,	12.00,	1),
-(5,	'xxl',	'niño',	'#f9f06b',	'Adidas',	12,	34.00,	1),
+(4,	'xxs',	'nina',	'#ed333b',	'Puma',	12,	12.00,	1),
+(5,	'xxl',	'nino',	'#f9f06b',	'Adidas',	12,	34.00,	1),
 (14,	'xs',	'unisex',	'#e66100',	'Adidas',	3,	6.00,	1);
 
