@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const db = require('../db');
 
 
-//Mostar lalista de usuarios
+// Mostar lalista de usuarios
 exports.usuarioListado = (req, res) => {
     // Consulta para obtener todos los usuarios (omitiendo la contraseña)
     let query = 'SELECT id, username, email, telefono, direccion, activo, tipo FROM usuario';
@@ -10,16 +10,14 @@ exports.usuarioListado = (req, res) => {
     db.query(query, (error, resultado) => {
         if (error) {
             console.log(error);
-            res.render('error', {
-                mensaje: 'Imposible acceder a la lista de usuarios: ' + error.message
-            });
+            res.render('error', { mensaje: 'Imposible acceder a la lista de usuarios: ' + error.message });
         } else     
             res.render('usuarios/list', { usuarios: resultado });
         
     });
 }
 
-//Este metodo debe llevarnos al formulario de confirmacion de borrado
+// Este metodo debe llevarnos al formulario de confirmacion de borrado
 exports.usuarioDeleteForm = (req, res) => {
     const { id } = req.params;
     if (isNaN(id))
@@ -38,7 +36,7 @@ exports.usuarioDeleteForm = (req, res) => {
     })
 }
 
-//Metodo que otta el usuario
+// Metodo que otta el usuario
 exports.usuarioDelete = (req, res) =>{
    const { id } = req.params;
     if (isNaN(id))
@@ -54,7 +52,7 @@ exports.usuarioDelete = (req, res) =>{
     })
 }
 
-//metodo para ir a editar usuario
+// Metodo para ir a editar usuario
 exports.usuarioEditarForm = (req, res) => {
     const { id } = req.params
     if (isNaN(id))
@@ -74,7 +72,7 @@ exports.usuarioEditarForm = (req, res) => {
     })
 }
 
-//Metodo para confirmar la edicion
+// Metodo para confirmar la edicion
 exports.usuarioEditar = (req, res) => {
     const { id } = req.params;
 
@@ -84,19 +82,11 @@ exports.usuarioEditar = (req, res) => {
     const disponible = activo === 'on' ? 1 : 0;
 
     // Construir SQL dinámico (por si NO se cambia la contraseña)
-    let sql = `
-        UPDATE usuario SET 
-            username = ?, 
-            email = ?, 
-            telefono = ?, 
-            direccion = ?, 
-            activo = ?, 
-            tipo = ?
-    `;
+    let sql = ` UPDATE usuario SET username = ?, email = ?, telefono = ?, direccion = ?,  activo = ?, tipo = ? `;
     
     const params = [username, email, tlfn, direccion, disponible, tipo];
 
-    // si la contraseña está cambiada
+    // Si la contraseña está cambiada
     if (password && password.trim() !== "") {
         const hashedPass = bcrypt.hashSync(password, 10);
         sql += `, password = ?`;
@@ -119,6 +109,3 @@ exports.usuarioEditar = (req, res) => {
         res.redirect('/admin/usuario/list');
     });
 }
-
-
-
