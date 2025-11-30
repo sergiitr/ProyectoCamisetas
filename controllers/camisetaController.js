@@ -36,9 +36,8 @@ exports.camisetas = (req, res) => {
             if (imagenes.length > 0) {
                 const aleatoria = imagenes[Math.floor(Math.random() * imagenes.length)];
                 c.imagenUrl = `/img/random_cam/${aleatoria}`;
-            } else {
+            } else
                 c.imagenUrl = null;
-            }
 
             return c;
         });
